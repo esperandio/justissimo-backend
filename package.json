@@ -16,5 +16,11 @@
   "bugs": {
     "url": "https://github.com/esperandio/justissimo-backend/issues"
   },
-  "homepage": "https://github.com/esperandio/justissimo-backend#readme"
+  "homepage": "https://github.com/esperandio/justissimo-backend#readme",
+  "dependencies": {
+    "express": "^4.17.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13"
+  }
 }
