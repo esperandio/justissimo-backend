@@ -11,7 +11,7 @@ iniciar uma aplicação node:
 #Parte 2
 Instalando as dependencias
 
--npm add express 
+-npm add express <br>
 -npm add -D @types/express
 
 Estamos instalando o Express e as definições de typos do Express porque nosso projeto será feito em typescript e requer
