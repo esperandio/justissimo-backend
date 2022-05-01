@@ -47,3 +47,11 @@ O comando abaixo é responsavel por compilar o fonte typescript em javascript:
 ```
 yarn tsc
 ```
+
+## Docker
+
+### Comando para criar container docker rodando node
+
+```
+docker run --rm -i --tty --volume $PWD:/app -p 3333:3333 -w /app node bash
+```
