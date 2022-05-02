@@ -67,7 +67,7 @@ Após definido as tabelas do banco de dados (models) o comando abaixo cria uma m
 
 ```
 npx prisma migrate dev --name create_table_teste
-
+```
 ## Docker
 
 ### Comando para criar container docker rodando node
