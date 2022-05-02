@@ -47,6 +47,7 @@ O comando abaixo é responsavel por compilar o fonte typescript em javascript:
 ```
 yarn tsc
 ```
+
 ## Instalar ferramenta de ORM prisma:
 
 ```
@@ -57,11 +58,20 @@ yarn add @prisma/client
 ```
 
 Criar configuração do prisma, o comando abaixo cria a pasta Prisma na raíz do projeto e o arquivo .env que contém a conexão com o banco Postgres:
+
 ```
 npx prisma init
 ```
 
 Após definido as tabelas do banco de dados (models) o comando abaixo cria uma migração ou seja cria todos os models no banco de dados:
+
 ```
 npx prisma migrate dev --name create_table_teste
+
+## Docker
+
+### Comando para criar container docker rodando node
+
+```
+docker run --rm -i --tty --volume $PWD:/app -p 3333:3333 -w /app node bash
 ```
