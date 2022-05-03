@@ -10,8 +10,56 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
-  id    Int     @default(autoincrement()) @id
-  email String  @unique
-  name  String?
+model Usuario {
+  id_usuario Int      @default(autoincrement()) @id
+  email      String   @unique @db.VarChar(200)
+  senha      String   @db.VarChar(200)
+  cliente    Cliente?
+  advoagdo   Advogado?
+@@map("usuario")
+}
+
+model Cliente {
+  id_cliente    Int       @default(autoincrement()) @id
+  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario])  
+  fk_usuario    Int?
+  nome          String    @db.VarChar(55)
+  dt_nascimento DateTime
+  nr_cpf        String    @db.VarChar(11)
+  nr_cnpj       String    @db.VarChar(14)
+  endereco      Endereco?
+@@map("cliente")
+}
+
+model Advogado {
+  id_advogado   Int       @default(autoincrement()) @id
+  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario])
+  fk_usuario    Int?
+  nome          String    @db.VarChar(55)
+  dt_nascimento DateTime
+  nr_cna        Int
+  uf_cna        String    @db.VarChar(2)
+  nr_cpf        String    @db.VarChar(11)
+  nr_cnpj       String    @db.VarChar(14)
+  tel_fixo      String    @db.VarChar(45)
+  tel_celular   String    @db.VarChar(45)
+  endereco      Endereco?
+  @@map("advogado")
+}
+
+model Endereco {
+  id_endereco Int       @default(autoincrement()) @id
+  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente])
+  fk_cliente  Int?
+  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado])
+  fk_advogado Int?
+  nr_cep      String    @db.VarChar(8)
+  numero      Int
+  rua         String    @db.VarChar(100)
+  bairro      String    @db.VarChar(100)
+  cidade      String    @db.VarChar(100)
+  estado      String    @db.VarChar(100)
+  logradouro  String    @db.VarChar(100)
+  complemento String    @db.VarChar(60)
+  @@map("endereco")
 }
