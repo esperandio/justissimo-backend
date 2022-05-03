@@ -68,6 +68,12 @@ Após definido as tabelas do banco de dados (models) o comando abaixo cria uma m
 ```
 npx prisma migrate dev --name create_table_teste
 ```
+Biblioteca Bcrypt
+```
+yarn add bcryptjs
+```
+Tipagem bcrypt
+yarn add @types/bcryptjs -D
 ## Docker
 
 ### Comando para criar container docker rodando node

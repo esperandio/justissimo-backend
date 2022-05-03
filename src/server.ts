@@ -1,11 +1,12 @@
 import express from 'express'
 
-import route from './routes/heloworld'
+// import route from './routes/heloworld'
+import {router} from './routes'
 
 const app = express()
 
 app.use(express.json())
-app.use(route)
+app.use(router)
 
 const port = process.env.PORT || 3000;
 
