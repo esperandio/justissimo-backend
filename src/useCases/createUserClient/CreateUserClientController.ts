@@ -8,7 +8,8 @@ class CreateUserClientController {
             email,
             fullname,
             birthday,
-            cpfCnpj,
+            cpf,
+            cnpj,
             city,
             state,
             zipcode 
@@ -16,25 +17,26 @@ class CreateUserClientController {
 
         const useCase = new CreateUserClientUseCase();
 
-        try {
-            await useCase.execute(
+        // try {
+            const resp = await useCase.execute(
                 {
                     password,
                     email,
                     fullname,
                     birthday,
-                    cpfCnpj,
+                    cpf,
+                    cnpj,
                     city,
                     state,
                     zipcode 
                 }
             )
-            
-        } catch (error) {                        
-            return response.status(404).json('erro');
-        }
 
-        return response.status(200).json('sucesso');
+            return response.status(200).json(resp);
+            
+        // } catch (error) {                        
+        //     return response.status(404).json(error);
+        // }
     }
 }
 

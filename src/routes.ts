@@ -3,6 +3,6 @@ import { CreateUserClientController } from "./useCases/createUserClient/CreateUs
 
 const router = Router();
 
-router.post("/users", new CreateUserClientController().handle)
+router.post("/clients", new CreateUserClientController().handle)
 
 export { router}

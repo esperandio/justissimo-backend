@@ -3,14 +3,19 @@
     "_id": "51074f0f-5897-4148-8b79-bd1b66ea2c1f",
     "colId": "5641a189-79cb-4d76-a3b1-d361d8ec0290",
     "containerId": "",
-    "name": "teste",
-    "url": "http://localhost:3000/users",
+    "name": "cliente",
+    "url": "http://localhost:3000/clients",
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-03T00:16:46.382Z",
-    "modified": "2022-05-03T00:18:39.531Z",
+    "modified": "2022-05-04T00:00:42.620Z",
     "headers": [],
     "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"password\": \"123\",\n    \"email\": \"david@teste\",\n    \"fullname\": \"david jesus\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"00000000000\",\n    \"cnpj\": \"\",\n    \"city\": \"blumenau\",\n    \"state\": \"SC\",\n    \"zipcode\": \"12356578\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

@@ -15,7 +15,7 @@ model Usuario {
   email      String   @unique @db.VarChar(200)
   senha      String   @db.VarChar(200)
   cliente    Cliente?
-  advoagdo   Advogado?
+  advogado   Advogado?
 @@map("usuario")
 }
 
@@ -53,13 +53,13 @@ model Endereco {
   fk_cliente  Int?
   advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado])
   fk_advogado Int?
-  nr_cep      String    @db.VarChar(8)
-  numero      Int
-  rua         String    @db.VarChar(100)
-  bairro      String    @db.VarChar(100)
-  cidade      String    @db.VarChar(100)
-  estado      String    @db.VarChar(100)
-  logradouro  String    @db.VarChar(100)
-  complemento String    @db.VarChar(60)
+  nr_cep      String?    @db.VarChar(8)
+  numero      Int?
+  rua         String?    @db.VarChar(100)
+  bairro      String?    @db.VarChar(100)
+  cidade      String?    @db.VarChar(100)
+  estado      String?    @db.VarChar(100)
+  logradouro  String?    @db.VarChar(100)
+  complemento String?    @db.VarChar(60)
   @@map("endereco")
 }
