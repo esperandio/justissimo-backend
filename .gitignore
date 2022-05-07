@@ -105,3 +105,7 @@ dist
 
 # Visual studio code
 .vscode/
+
+# Thunder client
+/thunder-tests/thunderActivity.json
+/thunder-tests/thunderEnvironment.json
