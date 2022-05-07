@@ -10,4 +10,5 @@ router.post("/clients", new CreateUserClientController().handle);
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/client/:id", new ListClientByIdController().handle);
 router.delete("/user/:id", new DeleteUSerController().handle);
-export { router}
+
+export { router }

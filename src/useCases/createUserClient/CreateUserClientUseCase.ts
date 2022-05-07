@@ -45,7 +45,7 @@ class CreateUserClientUseCase {
             }
         });
 
-        if(userAlreadExists) {
+        if (userAlreadExists) {
             throw new Error("Usuário já existe!");
         }
 

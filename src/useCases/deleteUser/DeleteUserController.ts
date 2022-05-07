@@ -5,8 +5,7 @@ class DeleteUSerController {
     async handle(request: Request, response: Response) {
         const { id } = request.params;
         
-        const userUseCase = new DeleteUserUseCase;
-        await userUseCase.execute(id);
+        await new DeleteUserUseCase().execute(Number.parseInt(id));
 
         return response.status(200).json({message: "Usuário excluído com sucesso!"});
     }
