@@ -36,7 +36,17 @@ class CreateUserClientUseCase {
             || userRequest.email == ""
             || userRequest.password == ""
         ) {
-            throw new Error("Informação inválido!");
+            throw new Error("Informação inválida!");
+        }
+
+        const userAlreadExists = await prisma.usuario.findUnique({
+            where: {
+                email: userRequest.email
+            }
+        });
+
+        if(userAlreadExists) {
+            throw new Error("Usuário já existe!");
         }
 
         const usuario = await prisma.usuario.create({
