@@ -1,5 +1,6 @@
 # justissimo-backend
 
+[![Build App on Heroku](https://github.com/esperandio/justissimo-backend/actions/workflows/build-heroku-app.yml/badge.svg)](https://github.com/esperandio/justissimo-backend/actions/workflows/build-heroku-app.yml)
 
 comandos para iniciar projeto: prompt - backend
 
