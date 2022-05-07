@@ -1,21 +1,63 @@
 [
   {
-    "_id": "51074f0f-5897-4148-8b79-bd1b66ea2c1f",
-    "colId": "5641a189-79cb-4d76-a3b1-d361d8ec0290",
+    "_id": "1023ea86-0c2b-4950-9c3f-3b8050e9ebbf",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
     "containerId": "",
-    "name": "cliente",
-    "url": "http://localhost:3000/clients",
-    "method": "POST",
+    "name": "listAllClients",
+    "url": "localhost:3333/clients",
+    "method": "GET",
     "sortNum": 10000,
-    "created": "2022-05-03T00:16:46.382Z",
-    "modified": "2022-05-04T00:00:42.620Z",
+    "created": "2022-05-07T13:33:25.716Z",
+    "modified": "2022-05-07T13:33:25.716Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "03158011-697e-4e33-b157-e71c4559c163",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "createClient",
+    "url": "localhost:3333/clients",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-05-07T13:33:25.717Z",
+    "modified": "2022-05-07T13:33:25.717Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"password\": \"123\",\n    \"email\": \"david@teste\",\n    \"fullname\": \"david jesus\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"00000000000\",\n    \"cnpj\": \"\",\n    \"city\": \"blumenau\",\n    \"state\": \"SC\",\n    \"zipcode\": \"12356578\"\n}",
+      "raw": "{\n    \"password\": \"123\",\n    \"email\": \"matheus@teste.com\",\n    \"fullname\": \"Matheus Esperandio\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"city\": \"Blumenau\",\n    \"state\": \"SC\",  \n    \"zipcode\": \"1234567\" \n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "5b8bd21b-56d2-4241-9581-c8840bbbd219",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "listClientById",
+    "url": "localhost:3333/client/5",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-05-07T13:33:25.718Z",
+    "modified": "2022-05-07T13:33:25.718Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "4df834ef-1109-40c4-8779-3fa4df8f010e",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "deleteUserById",
+    "url": "localhost:3333/user/10",
+    "method": "DELETE",
+    "sortNum": 40000,
+    "created": "2022-05-07T13:33:25.719Z",
+    "modified": "2022-05-07T13:33:25.719Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]
