@@ -16,27 +16,21 @@ class CreateUserClientController {
         } = request.body;
 
         const useCase = new CreateUserClientUseCase();
+        const resp = await useCase.execute(
+            {
+                password,
+                email,
+                fullname,
+                birthday,
+                cpf,
+                cnpj,
+                city,
+                state,
+                zipcode 
+            }
+        );
 
-        // try {
-            const resp = await useCase.execute(
-                {
-                    password,
-                    email,
-                    fullname,
-                    birthday,
-                    cpf,
-                    cnpj,
-                    city,
-                    state,
-                    zipcode 
-                }
-            )
-
-            return response.status(200).json(resp);
-            
-        // } catch (error) {                        
-        //     return response.status(404).json(error);
-        // }
+        return response.status(200).json(resp);
     }
 }
 

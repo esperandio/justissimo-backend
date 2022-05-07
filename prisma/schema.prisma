@@ -21,7 +21,7 @@ model Usuario {
 
 model Cliente {
   id_cliente    Int       @default(autoincrement()) @id
-  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario])  
+  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)  
   fk_usuario    Int?
   nome          String    @db.VarChar(55)
   dt_nascimento DateTime
@@ -33,7 +33,7 @@ model Cliente {
 
 model Advogado {
   id_advogado   Int       @default(autoincrement()) @id
-  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario])
+  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   fk_usuario    Int?
   nome          String    @db.VarChar(55)
   dt_nascimento DateTime
@@ -49,9 +49,9 @@ model Advogado {
 
 model Endereco {
   id_endereco Int       @default(autoincrement()) @id
-  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente])
+  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
   fk_cliente  Int?
-  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado])
+  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
   fk_advogado Int?
   nr_cep      String?    @db.VarChar(8)
   numero      Int?
