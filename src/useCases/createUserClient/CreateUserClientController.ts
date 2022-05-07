@@ -27,7 +27,7 @@ class CreateUserClientController {
             zipcode 
         });
 
-        return response.status(200).json(userResponse);
+        return response.status(201).json(userResponse);
     }
 }
 
