@@ -1,8 +1,8 @@
 import { DomainError } from "../errors";
 
 class InvalidEmailError extends DomainError {
-    constructor () {
-        super("Enter valid email.")
+    constructor (email: string) {
+        super(`Informe um e-mail válido (valor informado: ${email}).`)
     }
 }
 
@@ -18,7 +18,7 @@ export class Email {
         const emailReg =  /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/
 
         if (!emailReg.test(email)) {
-            throw new InvalidEmailError();
+            throw new InvalidEmailError(email);
         }
 
         return new Email(email);
