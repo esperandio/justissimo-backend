@@ -1,4 +1,5 @@
 import { prisma } from "../../database/index";
+import { DomainError } from "../../errors";
 
 interface IUserRequest {
     password: string;
@@ -36,7 +37,7 @@ class CreateUserClientUseCase {
             || userRequest.email == ""
             || userRequest.password == ""
         ) {
-            throw new Error("Informação inválida!");
+            throw new DomainError("Informação inválida!");
         }
 
         const userAlreadExists = await prisma.usuario.findUnique({
@@ -46,7 +47,7 @@ class CreateUserClientUseCase {
         });
 
         if (userAlreadExists) {
-            throw new Error("Usuário já existe!");
+            throw new DomainError("Usuário já existe!");
         }
 
         const usuario = await prisma.usuario.create({
