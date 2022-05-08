@@ -1,6 +1,6 @@
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
-import { Email } from "../../validators";
+import { Email, NonEmptyString } from "../../validators";
 
 interface IUserRequest {
     password: string;
@@ -25,14 +25,17 @@ class CreateUserClientUseCase {
 
     async execute(userRequest : IUserRequest): Promise<IUserRespose> {
         const email = Email.create(userRequest.email);
+        const fullname = NonEmptyString.create('fullname', userRequest.fullname);
+        const city = NonEmptyString.create('city', userRequest.city);
+        const zipcode = NonEmptyString.create('zipcode', userRequest.zipcode);
+        const state = NonEmptyString.create('state', userRequest.state);
+
+        if (!this.validStates.includes(state.value)) {
+            throw new DomainError(`Estado inválido. Valor informado: ${state.value}`);
+        }
 
         if (
-            userRequest.fullname == "" 
-            || userRequest.city == "" 
-            || userRequest.state == ""
-            || !this.validStates.includes(userRequest.state)
-            || userRequest.zipcode == ""
-            || userRequest.birthday == ""
+            userRequest.birthday == ""
             || (
                 (userRequest.cpf == "" && userRequest.cnpj == "")
                 || (userRequest.cpf != "" && userRequest.cnpj != "")
@@ -62,18 +65,18 @@ class CreateUserClientUseCase {
         const cliente = await prisma.cliente.create({
             data: {
                 dt_nascimento: new Date(userRequest.birthday),
-                nome: userRequest.fullname,
+                nome: fullname.value,
                 nr_cnpj: userRequest.cnpj,
                 nr_cpf: userRequest.cpf,
                 fk_usuario: usuario.id_usuario
             }
         });
 
-        const endereco = await prisma.endereco.create({
+        await prisma.endereco.create({
             data: {
-                cidade: userRequest.city,
-                estado: userRequest.state,
-                nr_cep: userRequest.zipcode,
+                cidade: city.value,
+                estado: state.value,
+                nr_cep: zipcode.value,
                 fk_cliente: cliente.id_cliente
             }
         })
