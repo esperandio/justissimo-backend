@@ -1,5 +1,5 @@
-import { Usuario } from "@prisma/client";
 import { prisma } from "../../database";
+import { UserNotFoundError } from "../../errors/user-not-found-error";
 
 
 class DeleteUserUseCase {
@@ -11,7 +11,7 @@ class DeleteUserUseCase {
         });
 
         if (userAlreadExists == null) {
-            throw new Error("Usuário não existe na base dados");
+            throw new UserNotFoundError();
         }
 
         await prisma.usuario.delete({

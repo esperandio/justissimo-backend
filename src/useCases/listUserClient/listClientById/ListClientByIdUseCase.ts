@@ -1,5 +1,5 @@
-import { json } from "express";
 import { prisma } from "../../../database/index"
+import { ClientNotFoundError } from '../../../errors'
 
 class ListClientByIdUseCase {
     async execute(id_client: number) {
@@ -8,6 +8,10 @@ class ListClientByIdUseCase {
                 id_cliente: id_client,
             }
         });
+
+        if (client == null) {
+            throw new ClientNotFoundError();
+        }
             
         return client;
     }

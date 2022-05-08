@@ -109,3 +109,6 @@ dist
 # Thunder client
 /thunder-tests/thunderActivity.json
 /thunder-tests/thunderEnvironment.json
+
+# Docker local database
+/prisma/database/pgsql_data/
