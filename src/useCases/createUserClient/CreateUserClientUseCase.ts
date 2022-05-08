@@ -1,5 +1,6 @@
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
+import { Email } from "../../validators";
 
 interface IUserRequest {
     password: string;
@@ -23,6 +24,8 @@ class CreateUserClientUseCase {
                            'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',];
 
     async execute(userRequest : IUserRequest): Promise<IUserRespose> {
+        const email = Email.create(userRequest.email);
+
         if (
             userRequest.fullname == "" 
             || userRequest.city == "" 
@@ -34,7 +37,6 @@ class CreateUserClientUseCase {
                 (userRequest.cpf == "" && userRequest.cnpj == "")
                 || (userRequest.cpf != "" && userRequest.cnpj != "")
             )
-            || userRequest.email == ""
             || userRequest.password == ""
         ) {
             throw new DomainError("Informação inválida!");
@@ -42,7 +44,7 @@ class CreateUserClientUseCase {
 
         const userAlreadExists = await prisma.usuario.findUnique({
             where: {
-                email: userRequest.email
+                email: email.value
             }
         });
 
@@ -52,7 +54,7 @@ class CreateUserClientUseCase {
 
         const usuario = await prisma.usuario.create({
             data: {
-                email: userRequest.email,
+                email: email.value,
                 senha: userRequest.password
             }
         });
