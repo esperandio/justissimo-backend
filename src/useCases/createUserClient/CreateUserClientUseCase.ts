@@ -1,6 +1,6 @@
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
-import { Email, NonEmptyString, PastDate } from "../../validators";
+import { Email, NonEmptyString, PastDate, Password } from "../../validators";
 
 interface IUserRequest {
     password: string;
@@ -30,19 +30,17 @@ class CreateUserClientUseCase {
         const zipcode = NonEmptyString.create('zipcode', userRequest.zipcode);
         const state = NonEmptyString.create('state', userRequest.state);
         const birthday = PastDate.create(new Date(userRequest.birthday));
+        const password = Password.create(userRequest.password);
 
         if (!this.validStates.includes(state.value)) {
-            throw new DomainError(`Estado inválido. Valor informado: ${state.value}`);
+            throw new DomainError(`Estado inválido. Valor informado: ${state.value}. Valores possíveis: ${this.validStates.toString()}`);
         }
 
         if (
-            (
-                (userRequest.cpf == "" && userRequest.cnpj == "")
-                || (userRequest.cpf != "" && userRequest.cnpj != "")
-            )
-            || userRequest.password == ""
+            (userRequest.cpf == "" && userRequest.cnpj == "")
+            || (userRequest.cpf != "" && userRequest.cnpj != "")
         ) {
-            throw new DomainError("Informação inválida!");
+            throw new DomainError("CPF e/ou CNPJ inválido(s)!");
         }
 
         const userAlreadExists = await prisma.usuario.findUnique({
@@ -58,7 +56,7 @@ class CreateUserClientUseCase {
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
-                senha: userRequest.password
+                senha: password.value
             }
         });
 
@@ -79,7 +77,7 @@ class CreateUserClientUseCase {
                 nr_cep: zipcode.value,
                 fk_cliente: cliente.id_cliente
             }
-        })
+        });
 
         return {
             email: usuario.email,
