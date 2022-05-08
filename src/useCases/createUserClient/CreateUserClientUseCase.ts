@@ -1,6 +1,6 @@
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
-import { Email, NonEmptyString } from "../../validators";
+import { Email, NonEmptyString, PastDate } from "../../validators";
 
 interface IUserRequest {
     password: string;
@@ -29,14 +29,14 @@ class CreateUserClientUseCase {
         const city = NonEmptyString.create('city', userRequest.city);
         const zipcode = NonEmptyString.create('zipcode', userRequest.zipcode);
         const state = NonEmptyString.create('state', userRequest.state);
+        const birthday = PastDate.create(new Date(userRequest.birthday));
 
         if (!this.validStates.includes(state.value)) {
             throw new DomainError(`Estado inválido. Valor informado: ${state.value}`);
         }
 
         if (
-            userRequest.birthday == ""
-            || (
+            (
                 (userRequest.cpf == "" && userRequest.cnpj == "")
                 || (userRequest.cpf != "" && userRequest.cnpj != "")
             )
@@ -64,7 +64,7 @@ class CreateUserClientUseCase {
 
         const cliente = await prisma.cliente.create({
             data: {
-                dt_nascimento: new Date(userRequest.birthday),
+                dt_nascimento: birthday.value,
                 nome: fullname.value,
                 nr_cnpj: userRequest.cnpj,
                 nr_cpf: userRequest.cpf,
