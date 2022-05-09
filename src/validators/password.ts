@@ -14,7 +14,7 @@ export class Password {
         Object.freeze(this)
     }
 
-    public static create(password: string): Password {
+    public static validate(password: string): Password {
         const passwordReg = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/
 
         if (!passwordReg.test(password)) {

@@ -24,13 +24,13 @@ class CreateUserClientUseCase {
                            'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',];
 
     async execute(userRequest : IUserRequest): Promise<IUserRespose> {
-        const email = Email.create(userRequest.email);
-        const fullname = NonEmptyString.create('fullname', userRequest.fullname);
-        const city = NonEmptyString.create('city', userRequest.city);
-        const zipcode = NonEmptyString.create('zipcode', userRequest.zipcode);
-        const state = NonEmptyString.create('state', userRequest.state);
-        const birthday = PastDate.create(new Date(userRequest.birthday));
-        const password = Password.create(userRequest.password);
+        const email = Email.validate(userRequest.email);
+        const fullname = NonEmptyString.validate('fullname', userRequest.fullname);
+        const city = NonEmptyString.validate('city', userRequest.city);
+        const zipcode = NonEmptyString.validate('zipcode', userRequest.zipcode);
+        const state = NonEmptyString.validate('state', userRequest.state);
+        const birthday = PastDate.validate(new Date(userRequest.birthday));
+        const password = Password.validate(userRequest.password);
 
         if (!this.validStates.includes(state.value)) {
             throw new DomainError(`Estado inválido. Valor informado: ${state.value}. Valores possíveis: ${this.validStates.toString()}`);

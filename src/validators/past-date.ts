@@ -14,7 +14,7 @@ export class PastDate {
         Object.freeze(this)
     }
 
-    public static create(date: Date): PastDate {
+    public static validate(date: Date): PastDate {
         const today = new Date();
 
         if (date.getDate() >= today.getDate()) {

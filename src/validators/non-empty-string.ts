@@ -15,7 +15,7 @@ export class NonEmptyString {
         Object.freeze(this)
     }
 
-    public static create(identifier: string, value: string): NonEmptyString {
+    public static validate(identifier: string, value: string): NonEmptyString {
         if (value == "" || value == undefined || value == null) {
             throw new EmptyStringError(identifier);
         }
