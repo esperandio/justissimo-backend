@@ -1,9 +1,16 @@
 [
   {
     "_id": "dd128eae-4413-410a-afe6-8945dce62d55",
-    "colName": "justissimo",
+    "colName": "Client",
     "created": "2022-05-07T13:33:25.702Z",
     "sortNum": 20000,
+    "folders": []
+  },
+  {
+    "_id": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "colName": "User",
+    "created": "2022-05-10T22:17:00.101Z",
+    "sortNum": 30000,
     "folders": []
   }
 ]
