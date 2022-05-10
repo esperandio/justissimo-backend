@@ -1,5 +1,6 @@
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
+import { Email, NonEmptyString, PastDate, Password } from "../../validators";
 
 interface IUserRequest {
     password: string;
@@ -23,26 +24,28 @@ class CreateUserClientUseCase {
                            'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',];
 
     async execute(userRequest : IUserRequest): Promise<IUserRespose> {
+        const email = Email.validate(userRequest.email);
+        const fullname = NonEmptyString.validate('fullname', userRequest.fullname);
+        const city = NonEmptyString.validate('city', userRequest.city);
+        const zipcode = NonEmptyString.validate('zipcode', userRequest.zipcode);
+        const state = NonEmptyString.validate('state', userRequest.state);
+        const birthday = PastDate.validate(new Date(userRequest.birthday));
+        const password = Password.validate(userRequest.password);
+
+        if (!this.validStates.includes(state.value)) {
+            throw new DomainError(`Estado inválido. Valor informado: ${state.value}. Valores possíveis: ${this.validStates.toString()}`);
+        }
+
         if (
-            userRequest.fullname == "" 
-            || userRequest.city == "" 
-            || userRequest.state == ""
-            || !this.validStates.includes(userRequest.state)
-            || userRequest.zipcode == ""
-            || userRequest.birthday == ""
-            || (
-                (userRequest.cpf == "" && userRequest.cnpj == "")
-                || (userRequest.cpf != "" && userRequest.cnpj != "")
-            )
-            || userRequest.email == ""
-            || userRequest.password == ""
+            (userRequest.cpf == "" && userRequest.cnpj == "")
+            || (userRequest.cpf != "" && userRequest.cnpj != "")
         ) {
-            throw new DomainError("Informação inválida!");
+            throw new DomainError("CPF e/ou CNPJ inválido(s)!");
         }
 
         const userAlreadExists = await prisma.usuario.findUnique({
             where: {
-                email: userRequest.email
+                email: email.value
             }
         });
 
@@ -52,29 +55,29 @@ class CreateUserClientUseCase {
 
         const usuario = await prisma.usuario.create({
             data: {
-                email: userRequest.email,
-                senha: userRequest.password
+                email: email.value,
+                senha: password.value
             }
         });
 
         const cliente = await prisma.cliente.create({
             data: {
-                dt_nascimento: new Date(userRequest.birthday),
-                nome: userRequest.fullname,
+                dt_nascimento: birthday.value,
+                nome: fullname.value,
                 nr_cnpj: userRequest.cnpj,
                 nr_cpf: userRequest.cpf,
                 fk_usuario: usuario.id_usuario
             }
         });
 
-        const endereco = await prisma.endereco.create({
+        await prisma.endereco.create({
             data: {
-                cidade: userRequest.city,
-                estado: userRequest.state,
-                nr_cep: userRequest.zipcode,
+                cidade: city.value,
+                estado: state.value,
+                nr_cep: zipcode.value,
                 fk_cliente: cliente.id_cliente
             }
-        })
+        });
 
         return {
             email: usuario.email,
