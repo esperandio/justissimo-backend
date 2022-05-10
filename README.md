@@ -5,17 +5,21 @@
 comandos para iniciar projeto: prompt - backend
 
 ## Parte 1
-Instalar gerenciador de depêndencias yarn:<br>
+
+Instalar gerenciador de depêndencias yarn:
+
 ```
 npm install --global yarn
 ```
 
-iniciar uma aplicação node:<br>
+iniciar uma aplicação node:
+
 ```
 yarn init -y 
 ```
 
 ## Parte 2
+
 Instalando as dependencias
 
 ```
@@ -25,17 +29,19 @@ Instalando as dependencias
 ```
 -yarn add -D @types/express
 ```
-Estamos instalando o Express e as definições de typos do Express porque nosso projeto será feito em typescript e requer
-typagem.
 
-Instalando o TypeScript como dependência de desenvolvimento:<br>
+Estamos instalando o Express e as definições de typos do Express porque nosso projeto será feito em typescript e requer typagem.
+
+Instalando o TypeScript como dependência de desenvolvimento:
+
 ```
 yarn add -D typescript
 ```
 
 ## Criar arquivo de configuração que irá converter o fonte typescript em Javascript no momento em que compilarmos o projeto (buildar):
 
-O comando abaixo cria um arquivo .json de configuração chamado: tsconfig.json:<br>
+O comando abaixo cria um arquivo .json de configuração chamado: tsconfig.json:
+
 ```
 yarn tsc --init
 ```
@@ -54,6 +60,7 @@ yarn tsc
 ```
 yarn add prisma --dev
 ```
+
 ```
 yarn add @prisma/client
 ```
@@ -71,15 +78,23 @@ npx prisma migrate dev --name create_table_teste
 ```
 
 Após as migrations estiverem definidas em um formato final o comando abaixo é responsável por criar todas as tabelas definidas no banco de dados:
+
 ```
 yarn prisma migrate deploy
 ```
+
 Biblioteca Bcrypt
+
 ```
 yarn add bcryptjs
 ```
+
 Tipagem bcrypt
+
+```
 yarn add @types/bcryptjs -D
+```
+
 ## Docker
 
 ### Comando para criar container docker rodando node
