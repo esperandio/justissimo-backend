@@ -59,5 +59,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "8da3b192-6e85-484a-9c01-c2c761099a17",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "createAdvogado",
+    "url": "localhost:3333/lawyers",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-05-10T22:20:11.885Z",
+    "modified": "2022-05-10T22:45:38.452Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"password\": \"\",\n    \"email\": \"\",\n    \"fullname\": \"\",\n    \"birthday\": \"\",\n    \"cpf\": \"\",\n    \"cnpj\": \"\",\n    \"city\": \"\",\n    \"state\": \"\",\n    \"zipcode\": \"\",\n    \"register_cna\": \"\",\n    \"state_cna\": \"\",\n    \"phone\": \"\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
