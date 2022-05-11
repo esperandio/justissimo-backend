@@ -37,11 +37,11 @@
     "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
     "containerId": "",
     "name": "listClientById",
-    "url": "{{url}}/clients/1",
+    "url": "{{url}}/clients/3",
     "method": "GET",
     "sortNum": 15000,
     "created": "2022-05-07T13:33:25.718Z",
-    "modified": "2022-05-10T22:15:33.063Z",
+    "modified": "2022-05-11T00:35:06.334Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -62,21 +62,49 @@
   },
   {
     "_id": "8da3b192-6e85-484a-9c01-c2c761099a17",
-    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
     "name": "createAdvogado",
-    "url": "localhost:3333/lawyers",
+    "url": "{{url}}/lawyers",
     "method": "POST",
-    "sortNum": 50000,
+    "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-05-10T22:45:38.452Z",
+    "modified": "2022-05-11T00:15:53.793Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"password\": \"\",\n    \"email\": \"\",\n    \"fullname\": \"\",\n    \"birthday\": \"\",\n    \"cpf\": \"\",\n    \"cnpj\": \"\",\n    \"city\": \"\",\n    \"state\": \"\",\n    \"zipcode\": \"\",\n    \"register_cna\": \"\",\n    \"state_cna\": \"\",\n    \"phone\": \"\"\n}",
+      "raw": "{\n    \"password\": \"1!2bHkln\",\n    \"email\": \"teste.com\",\n    \"fullname\": \"david\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"city\": \"blumenau\",\n    \"state\": \"SC\",\n    \"zipcode\": \"89526314\",\n    \"register_cna\": \"321\",\n    \"state_cna\": \"SC\",\n    \"phone\": \"479999999\"\n}",
       "form": []
     },
+    "tests": []
+  },
+  {
+    "_id": "92375f7c-f7f9-41ab-a188-0fc65a339a4f",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "getAllLawyers",
+    "url": "{{url}}/lawyers",
+    "method": "GET",
+    "sortNum": 30000,
+    "created": "2022-05-11T00:11:29.154Z",
+    "modified": "2022-05-11T00:16:10.874Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "9d12d5ab-8296-41e4-88bf-93fa2055792c",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "getLawyerById",
+    "url": "{{url}}/lawyers/3",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-05-11T00:27:31.100Z",
+    "modified": "2022-05-11T00:36:58.946Z",
+    "headers": [],
+    "params": [],
     "tests": []
   }
 ]

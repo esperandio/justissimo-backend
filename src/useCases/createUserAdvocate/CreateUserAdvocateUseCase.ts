@@ -55,7 +55,7 @@ class CreateUserAdvogateUseCase {
         }
 
         const passwordHash = await hash(password.value, 8);
-
+        
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
@@ -75,13 +75,13 @@ class CreateUserAdvogateUseCase {
                 tel_celular: phone.value
             }
         });
-
+        console.log(advogado);
         await prisma.endereco.create({
             data: {
                 cidade: city.value,
                 estado: state.value,
                 nr_cep: zipcode.value,
-                fk_cliente: advogado.id_advogado
+                fk_advogado: advogado.id_advogado
             }
         });
 

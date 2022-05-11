@@ -44,6 +44,7 @@ class CreateUserClientUseCase {
             throw new DomainError("CPF e/ou CNPJ inválido(s)!");
         }
 
+        
         const userAlreadExists = await prisma.usuario.findUnique({
             where: {
                 email: email.value
