@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateUserAdvocateController } from "./useCases/createUserAdvocate/CreateUserAdvocateController";
+import { CreateUserAdvocateController } from "./useCases/createUserLawyer/CreateUserAdvocateController";
 import { CreateUserClientController } from "./useCases/createUserClient/CreateUserClientController";
 import { DeleteUSerController } from "./useCases/deleteUser/DeleteUserController";
 import { ListAllClientsController } from "./useCases/listUserClient/listAllClients/ListAllClientsController";
