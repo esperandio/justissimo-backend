@@ -1,3 +1,4 @@
+import { hash} from "bcryptjs";
 import { Cliente } from "@prisma/client";
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
@@ -55,10 +56,12 @@ class CreateUserClientUseCase {
             throw new DomainError("Usuário já existe!");
         }
 
+        const passwordHash = await hash(password.value, 8);
+
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
-                senha: password.value
+                senha: passwordHash
             }
         });
 

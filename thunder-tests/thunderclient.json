@@ -51,11 +51,11 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "deleteUserById",
-    "url": "{{url}}/user/2",
+    "url": "{{url}}/user/19",
     "method": "DELETE",
     "sortNum": 10000,
     "created": "2022-05-07T13:33:25.719Z",
-    "modified": "2022-05-10T22:17:04.886Z",
+    "modified": "2022-05-16T22:32:38.668Z",
     "headers": [],
     "params": [],
     "tests": []
