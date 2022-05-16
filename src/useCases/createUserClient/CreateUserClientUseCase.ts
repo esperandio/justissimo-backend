@@ -1,4 +1,4 @@
-import { hash} from "bcryptjs";
+import { hash } from "bcryptjs";
 import { Cliente } from "@prisma/client";
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";

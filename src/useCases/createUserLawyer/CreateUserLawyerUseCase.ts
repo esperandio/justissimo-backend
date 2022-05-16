@@ -1,4 +1,4 @@
-import { hash} from "bcryptjs";
+import { hash } from "bcryptjs";
 import { Advogado } from "@prisma/client";
 import { prisma } from "../../database/index";
 import { DomainError } from "../../errors";
@@ -19,7 +19,7 @@ interface IUserRequest {
     phone: string;
 }
 
-class CreateUserAdvogateUseCase {
+class CreateUserLawyerUseCase {
     private validStates = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA',
         'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',];
     async execute(userRequest: IUserRequest): Promise<Advogado> {
@@ -75,7 +75,7 @@ class CreateUserAdvogateUseCase {
                 tel_celular: phone.value
             }
         });
-        console.log(advogado);
+
         await prisma.endereco.create({
             data: {
                 cidade: city.value,
@@ -89,4 +89,4 @@ class CreateUserAdvogateUseCase {
     }
 }
 
-export { CreateUserAdvogateUseCase }
+export { CreateUserLawyerUseCase }

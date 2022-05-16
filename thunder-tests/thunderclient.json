@@ -69,12 +69,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-05-11T00:15:53.793Z",
+    "modified": "2022-05-16T23:55:16.175Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"password\": \"1!2bHkln\",\n    \"email\": \"teste.com\",\n    \"fullname\": \"david\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"city\": \"blumenau\",\n    \"state\": \"SC\",\n    \"zipcode\": \"89526314\",\n    \"register_cna\": \"321\",\n    \"state_cna\": \"SC\",\n    \"phone\": \"479999999\"\n}",
+      "raw": "{\n    \"password\": \"1!2bHkln\",\n    \"email\": \"teste@teste123.com\",\n    \"fullname\": \"david\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"city\": \"blumenau\",\n    \"state\": \"SC\",\n    \"zipcode\": \"89526314\",\n    \"register_cna\": \"321\",\n    \"state_cna\": \"SC\",\n    \"phone\": \"479999999\"\n}",
       "form": []
     },
     "tests": []
@@ -98,11 +98,11 @@
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
     "name": "getLawyerById",
-    "url": "{{url}}/lawyers/3",
+    "url": "{{url}}/lawyers/1",
     "method": "GET",
     "sortNum": 40000,
     "created": "2022-05-11T00:27:31.100Z",
-    "modified": "2022-05-11T00:36:58.946Z",
+    "modified": "2022-05-16T23:55:28.209Z",
     "headers": [],
     "params": [],
     "tests": []

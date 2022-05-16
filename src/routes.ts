@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { CreateUserAdvocateController } from "./useCases/createUserLawyer/CreateUserAdvocateController";
+import { CreateUserLawyerController } from "./useCases/createUserLawyer/CreateUserLawyerController";
 import { CreateUserClientController } from "./useCases/createUserClient/CreateUserClientController";
 import { DeleteUSerController } from "./useCases/deleteUser/DeleteUserController";
 import { ListAllClientsController } from "./useCases/listUserClient/listAllClients/ListAllClientsController";
@@ -10,7 +10,7 @@ import { ListLawyerByIdController } from "./useCases/listUserLawyer/listLawyerBy
 const router = Router();
 
 router.post("/clients", new CreateUserClientController().handle);
-router.post('/lawyers', new CreateUserAdvocateController().handle);
+router.post('/lawyers', new CreateUserLawyerController().handle);
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/lawyers", new ListAllLawyersController().handle);
 router.get("/clients/:id", new ListClientByIdController().handle);

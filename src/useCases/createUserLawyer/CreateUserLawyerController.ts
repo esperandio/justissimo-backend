@@ -1,7 +1,7 @@
-import { Request, Response} from "express";
-import { CreateUserAdvogateUseCase } from "./CreateUserAdvocateUseCase";
+import { Request, Response } from "express";
+import { CreateUserLawyerUseCase } from "./CreateUserLawyerUseCase";
 
-class CreateUserAdvocateController {
+class CreateUserLawyerController {
  async handle(request: Request, response: Response) {
     const { 
         password,
@@ -18,7 +18,7 @@ class CreateUserAdvocateController {
         phone,
     } = request.body;
 
-     const userResponse = await new CreateUserAdvogateUseCase().execute({
+     const userResponse = await new CreateUserLawyerUseCase().execute({
         password,
         email,
         fullname,
@@ -38,4 +38,4 @@ class CreateUserAdvocateController {
  }
 }
 
-export { CreateUserAdvocateController }
+export { CreateUserLawyerController }
