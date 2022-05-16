@@ -12,5 +12,12 @@
     "created": "2022-05-10T22:17:00.101Z",
     "sortNum": 30000,
     "folders": []
+  },
+  {
+    "_id": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "colName": "Lawyer",
+    "created": "2022-05-10T23:44:36.597Z",
+    "sortNum": 40000,
+    "folders": []
   }
 ]
