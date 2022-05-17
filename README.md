@@ -83,6 +83,11 @@ Após as migrations estiverem definidas em um formato final o comando abaixo é 
 yarn prisma migrate deploy
 ```
 
+Se houver erro em alguma tabela
+```
+yarn prisma generate
+```
+
 Biblioteca Bcrypt
 
 ```

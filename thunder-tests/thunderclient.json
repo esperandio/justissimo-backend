@@ -112,16 +112,16 @@
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
     "name": "ReviewLawyer",
-    "url": "{{url}}/lawyers/1/review",
+    "url": "{{url}}/lawyers/5/review",
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-17T01:11:11.754Z",
-    "modified": "2022-05-17T01:27:40.091Z",
+    "modified": "2022-05-17T22:06:50.621Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"client_id\": 1,\n    \"rate\": 4,\n    \"message\": \"teste\"\n}",
+      "raw": "{\n    \"client_id\": 4,\n    \"rate\": 4.5,\n    \"message\": \"teste\"\n}",
       "form": []
     },
     "tests": []
