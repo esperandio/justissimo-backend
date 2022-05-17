@@ -3,7 +3,7 @@ CREATE TABLE "avaliacao" (
     "id_avaliacao" SERIAL NOT NULL,
     "fk_cliente" INTEGER,
     "fk_advogado" INTEGER,
-    "nota" INTEGER NOT NULL,
+    "nota" DOUBLE PRECISION NOT NULL,
     "descricao" VARCHAR(200),
 
     CONSTRAINT "avaliacao_pkey" PRIMARY KEY ("id_avaliacao")

@@ -72,7 +72,7 @@ model Avaliacao {
   fk_cliente  Int?
   advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
   fk_advogado Int?
-  nota        Int
+  nota        Float
   descricao   String?   @db.VarChar(200)
   @@map("avaliacao")
 }
