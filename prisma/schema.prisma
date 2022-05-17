@@ -28,6 +28,7 @@ model Cliente {
   nr_cpf        String    @db.VarChar(11)
   nr_cnpj       String    @db.VarChar(14)
   endereco      Endereco?
+  avaliacoes    Avaliacao[]
 @@map("cliente")
 }
 
@@ -44,6 +45,7 @@ model Advogado {
   tel_fixo      String?    @db.VarChar(45)
   tel_celular   String?    @db.VarChar(45)
   endereco      Endereco?
+  avaliacoes    Avaliacao[]
   @@map("advogado")
 }
 
@@ -62,4 +64,15 @@ model Endereco {
   logradouro  String?    @db.VarChar(100)
   complemento String?    @db.VarChar(60)
   @@map("endereco")
+}
+
+model Avaliacao {
+  id_avaliacao Int      @default(autoincrement()) @id
+  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  fk_cliente  Int?
+  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  fk_advogado Int?
+  nota        Float
+  descricao   String?   @db.VarChar(200)
+  @@map("avaliacao")
 }

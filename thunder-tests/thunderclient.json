@@ -64,7 +64,7 @@
     "_id": "8da3b192-6e85-484a-9c01-c2c761099a17",
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
-    "name": "createAdvogado",
+    "name": "CreateUserLawyer",
     "url": "{{url}}/lawyers",
     "method": "POST",
     "sortNum": 10000,
@@ -83,7 +83,7 @@
     "_id": "92375f7c-f7f9-41ab-a188-0fc65a339a4f",
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
-    "name": "getAllLawyers",
+    "name": "ListAllLawyers",
     "url": "{{url}}/lawyers",
     "method": "GET",
     "sortNum": 30000,
@@ -97,7 +97,7 @@
     "_id": "9d12d5ab-8296-41e4-88bf-93fa2055792c",
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
-    "name": "getLawyerById",
+    "name": "ListLawyerById",
     "url": "{{url}}/lawyers/1",
     "method": "GET",
     "sortNum": 40000,
@@ -105,6 +105,25 @@
     "modified": "2022-05-16T23:55:28.209Z",
     "headers": [],
     "params": [],
+    "tests": []
+  },
+  {
+    "_id": "fea36210-5676-47a6-bccd-07ddb42c78be",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "ReviewLawyer",
+    "url": "{{url}}/lawyers/5/review",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-05-17T01:11:11.754Z",
+    "modified": "2022-05-17T22:06:50.621Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"client_id\": 4,\n    \"rate\": 4.5,\n    \"message\": \"teste\"\n}",
+      "form": []
+    },
     "tests": []
   }
 ]

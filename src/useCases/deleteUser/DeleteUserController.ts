@@ -1,4 +1,4 @@
-import { Request, Response} from "express";
+import { Request, Response } from "express";
 import { DeleteUserUseCase } from "./DeleteUserUseCase";
 
 class DeleteUSerController {
@@ -11,4 +11,4 @@ class DeleteUSerController {
     }
 }
 
-export { DeleteUSerController}
+export { DeleteUSerController }
