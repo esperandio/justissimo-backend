@@ -38,12 +38,12 @@ model Advogado {
   fk_usuario    Int?
   nome          String    @db.VarChar(55)
   dt_nascimento DateTime
-  nr_cna        Int
-  uf_cna        String    @db.VarChar(2)
-  nr_cpf        String    @db.VarChar(11)
-  nr_cnpj       String    @db.VarChar(14)
-  tel_fixo      String    @db.VarChar(45)
-  tel_celular   String    @db.VarChar(45)
+  nr_cna        String     @db.VarChar(15)
+  uf_cna        String     @db.VarChar(2)
+  nr_cpf        String     @db.VarChar(11)
+  nr_cnpj       String     @db.VarChar(14)
+  tel_fixo      String?    @db.VarChar(45)
+  tel_celular   String?    @db.VarChar(45)
   endereco      Endereco?
   avaliacoes    Avaliacao[]
   @@map("advogado")
