@@ -17,6 +17,7 @@ class SendMailError extends DomainError {
 class Mail {
     sendEmail(mailOptions : IMailOptions) {
         const transporter = nodemailer.createTransport({
+            service: process.env.SMTP_SERVICE,
             host: process.env.SMTP_HOST,
             port: Number.parseInt(process.env.SMTP_PORT ?? ""),
             secure: false,
