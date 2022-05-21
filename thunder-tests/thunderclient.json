@@ -165,5 +165,24 @@
     "headers": [],
     "params": [],
     "tests": []
+  },
+  {
+    "_id": "191601a7-64be-4492-8bed-9bee178d12ad",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "ChangePassword",
+    "url": "{{url}}/login/recovery/newpassword",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-05-21T21:32:42.580Z",
+    "modified": "2022-05-21T21:36:22.650Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"mat.esperandio@gmail.com\",\n    \"recovery_code\": \"a7dd1e21d710f174\",\n    \"new_password\": \"123asdZXC\"\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
