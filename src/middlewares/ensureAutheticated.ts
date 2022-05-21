@@ -11,7 +11,7 @@ export function ensureAuthenticated(request: Request, response: Response, next: 
     }
 
     const [, token] = authToken.split(" ");
-    console.log(token);
+
     try {
         verify(token, process.env.TOKEN_SECRET ?? "");
 

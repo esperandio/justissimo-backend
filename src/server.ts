@@ -1,13 +1,18 @@
 
 import "express-async-errors";
-import express, { NextFunction, Request, Response } from "express";
-import { router } from './routes'
+import express, { application, NextFunction, Request, Response } from "express";
+import { router_clients } from './routes/clients/router';
+import { router_lawyers } from './routes/lawyers/router';
+import { router_user } from './routes/user/router';
 import { NotFoundError, DomainError, Unauthorized } from "./errors";
 
 const app = express();
 
 app.use(express.json());
-app.use(router);
+app.use(router_clients);
+app.use(router_lawyers);
+app.use(router_user);
+
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof NotFoundError) {
         return response.status(404).json({

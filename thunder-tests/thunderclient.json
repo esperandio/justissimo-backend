@@ -51,16 +51,16 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "deleteUserById",
-    "url": "{{url}}/user/21",
+    "url": "{{url}}/user/22",
     "method": "DELETE",
     "sortNum": 10000,
     "created": "2022-05-07T13:33:25.719Z",
-    "modified": "2022-05-21T02:42:32.865Z",
+    "modified": "2022-05-21T13:41:28.773Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTMxMDA5NDUsImV4cCI6MTY1MzEwMTA2NSwic3ViIjoiMjEifQ.-BBZ7z2nuUS1u4H3VqiSfVQNugWgzTnT_Dl9zVhf1E0"
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTMxNDAzMzEsImV4cCI6MTY1MzE0MzkzMSwic3ViIjoiMjIifQ.3XSYrqtn0W5DESljbkobX0TIGkN_17H3esPENG2x1O4"
     },
     "tests": []
   },
@@ -120,7 +120,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-05-21T02:10:47.898Z",
+    "modified": "2022-05-21T13:32:01.460Z",
     "headers": [],
     "params": [],
     "body": {
