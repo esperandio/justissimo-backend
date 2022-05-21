@@ -144,5 +144,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "fc6ae79c-5425-41ab-9720-e2b404bb5e91",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "ValidatePasswordRecoveryCode",
+    "url": "{{url}}/users/password/recovery/61797d6e3e7b6d75",
+    "method": "GET",
+    "sortNum": 25000,
+    "created": "2022-05-21T02:52:53.550Z",
+    "modified": "2022-05-21T03:07:06.189Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]

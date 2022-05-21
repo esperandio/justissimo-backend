@@ -8,6 +8,7 @@ import { ListAllLawyersController } from "./useCases/listUserLawyer/listAllLawye
 import { ListLawyerByIdController } from "./useCases/listUserLawyer/listLawyerById/ListLawyerByIdController";
 import { ReviewLawyerController } from "./useCases/reviewLawyer/ReviewLawyerController";
 import { PasswordRecoveryController } from "./useCases/passwordRecovery/PasswordRecoveryController";
+import { ValidatePasswordRecoveryCodeController } from "./useCases/validatePasswordRecoveryCode/ValidatePasswordRecoveryCodeController";
 
 const router = Router();
 
@@ -19,6 +20,7 @@ router.get("/clients", new ListAllClientsController().handle);
 router.get("/lawyers", new ListAllLawyersController().handle);
 router.get("/clients/:id", new ListClientByIdController().handle);
 router.get("/lawyers/:id", new ListLawyerByIdController().handle);
+router.get("/users/password/recovery/:recoveryCode", new ValidatePasswordRecoveryCodeController().handle);
 router.delete("/user/:id", new DeleteUSerController().handle);
 
 export { router }
