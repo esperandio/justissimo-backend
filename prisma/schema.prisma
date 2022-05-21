@@ -83,5 +83,6 @@ model RecuperacaoSenha {
   usuario              Usuario  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   fk_usuario           Int
   codigo_recuperacao   String   @db.VarChar(100)
+  dt_expiracao         DateTime @default(now())
   @@map("recuperacao_senha")
 }
