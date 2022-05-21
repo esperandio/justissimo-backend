@@ -2,7 +2,7 @@
 import "express-async-errors";
 import express, { NextFunction, Request, Response } from "express";
 import { router } from './routes'
-import { NotFoundError, DomainError } from "./errors";
+import { NotFoundError, DomainError, Unauthorized } from "./errors";
 
 const app = express();
 
@@ -19,6 +19,13 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
     if (error instanceof DomainError) {
         return response.status(400).json({
             status: "Bad request",
+            message: error.message,
+        });
+    }
+
+    if (error instanceof Unauthorized) {
+        return response.status(401).json({
+            status: "Unauthorized",
             message: error.message,
         });
     }

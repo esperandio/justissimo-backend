@@ -99,7 +99,13 @@ Tipagem bcrypt
 ```
 yarn add @types/bcryptjs -D
 ```
-
+Instalar as dependencias do JWT e tipagem de desenvolvimento
+```
+yarn add jsonwebtoken
+```
+```
+yarn add @types/jsonwebtoken -D
+```
 ## Docker
 
 ### Comando para criar container docker rodando node

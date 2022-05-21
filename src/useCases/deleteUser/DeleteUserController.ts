@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { DeleteUserUseCase } from "./DeleteUserUseCase";
 
-class DeleteUSerController {
+class DeleteUserController {
     async handle(request: Request, response: Response) {
         const { id } = request.params;
         
@@ -11,4 +11,4 @@ class DeleteUSerController {
     }
 }
 
-export { DeleteUSerController }
+export { DeleteUserController }
