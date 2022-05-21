@@ -8,8 +8,8 @@ import { ValidatePasswordRecoveryCodeController } from "../../useCases/validateP
 const router = Router();
 /**User*/
 router.delete("/user/:id", ensureAuthenticated, new DeleteUserController().handle);
-router.post('/users/password/recovery', new GeneratePasswordRecoveryCodeController().handle);
-router.get("/users/password/recovery/:recoveryCode", new ValidatePasswordRecoveryCodeController().handle);
-router.post('/login', new AuthenticateUserController().handle);
+router.post("/login", new AuthenticateUserController().handle);
+router.post("/login/recovery", new GeneratePasswordRecoveryCodeController().handle);
+router.get("/login/recovery/:recoveryCode", new ValidatePasswordRecoveryCodeController().handle);
 
 export { router as router_user };
