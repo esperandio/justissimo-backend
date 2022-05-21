@@ -35,10 +35,14 @@ class PasswordRecoveryUseCase {
             to: email.value
         })
 
+        const dataExpiracao = new Date()
+        dataExpiracao.setMinutes(dataExpiracao.getMinutes() + 30)
+
         await prisma.recuperacaoSenha.create({
             data: {
                 fk_usuario: usuario.id_usuario,
-                codigo_recuperacao: recoveryCode
+                codigo_recuperacao: recoveryCode,
+                dt_expiracao: dataExpiracao
             }
         })
 

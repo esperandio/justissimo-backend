@@ -8,7 +8,10 @@ class ValidatePasswordRecoveryCodeUseCase {
     async execute(request: IValidatePasswordRecoveryCodeRequest): Promise<Boolean> {
         const recuperacaoSenha = await prisma.recuperacaoSenha.findFirst({
             where: {
-                codigo_recuperacao: request.recoveryCode
+                codigo_recuperacao: request.recoveryCode,
+                dt_expiracao: {
+                    gte: new Date()
+                }
             }
         })
 

@@ -112,6 +112,25 @@
     "tests": []
   },
   {
+    "_id": "95361a50-0b96-4ecf-8375-1b06f15ac901",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "PasswordRecovery",
+    "url": "{{url}}/users/password/recovery",
+    "method": "POST",
+    "sortNum": 15000,
+    "created": "2022-05-20T23:02:25.681Z",
+    "modified": "2022-05-20T23:18:26.141Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"mat.esperandio@gmail.com\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
     "_id": "624f2949-19d4-476e-83cf-c3c7fb352c45",
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
@@ -134,34 +153,15 @@
     "tests": []
   },
   {
-    "_id": "95361a50-0b96-4ecf-8375-1b06f15ac901",
-    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
-    "containerId": "",
-    "name": "PasswordRecovery",
-    "url": "{{url}}/users/password/recovery",
-    "method": "POST",
-    "sortNum": 15000,
-    "created": "2022-05-20T23:02:25.681Z",
-    "modified": "2022-05-20T23:18:26.141Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"email\": \"mat.esperandio@gmail.com\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "fc6ae79c-5425-41ab-9720-e2b404bb5e91",
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "ValidatePasswordRecoveryCode",
-    "url": "{{url}}/users/password/recovery/61797d6e3e7b6d75",
+    "url": "{{url}}/users/password/recovery/cd2d94adff43b065",
     "method": "GET",
     "sortNum": 25000,
     "created": "2022-05-21T02:52:53.550Z",
-    "modified": "2022-05-21T03:07:06.189Z",
+    "modified": "2022-05-21T17:37:33.619Z",
     "headers": [],
     "params": [],
     "tests": []
