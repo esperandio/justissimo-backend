@@ -4,7 +4,7 @@ import express, { application, NextFunction, Request, Response } from "express";
 import { router_clients } from './routes/clients/router';
 import { router_lawyers } from './routes/lawyers/router';
 import { router_user } from './routes/user/router';
-import { NotFoundError, DomainError, Unauthorized } from "./errors";
+import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
         });
     }
 
-    if (error instanceof Unauthorized) {
+    if (error instanceof UnauthorizedError) {
         return response.status(401).json({
             status: "Unauthorized",
             message: error.message,
