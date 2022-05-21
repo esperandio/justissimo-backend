@@ -12,7 +12,7 @@ interface IPasswordRecoveryResponse {
     recoveryCode: string
 }
 
-class PasswordRecoveryUseCase {
+class GeneratePasswordRecoveryCodeUseCase {
     async execute(passwordRecoveryRequest: IPasswordRecoveryRequest): Promise<IPasswordRecoveryResponse> {
         const email = Email.validate(passwordRecoveryRequest.email)
 
@@ -54,4 +54,4 @@ class PasswordRecoveryUseCase {
     }
 }
 
-export { PasswordRecoveryUseCase }
+export { GeneratePasswordRecoveryCodeUseCase }
