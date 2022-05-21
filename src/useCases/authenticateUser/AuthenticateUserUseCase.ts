@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs"; 
 import { sign } from "jsonwebtoken"; 
 import { prisma } from "../../database/index";
-import { Unauthorized } from "../../errors";
+import { UnauthorizedError } from "../../errors";
 
 interface IRequest{
     email: string;
@@ -18,12 +18,12 @@ class AuthenticateUserUseCase {
         });
 
         if (!userAlreadyExists) {
-            throw new Unauthorized("Usuario ou senha incorreto!"); 
+            throw new UnauthorizedError("Usuario ou senha incorreto!"); 
         }
 
         const passwordMath = await compare(password, userAlreadyExists.senha);
         if (!passwordMath) {
-             throw new Unauthorized("Usuario ou senha incorreto!"); 
+             throw new UnauthorizedError("Usuario ou senha incorreto!"); 
         }
 
         const token = sign({}, process.env.TOKEN_SECRET ?? "", {
