@@ -1,7 +1,7 @@
-import { prisma } from "../../database"
+import { prisma } from "../../database";
 
 interface IValidatePasswordRecoveryCodeRequest {
-    recoveryCode: string
+    recoveryCode: string;
 }
 
 class ValidatePasswordRecoveryCodeUseCase {
@@ -13,7 +13,7 @@ class ValidatePasswordRecoveryCodeUseCase {
                     gte: new Date()
                 }
             }
-        })
+        });
 
         if (recuperacaoSenha == null) {
             return false;

@@ -1,5 +1,5 @@
-import { Request, Response } from 'express'
-import { ChangePasswordUseCase } from './ChangePasswordUseCase'
+import { Request, Response } from 'express';
+import { ChangePasswordUseCase } from './ChangePasswordUseCase';
 
 class ChangePasswordController {
     async handle(request: Request, response: Response) {
@@ -7,9 +7,9 @@ class ChangePasswordController {
             email,
             recovery_code,
             new_password
-        } = request.body
+        } = request.body;
 
-        await new ChangePasswordUseCase().execute({ email, recovery_code, new_password })
+        await new ChangePasswordUseCase().execute({ email, recovery_code, new_password });
 
         return response.status(200).json();
     }

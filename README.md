@@ -106,6 +106,14 @@ yarn add jsonwebtoken
 ```
 yarn add @types/jsonwebtoken -D
 ```
+Instalar as dependencias do NodeMailer e sua tipagem de desenvolvimento:
+```
+yarn add nodemailer
+```
+```
+yarn add @types/nodemailer -D
+```
+
 ## Docker
 
 ### Comando para criar container docker rodando node
