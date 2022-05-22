@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-05-10T22:15:16.087Z",
+    "modified": "2022-05-22T21:38:15.874Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"password\": \"ABCabc123\",\n    \"email\": \"matheus1@teste.com\",\n    \"fullname\": \"Matheus Esperandio\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"city\": \"Blumenau\",\n    \"state\": \"SC\",  \n    \"zipcode\": \"1234567\" \n}",
+      "raw": "{\n    \"password\": \"ABCabc123\",\n    \"email\": \"davidjesus357@gmail.com\",\n    \"fullname\": \"Matheus Esperandio\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"city\": \"Blumenau\",\n    \"state\": \"SC\",  \n    \"zipcode\": \"1234567\" \n}",
       "form": []
     },
     "tests": []
@@ -112,15 +112,34 @@
     "tests": []
   },
   {
+    "_id": "95361a50-0b96-4ecf-8375-1b06f15ac901",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "PasswordRecovery",
+    "url": "{{url}}/login/recovery",
+    "method": "POST",
+    "sortNum": 15000,
+    "created": "2022-05-20T23:02:25.681Z",
+    "modified": "2022-05-22T21:41:08.051Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"davidjesus357@gmail.com\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
     "_id": "624f2949-19d4-476e-83cf-c3c7fb352c45",
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "login",
     "url": "{{url}}/login",
     "method": "POST",
-    "sortNum": 20000,
+    "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-05-21T13:32:01.460Z",
+    "modified": "2022-05-21T21:11:51.170Z",
     "headers": [],
     "params": [],
     "body": {
@@ -130,6 +149,39 @@
     },
     "auth": {
       "type": "bearer"
+    },
+    "tests": []
+  },
+  {
+    "_id": "fc6ae79c-5425-41ab-9720-e2b404bb5e91",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "ValidatePasswordRecoveryCode",
+    "url": "{{url}}/login/recovery/014c0ce55f46f34a",
+    "method": "GET",
+    "sortNum": 25000,
+    "created": "2022-05-21T02:52:53.550Z",
+    "modified": "2022-05-21T21:12:09.394Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "191601a7-64be-4492-8bed-9bee178d12ad",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "ChangePassword",
+    "url": "{{url}}/login/recovery/newpassword",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-05-21T21:32:42.580Z",
+    "modified": "2022-05-22T22:51:49.772Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"email\": \"davidjesus357@gmail.com\",\n    \"recovery_code\": \"958c79e9038afba7\",\n    \"new_password\": \"ABCabc123\"\n}",
+      "form": []
     },
     "tests": []
   }

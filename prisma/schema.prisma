@@ -16,6 +16,7 @@ model Usuario {
   senha      String   @db.VarChar(200)
   cliente    Cliente?
   advogado   Advogado?
+  recuperacao_senha      RecuperacaoSenha[]
 @@map("usuario")
 }
 
@@ -75,4 +76,13 @@ model Avaliacao {
   nota        Float
   descricao   String?   @db.VarChar(200)
   @@map("avaliacao")
+}
+
+model RecuperacaoSenha {
+  id_recuperacao_senha Int      @default(autoincrement()) @id
+  usuario              Usuario  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
+  fk_usuario           Int
+  codigo_recuperacao   String   @db.VarChar(100)
+  dt_expiracao         DateTime @default(now())
+  @@map("recuperacao_senha")
 }
