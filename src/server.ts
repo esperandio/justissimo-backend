@@ -7,7 +7,15 @@ import { router_user } from './routes/user/router';
 import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
 
 const app = express();
-app.use(cors);
+// Add a list of allowed origins.
+// If you have more origins you would like to add, you can add them to the array below.
+const allowedOrigins = ['http://localhost:3000'];
+
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+
+app.use(cors(options));
 app.use(express.json());
 app.use(router_clients);
 app.use(router_lawyers);
