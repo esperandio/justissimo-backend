@@ -1,4 +1,4 @@
-
+import cors from 'cors';
 import "express-async-errors";
 import express, { application, NextFunction, Request, Response } from "express";
 import { router_clients } from './routes/clients/router';
@@ -7,7 +7,7 @@ import { router_user } from './routes/user/router';
 import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
 
 const app = express();
-
+app.use(cors);
 app.use(express.json());
 app.use(router_clients);
 app.use(router_lawyers);
