@@ -11,7 +11,6 @@ interface IListRequest {
 
 class ListAllLawyersUseCase {
     async execute(listRequest: IListRequest): Promise<Advogado[]> {
-        console.log(listRequest);
 
         let filterName = {};
         let filterCity = {};
