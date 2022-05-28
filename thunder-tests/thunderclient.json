@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-05-22T21:38:15.874Z",
+    "modified": "2022-05-28T14:14:01.053Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"password\": \"ABCabc123\",\n    \"email\": \"davidjesus357@gmail.com\",\n    \"fullname\": \"Matheus Esperandio\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"city\": \"Blumenau\",\n    \"state\": \"SC\",  \n    \"zipcode\": \"1234567\" \n}",
+      "raw": "{\n    \"senha\": \"ABCabc123\",\n    \"email\": \"davidsjsesuss357@gmail.com\",\n    \"nome\": \"Matheus Esperandio\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"cidade\": \"Blumenau\",\n    \"estado\": \"SC\",  \n    \"cep\": \"1234567\" \n}",
       "form": []
     },
     "tests": []
@@ -37,11 +37,11 @@
     "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
     "containerId": "",
     "name": "listClientById",
-    "url": "{{url}}/clients/3",
+    "url": "{{url}}/clients/7",
     "method": "GET",
     "sortNum": 15000,
     "created": "2022-05-07T13:33:25.718Z",
-    "modified": "2022-05-11T00:35:06.334Z",
+    "modified": "2022-05-28T12:50:24.010Z",
     "headers": [],
     "params": [],
     "tests": []
@@ -73,12 +73,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-05-14T14:30:57.393Z",
+    "modified": "2022-05-28T14:18:39.762Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"password\": \"1!2bHkln\",\n    \"email\": \"teste@teste.com\",\n    \"fullname\": \"david\",\n    \"birthday\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"city\": \"blumenau\",\n    \"state\": \"SC\",\n    \"zipcode\": \"89526314\",\n    \"register_cna\": \"321\",\n    \"state_cna\": \"SC\",\n    \"phone\": \"479999999\"\n}",
+      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"teste@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\"\n}",
       "form": []
     },
     "tests": []
@@ -139,12 +139,12 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-05-21T21:11:51.170Z",
+    "modified": "2022-05-28T13:59:36.242Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"teste@teste.com\",\n    \"password\": \"1!2bHkln\"\n}",
+      "raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"1!2bHkln\"\n}",
       "form": []
     },
     "auth": {
@@ -175,12 +175,31 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-21T21:32:42.580Z",
-    "modified": "2022-05-22T22:51:49.772Z",
+    "modified": "2022-05-28T13:59:57.889Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"davidjesus357@gmail.com\",\n    \"recovery_code\": \"958c79e9038afba7\",\n    \"new_password\": \"ABCabc123\"\n}",
+      "raw": "{\n    \"email\": \"davidjesus357@gmail.com\",\n    \"codigo_recuperacao\": \"958c79e9038afba7\",\n    \"nova_senha\": \"ABCabc123\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "1b671c61-4327-41a8-8615-b2259cd439b0",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "reviewLawyer",
+    "url": "{{url}}/lawyers/2/review",
+    "method": "POST",
+    "sortNum": 50000,
+    "created": "2022-05-28T14:33:08.048Z",
+    "modified": "2022-05-28T14:34:45.645Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_cliente\": 7,\n  \"nota\": 4.5,\n  \"descricao\": \"teste\"\n}",
       "form": []
     },
     "tests": []
