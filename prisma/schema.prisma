@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -11,78 +8,85 @@ datasource db {
 }
 
 model Usuario {
-  id_usuario Int      @default(autoincrement()) @id
-  email      String   @unique @db.VarChar(200)
-  senha      String   @db.VarChar(200)
-  cliente    Cliente?
-  advogado   Advogado?
-  recuperacao_senha      RecuperacaoSenha[]
-@@map("usuario")
+  id_usuario        Int                @id @default(autoincrement())
+  email             String             @unique @db.VarChar(200)
+  senha             String             @db.VarChar(200)
+  advogado          Advogado?
+  cliente           Cliente?
+  recuperacao_senha RecuperacaoSenha[]
+
+  @@map("usuario")
 }
 
 model Cliente {
-  id_cliente    Int       @default(autoincrement()) @id
-  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)  
-  fk_usuario    Int?
-  nome          String    @db.VarChar(55)
+  id_cliente    Int         @id @default(autoincrement())
+  fk_usuario    Int?        @unique
+  nome          String      @db.VarChar(55)
   dt_nascimento DateTime
-  nr_cpf        String    @db.VarChar(11)
-  nr_cnpj       String    @db.VarChar(14)
-  endereco      Endereco?
+  nr_cpf        String      @db.VarChar(11)
+  nr_cnpj       String      @db.VarChar(14)
+  usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
-@@map("cliente")
+  endereco      Endereco?
+
+  @@map("cliente")
 }
 
 model Advogado {
-  id_advogado   Int       @default(autoincrement()) @id
-  usuario       Usuario?  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
-  fk_usuario    Int?
-  nome          String    @db.VarChar(55)
+  id_advogado   Int         @id @default(autoincrement())
+  fk_usuario    Int?        @unique
+  nome          String      @db.VarChar(55)
   dt_nascimento DateTime
-  nr_cna        String     @db.VarChar(15)
-  uf_cna        String     @db.VarChar(2)
-  nr_cpf        String     @db.VarChar(11)
-  nr_cnpj       String     @db.VarChar(14)
-  tel_fixo      String?    @db.VarChar(45)
-  tel_celular   String?    @db.VarChar(45)
-  endereco      Endereco?
+  nr_cna        String      @db.VarChar(15)
+  uf_cna        String      @db.VarChar(2)
+  nr_cpf        String      @db.VarChar(11)
+  nr_cnpj       String      @db.VarChar(14)
+  tel_fixo      String?     @db.VarChar(45)
+  tel_celular   String?     @db.VarChar(45)
+  nota          Float?
+  usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
+  endereco      Endereco?
+
   @@map("advogado")
 }
 
 model Endereco {
-  id_endereco Int       @default(autoincrement()) @id
-  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
-  fk_cliente  Int?
-  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  fk_advogado Int?
-  nr_cep      String?    @db.VarChar(8)
+  id_endereco Int       @id @default(autoincrement())
+  fk_cliente  Int?      @unique
+  fk_advogado Int?      @unique
+  nr_cep      String?   @db.VarChar(8)
   numero      Int?
-  rua         String?    @db.VarChar(100)
-  bairro      String?    @db.VarChar(100)
-  cidade      String?    @db.VarChar(100)
-  estado      String?    @db.VarChar(100)
-  logradouro  String?    @db.VarChar(100)
-  complemento String?    @db.VarChar(60)
+  rua         String?   @db.VarChar(100)
+  bairro      String?   @db.VarChar(100)
+  cidade      String?   @db.VarChar(100)
+  estado      String?   @db.VarChar(100)
+  logradouro  String?   @db.VarChar(100)
+  complemento String?   @db.VarChar(60)
+  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+
   @@map("endereco")
 }
 
 model Avaliacao {
-  id_avaliacao Int      @default(autoincrement()) @id
-  cliente     Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
-  fk_cliente  Int?
-  advogado    Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  fk_advogado Int?
-  nota        Float
-  descricao   String?   @db.VarChar(200)
+  id_avaliacao Int       @id @default(autoincrement())
+  fk_cliente   Int?
+  fk_advogado  Int?
+  nota         Float
+  descricao    String?   @db.VarChar(200)
+  advogado     Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  cliente      Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+
   @@map("avaliacao")
 }
 
 model RecuperacaoSenha {
-  id_recuperacao_senha Int      @default(autoincrement()) @id
-  usuario              Usuario  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
+  id_recuperacao_senha Int      @id @default(autoincrement())
   fk_usuario           Int
   codigo_recuperacao   String   @db.VarChar(100)
   dt_expiracao         DateTime @default(now())
+  usuario              Usuario  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
+
   @@map("recuperacao_senha")
 }
