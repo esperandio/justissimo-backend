@@ -3,9 +3,11 @@ import { ValidatePasswordRecoveryCodeUseCase } from "./ValidatePasswordRecoveryC
 
 class ValidatePasswordRecoveryCodeController {
     async handle(request: Request, response: Response) {
-        const { recoveryCode } = request.params;
+        const { codigo_recuperacao } = request.params;
 
-        const valid = await new ValidatePasswordRecoveryCodeUseCase().execute({recoveryCode})
+        const valid = await new ValidatePasswordRecoveryCodeUseCase().execute({
+            recoveryCode: codigo_recuperacao
+        })
 
         if (!valid) {
             return response.status(404).json();    

@@ -4,33 +4,33 @@ import { CreateUserLawyerUseCase } from "./CreateUserLawyerUseCase";
 class CreateUserLawyerController {
  async handle(request: Request, response: Response) {
     const { 
-        password,
+        senha,
         email,
-        fullname,
-        birthday,
+        nome,
+        dt_nascimento,
         cpf,
         cnpj,
-        city,
-        state,
-        zipcode,
-        register_cna,
-        state_cna,
-        phone,
+        cidade,
+        estado,
+        cep,
+        nr_cna,
+        uf_cna,
+        tel_celular,
     } = request.body;
 
      const userResponse = await new CreateUserLawyerUseCase().execute({
-        password,
+        password: senha,
         email,
-        fullname,
-        birthday,
+        fullname: nome,
+        birthday: dt_nascimento,
         cpf,
         cnpj,
-        city,
-        state,
-        zipcode,
-        register_cna,
-        state_cna,
-        phone
+        city: cidade,
+        state: estado,
+        zipcode: cep,
+        register_cna: nr_cna,
+        state_cna: uf_cna,
+        phone: tel_celular
      });
 
      return response.status(201).json(userResponse);

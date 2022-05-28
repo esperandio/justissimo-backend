@@ -9,7 +9,7 @@ interface IPasswordRecoveryRequest {
 }
 
 interface IPasswordRecoveryResponse {
-    recoveryCode: string
+    codigo_recuperacao: string
 }
 
 class GeneratePasswordRecoveryCodeUseCase {
@@ -26,11 +26,11 @@ class GeneratePasswordRecoveryCodeUseCase {
             throw new UserNotFoundError()
         }
 
-        const recoveryCode = this.getNewRecoveryCode()
+        const codigo_recuperacao = this.getNewRecoveryCode()
 
         mail.sendEmail({
             from: process.env.SMTP_AUTH_USER ?? "",
-            html: `<p>Código de recuperação: ${recoveryCode}</p>`,
+            html: `<p>Código de recuperação: ${codigo_recuperacao}</p>`,
             subject: "Recuperação de senha",
             to: email.value
         })
@@ -41,12 +41,12 @@ class GeneratePasswordRecoveryCodeUseCase {
         await prisma.recuperacaoSenha.create({
             data: {
                 fk_usuario: usuario.id_usuario,
-                codigo_recuperacao: recoveryCode,
+                codigo_recuperacao: codigo_recuperacao,
                 dt_expiracao: dataExpiracao
             }
         })
 
-        return { recoveryCode }
+        return { codigo_recuperacao }
     }
 
     private getNewRecoveryCode(): string {

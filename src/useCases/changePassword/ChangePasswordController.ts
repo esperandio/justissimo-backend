@@ -5,11 +5,14 @@ class ChangePasswordController {
     async handle(request: Request, response: Response) {
         const { 
             email,
-            recovery_code,
-            new_password
+            codigo_recuperacao,
+            nova_senha
         } = request.body;
-
-        await new ChangePasswordUseCase().execute({ email, recovery_code, new_password });
+        await new ChangePasswordUseCase().execute({ 
+            email, 
+            recovery_code: codigo_recuperacao, 
+            new_password: nova_senha
+        });
 
         return response.status(200).json();
     }

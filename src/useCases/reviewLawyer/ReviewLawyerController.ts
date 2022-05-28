@@ -6,16 +6,16 @@ class ReviewLawyerController {
         const { id } = request.params;
 
         const { 
-            client_id,
-            message,
-            rate
+            id_cliente,
+            descricao,
+            nota
         } = request.body;
 
         await new ReviewLawyerUseCase().execute({
-            client_id: client_id,
+            client_id: id_cliente,
             lawyer_id: Number.parseInt(id),
-            message: message,
-            rate: rate
+            message: descricao,
+            rate: nota
         });
 
         return response.status(200).json({message: "Avaliação feita com sucesso!"});

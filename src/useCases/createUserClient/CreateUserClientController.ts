@@ -4,27 +4,27 @@ import { CreateUserClientUseCase } from "./CreateUserClientUseCase";
 class CreateUserClientController {
     async handle(request: Request, response: Response) {
         const { 
-            password,
+            senha,
             email,
-            fullname,
-            birthday,
+            nome,
+            dt_nascimento,
             cpf,
             cnpj,
-            city,
-            state,
-            zipcode 
+            cidade,
+            estado,
+            cep 
         } = request.body;
 
         const userResponse = await new CreateUserClientUseCase().execute({
-            password,
+            password: senha,
             email,
-            fullname,
-            birthday,
+            fullname: nome,
+            birthday: dt_nascimento,
             cpf,
             cnpj,
-            city,
-            state,
-            zipcode 
+            city: cidade,
+            state: estado,
+            zipcode: cep
         });
 
         return response.status(201).json(userResponse);

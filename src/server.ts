@@ -1,4 +1,4 @@
-
+import cors from 'cors';
 import "express-async-errors";
 import express, { application, NextFunction, Request, Response } from "express";
 import { router_clients } from './routes/clients/router';
@@ -7,7 +7,15 @@ import { router_user } from './routes/user/router';
 import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
 
 const app = express();
+// Add a list of allowed origins.
+// If you have more origins you would like to add, you can add them to the array below.
+const allowedOrigins = ['http://localhost:3000', 'https://justissimo-frontend.herokuapp.com'];
 
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+
+app.use(cors(options));
 app.use(express.json());
 app.use(router_clients);
 app.use(router_lawyers);
