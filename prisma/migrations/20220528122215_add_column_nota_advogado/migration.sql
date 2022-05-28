@@ -15,6 +15,6 @@ CREATE OR REPLACE FUNCTION atualizar_nota_advogado()
     $$;
 
 CREATE OR REPLACE TRIGGER check_update
-    after insert ON avaliacao
+    after insert or update ON avaliacao
     FOR EACH ROW
     EXECUTE procedure atualizar_nota_advogado();
