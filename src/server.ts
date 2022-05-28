@@ -9,7 +9,7 @@ import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
 const app = express();
 // Add a list of allowed origins.
 // If you have more origins you would like to add, you can add them to the array below.
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = ['http://localhost:3000', 'https://justissimo-frontend.herokuapp.com'];
 
 const options: cors.CorsOptions = {
   origin: allowedOrigins
