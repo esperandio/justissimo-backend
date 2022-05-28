@@ -55,12 +55,12 @@
     "method": "DELETE",
     "sortNum": 10000,
     "created": "2022-05-07T13:33:25.719Z",
-    "modified": "2022-05-21T13:41:28.773Z",
+    "modified": "2022-05-28T15:06:52.717Z",
     "headers": [],
     "params": [],
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTMxNDAzMzEsImV4cCI6MTY1MzE0MzkzMSwic3ViIjoiMjIifQ.3XSYrqtn0W5DESljbkobX0TIGkN_17H3esPENG2x1O4"
+      "bearer": "{{token}}"
     },
     "tests": []
   },
