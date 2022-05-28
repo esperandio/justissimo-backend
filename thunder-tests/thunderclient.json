@@ -92,13 +92,34 @@
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
     "name": "getAllLawyers",
-    "url": "{{url}}/lawyers",
+    "url": "{{url}}/lawyers?nome=david&cidade=blumenau&estado=SC&nota=4",
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-05-11T00:11:29.154Z",
-    "modified": "2022-05-11T00:16:10.874Z",
+    "modified": "2022-05-28T21:27:04.437Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "nome",
+        "value": "david",
+        "isPath": false
+      },
+      {
+        "name": "cidade",
+        "value": "blumenau",
+        "isPath": false
+      },
+      {
+        "name": "estado",
+        "value": "SC",
+        "isPath": false
+      },
+      {
+        "name": "nota",
+        "value": "4",
+        "isPath": false
+      }
+    ],
     "tests": []
   },
   {

@@ -16,11 +16,16 @@ export class NonEmptyString {
     }
 
     public static validate(identifier: string, value: string): NonEmptyString {
-        if (value == "" || value == undefined || value == null) {
+        if (this.isEmpty(value)) {
             throw new EmptyStringError(identifier);
         }
 
         return new NonEmptyString(value);
+    }
+
+    public static isEmpty(value: string): Boolean
+    {
+        return value == "" || value == undefined || value == null;
     }
 
     public get value () {
