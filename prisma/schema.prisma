@@ -28,6 +28,7 @@ model Cliente {
   usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
   endereco      Endereco?
+  divulgacoes   Divulgacao[]
 
   @@map("cliente")
 }
@@ -89,4 +90,24 @@ model RecuperacaoSenha {
   usuario              Usuario  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
 
   @@map("recuperacao_senha")
+}
+
+model AreaAtuacao {
+  id_area_atuacao Int       @id @default(autoincrement())
+  titulo          String?   @db.VarChar(100)
+  divulgacoes     Divulgacao[]
+
+  @@map("area_atuacao")
+}
+
+model Divulgacao {
+  id_avaliacao     Int       @id @default(autoincrement())
+  fk_area_atuacao  Int
+  fk_cliente       Int
+  titulo           String   @db.VarChar(55)
+  descricao        String?   @db.VarChar(255)
+  areaAtuacao      AreaAtuacao @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
+  cliente          Cliente  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+
+  @@map("divulgacao")
 }
