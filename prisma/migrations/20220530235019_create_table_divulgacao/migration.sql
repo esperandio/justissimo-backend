@@ -22,3 +22,5 @@ ALTER TABLE "divulgacao" ADD CONSTRAINT "divulgacao_fk_cliente_fkey" FOREIGN KEY
 
 -- AddForeignKey
 ALTER TABLE "divulgacao" ADD CONSTRAINT "divulgacao_fk_area_atuacao_fkey" FOREIGN KEY ("fk_area_atuacao") REFERENCES "area_atuacao"("id_area_atuacao") ON DELETE CASCADE ON UPDATE CASCADE;
+
+INSERT INTO area_atuacao (titulo) VALUES ('Trabalhista');
