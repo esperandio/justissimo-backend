@@ -228,5 +228,24 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "bf83d78c-a85b-4a21-a077-35fcfe9b7516",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "createDivulgation",
+    "url": "{{url}}/divulgations/1",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-05-30T23:57:32.827Z",
+    "modified": "2022-05-31T00:29:57.816Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"titulo\": \"ABC\",\n    \"descricao\": \"ABCDEF\",\n    \"id_area_atuacao\": 1\n}",
+      "form": []
+    },
+    "tests": []
   }
 ]
