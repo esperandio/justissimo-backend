@@ -32,6 +32,18 @@ class CreateDivulgationUseCase {
             throw new DomainError("Área de atuação não encontrada");
         }
 
+        const divulgationExists = await prisma.divulgacao.findFirst({
+            where: {
+                fk_cliente: client.id_cliente,
+                fk_area_atuacao: areaAtuacao.id_area_atuacao,
+                encerrado: false
+            }
+        });
+
+        if (divulgationExists != null) {
+            throw new DomainError("Cliente já possui aberta uma divulgação para a área selecionada.");
+        }
+
         const title = NonEmptyString.validate("titulo", reviewRequest.title);
 
         const divulgation = await prisma.divulgacao.create({
