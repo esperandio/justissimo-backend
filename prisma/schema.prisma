@@ -106,6 +106,9 @@ model Divulgacao {
   fk_cliente       Int
   titulo           String   @db.VarChar(55)
   descricao        String?   @db.VarChar(255)
+  dt_cadastro      DateTime @default(now())
+  encerrado        Boolean @default(false)
+  dt_encerramento  DateTime?
   areaAtuacao      AreaAtuacao @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
   cliente          Cliente  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
 

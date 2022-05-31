@@ -13,6 +13,9 @@ CREATE TABLE "divulgacao" (
     "fk_cliente" INTEGER NOT NULL,
     "titulo" VARCHAR(55) NOT NULL,
     "descricao" VARCHAR(255),
+    "dt_cadastro" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "encerrado" BOOLEAN NOT NULL DEFAULT false,
+    "dt_encerramento" TIMESTAMP(3),
 
     CONSTRAINT "divulgacao_pkey" PRIMARY KEY ("id_avaliacao")
 );
