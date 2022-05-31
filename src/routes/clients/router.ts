@@ -12,6 +12,6 @@ router.post("/clients", new CreateUserClientController().handle);
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/clients/:id",ensureAuthenticated, new ListClientByIdController().handle);
 
-router.post("/divulgations/:id", new CreateDivulgationController().handle);
+router.post("/clients/:id/divulgations", new CreateDivulgationController().handle);
 
 export { router as router_clients };
