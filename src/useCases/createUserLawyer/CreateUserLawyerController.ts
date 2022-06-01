@@ -16,6 +16,7 @@ class CreateUserLawyerController {
         nr_cna,
         uf_cna,
         tel_celular,
+        areas
     } = request.body;
 
      const userResponse = await new CreateUserLawyerUseCase().execute({
@@ -30,7 +31,8 @@ class CreateUserLawyerController {
         zipcode: cep,
         register_cna: nr_cna,
         state_cna: uf_cna,
-        phone: tel_celular
+        phone: tel_celular,
+        areas
      });
 
      return response.status(201).json(userResponse);

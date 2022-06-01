@@ -17,6 +17,7 @@ interface IUserRequest {
     register_cna: string;
     state_cna: string;
     phone: string;
+    areas: Array<number>;
 }
 
 class CreateUserLawyerUseCase {
@@ -56,6 +57,7 @@ class CreateUserLawyerUseCase {
 
         const passwordHash = await hash(password.value, 8);
         
+        // Cria usuário
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
@@ -63,6 +65,7 @@ class CreateUserLawyerUseCase {
             }
         });
 
+        // Cria advogado
         const advogado = await prisma.advogado.create({
             data: {
                 dt_nascimento: birthday.value,
@@ -76,6 +79,7 @@ class CreateUserLawyerUseCase {
             }
         });
 
+        // Cria endereço
         await prisma.endereco.create({
             data: {
                 cidade: city.value,
@@ -83,6 +87,31 @@ class CreateUserLawyerUseCase {
                 nr_cep: zipcode.value,
                 fk_advogado: advogado.id_advogado
             }
+        });
+
+        const areas = await Promise.all(
+            userRequest.areas.map(
+                async (x) => {
+                    const area = await prisma.areaAtuacao.findUnique({
+                        where: {
+                            id_area_atuacao: x
+                        }
+                    });
+    
+                    if (area == null) {
+                        throw new DomainError("Área de atuação não encontrada");
+                    }
+    
+                    return area;
+                }
+            )
+        );
+
+        // Cria áreas de atuação
+        prisma.advogadoArea.createMany({
+            data: areas.map(x => { 
+                return { fk_advogado: advogado.id_advogado, fk_area_atuacao: x.id_area_atuacao }
+            })
         });
 
         return advogado;
