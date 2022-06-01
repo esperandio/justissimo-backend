@@ -1,7 +1,7 @@
 import { hash } from "bcryptjs";
 import { Advogado } from "@prisma/client";
 import { prisma } from "../../database/index";
-import { DomainError, UserAlreadyExistsError } from "../../errors";
+import { DomainError, UserAlreadyExistsError, AreaNotFoundError } from "../../errors";
 import { Email, NonEmptyString, PastDate, Password, NonEmptyArray } from "../../validators";
 
 interface IUserRequest {
@@ -69,7 +69,7 @@ class CreateUserLawyerUseCase {
                     });
     
                     if (area == null) {
-                        throw new DomainError(`Área de atuação não encontrada (valor: ${x})`);
+                        throw new AreaNotFoundError(x);
                     }
     
                     return area;
