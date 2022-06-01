@@ -1,7 +1,7 @@
 import { hash } from "bcryptjs";
 import { Advogado } from "@prisma/client";
 import { prisma } from "../../database/index";
-import { DomainError } from "../../errors";
+import { DomainError, UserAlreadyExistsError } from "../../errors";
 import { Email, NonEmptyString, PastDate, Password, NonEmptyArray } from "../../validators";
 
 interface IUserRequest {
@@ -56,7 +56,7 @@ class CreateUserLawyerUseCase {
         });
 
         if (userAlreadExists) {
-            throw new DomainError("Usuário já existe!");
+            throw new UserAlreadyExistsError(email.value);
         }
 
         const areasAtuacao = await Promise.all(
