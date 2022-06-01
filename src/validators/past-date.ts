@@ -17,7 +17,7 @@ export class PastDate {
     public static validate(date: Date): PastDate {
         const today = new Date();
 
-        if (date.getDate() >= today.getDate()) {
+        if (date.getTime() >= today.getTime()) {
             throw new InvalidDateError(date);
         }
 
