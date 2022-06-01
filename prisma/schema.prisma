@@ -47,7 +47,7 @@ model Advogado {
   usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
   endereco      Endereco?
-  config_agenda Configuracao_agenda?
+  config_agenda Configuracao_agenda[]
 
   @@map("advogado")
 }
