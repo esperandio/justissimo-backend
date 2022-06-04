@@ -1,8 +1,6 @@
 import { prisma } from "../../database/index";
-import { DomainError, LawyerNotFoundError } from "../../errors";
-import { DaySchedule } from "../../validators/days-schedule";
-import { DurationSchedule } from "../../validators/duration-schedule";
-import { TimeSchedule } from "../../validators/times-schedule";
+import { LawyerNotFoundError } from "../../errors";
+import { DaySchedule, DurationSchedule, TimeSchedule } from "../../validators";
 
 interface IUserRequest {
   fk_advogado: number;
