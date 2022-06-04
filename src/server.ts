@@ -22,7 +22,6 @@ app.use(router_lawyers);
 app.use(router_user);
 
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
-    console.log(error.message)
     if (error instanceof NotFoundError) {
         return response.status(404).json({
             status: "Not found",

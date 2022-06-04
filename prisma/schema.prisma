@@ -100,5 +100,6 @@ model Configuracao_agenda {
   hora_final             DateTime
   duracao                Int
   advogado               Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+
 @@map("configuracao_agenda")
 }

@@ -242,12 +242,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-30T23:56:38.195Z",
-    "modified": "2022-06-01T00:10:30.064Z",
+    "modified": "2022-06-04T12:44:34.490Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": " [\n    {\n        \"fk_advogado\": 1,\n        \"dia\": \"segunda\",\n        \"hora_inicio\": \"0001-01-01T07:00:00.000Z\",\n        \"hora_final\": \"0001-01-01T18:00:00.000Z\",\n        \"duracao\": 30\n    },\n    {\n        \"fk_advogado\":1,\n        \"dia\": \"terca\",\n        \"hora_inicio\": \"0001-01-01T07:00:00.000Z\",\n        \"hora_final\": \"0001-01-01T18:00:00.000Z\",\n        \"duracao\": 30\n    }\n]\n",
+      "raw": " [\n    {\n        \"fk_advogado\": 1,\n        \"dia\": \"segunda\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 30\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"terca\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 30\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"quarta\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 15\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"quinta\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 30\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"sexta\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"17:15\",\n        \"duracao\": 30\n    }\n]\n",
       "form": []
     },
     "tests": []
