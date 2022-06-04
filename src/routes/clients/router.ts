@@ -3,6 +3,7 @@ import { ensureAuthenticated } from "../../middlewares/ensureAutheticated";
 import { CreateUserClientController } from "../../useCases/createUserClient/CreateUserClientController";
 import { ListAllClientsController } from "../../useCases/listUserClient/listAllClients/ListAllClientsController";
 import { ListClientByIdController } from "../../useCases/listUserClient/listClientById/ListClientByIdController";
+import { CreateDivulgationController } from "../../useCases/createDivulgation/CreateDivulgationController";
 
 const router = Router();
 
@@ -10,5 +11,7 @@ const router = Router();
 router.post("/clients", new CreateUserClientController().handle);
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/clients/:id",ensureAuthenticated, new ListClientByIdController().handle);
+
+router.post("/clients/:id/divulgations", new CreateDivulgationController().handle);
 
 export { router as router_clients };

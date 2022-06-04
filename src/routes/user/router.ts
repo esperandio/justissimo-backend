@@ -11,7 +11,7 @@ const router = Router();
 router.delete("/user/:id", ensureAuthenticated, new DeleteUserController().handle);
 router.post("/login", new AuthenticateUserController().handle);
 router.post("/login/recovery", new GeneratePasswordRecoveryCodeController().handle);
-router.get("/login/recovery/:recoveryCode", new ValidatePasswordRecoveryCodeController().handle);
+router.get("/login/recovery/:codigo_recuperacao", new ValidatePasswordRecoveryCodeController().handle);
 router.post("/login/recovery/newpassword", new ChangePasswordController().handle);
 
 export { router as router_user };
