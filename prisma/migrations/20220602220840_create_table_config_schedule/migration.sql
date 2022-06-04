@@ -1,6 +1,3 @@
--- AlterTable
-ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
-
 -- CreateTable
 CREATE TABLE "configuracao_agenda" (
     "id_configuracao_agenda" SERIAL NOT NULL,
