@@ -1,7 +1,7 @@
 import { hash } from "bcryptjs";
 import { Cliente } from "@prisma/client";
 import { prisma } from "../../database/index";
-import { DomainError } from "../../errors";
+import { DomainError, UserAlreadyExistsError } from "../../errors";
 import { Email, NonEmptyString, PastDate, Password } from "../../validators";
 
 interface IUserRequest {
@@ -53,7 +53,7 @@ class CreateUserClientUseCase {
         });
 
         if (userAlreadExists) {
-            throw new DomainError("Usuário já existe!");
+            throw new UserAlreadyExistsError(email.value);
         }
 
         const passwordHash = await hash(password.value, 8);

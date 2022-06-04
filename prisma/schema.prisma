@@ -47,6 +47,7 @@ model Advogado {
   nota          Float?
   usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
+  areas         AdvogadoArea[]
   endereco      Endereco?
 
   @@map("advogado")
@@ -96,6 +97,7 @@ model AreaAtuacao {
   id_area_atuacao Int       @id @default(autoincrement())
   titulo          String?   @db.VarChar(100)
   divulgacoes     Divulgacao[]
+  advogados       AdvogadoArea[]
 
   @@map("area_atuacao")
 }
@@ -113,4 +115,14 @@ model Divulgacao {
   cliente          Cliente  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
 
   @@map("divulgacao")
+}
+
+model AdvogadoArea {
+  fk_advogado       Int
+  fk_area_atuacao   Int
+  advogado          Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  areaAtuacao       AreaAtuacao @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
+
+  @@unique([fk_advogado, fk_area_atuacao])
+  @@map("advogado_area")
 }
