@@ -221,9 +221,9 @@
     "name": "reviewLawyer",
     "url": "{{url}}/lawyers/2/review",
     "method": "POST",
-    "sortNum": 50000,
+    "sortNum": 55000,
     "created": "2022-05-28T14:33:08.048Z",
-    "modified": "2022-05-28T14:34:45.645Z",
+    "modified": "2022-06-05T21:57:15.326Z",
     "headers": [],
     "params": [],
     "body": {
@@ -242,12 +242,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-30T23:56:38.195Z",
-    "modified": "2022-06-04T12:44:34.490Z",
+    "modified": "2022-06-05T23:26:46.784Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": " [\n    {\n        \"fk_advogado\": 1,\n        \"dia\": \"segunda\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 30\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"terca\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 30\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"quarta\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 15\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"quinta\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"18:30\",\n        \"duracao\": 30\n    },\n        {\n        \"fk_advogado\": 1,\n        \"dia\": \"sexta\",\n        \"hora_inicio\": \"07:52\",\n        \"hora_final\": \"17:15\",\n        \"duracao\": 30\n    }\n]\n",
+      "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n\n    ],\n    \"dias_remover\": [\n        {\n            \"fk_advogado\": 3,\n            \"dia\": \"terca\"\n        },\n        {\n            \"fk_advogado\": 3,\n            \"dia\": \"segunda\"\n        }\n        ]   \n    }\n}\n",
       "form": []
     },
     "tests": []

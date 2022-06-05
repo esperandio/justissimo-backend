@@ -12,6 +12,12 @@ class InvalidDayDuplicateError extends DomainError {
     }
 }
 
+class InvalidDataArrayDuplicateError extends DomainError {
+    constructor (day: string) {
+        super(`A ação não pode ser concluída, foi solicitada a exclusão e adição do mesmo dia: [${day}]`)
+    }
+}
+
 function checkIfDuplicateExists(arr: string[]) {
     return new Set(arr).size !== arr.length
 }
@@ -35,5 +41,12 @@ export class DaySchedule {
         });
 
         return true;
+    }
+
+    public static validadeDuplicateDataArrays(array: Array<Object>, arrayCompare: Array<Object>) {
+        array.some(el =>{ 
+            if(arrayCompare.includes(el)){
+                throw new InvalidDataArrayDuplicateError(el.toString());
+            }});
     }
 }

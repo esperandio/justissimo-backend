@@ -5,7 +5,7 @@ class ConfigScheduleController {
     async handle(request: Request, response: Response) {
         const dados = request.body;
         const config = await new ConfigSchedulUseCase().execute(dados);
-        return response.json({});
+        return response.status(200).json({});
     }
 }
 
