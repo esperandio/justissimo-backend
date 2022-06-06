@@ -49,6 +49,7 @@ model Advogado {
   avaliacoes    Avaliacao[]
   areas         AdvogadoArea[]
   endereco      Endereco?
+  config_agenda Configuracao_agenda[]
 
   @@map("advogado")
 }
@@ -91,6 +92,18 @@ model RecuperacaoSenha {
   usuario              Usuario  @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
 
   @@map("recuperacao_senha")
+}
+
+model Configuracao_agenda {
+  id_configuracao_agenda Int       @id @default(autoincrement())
+  fk_advogado            Int
+  dia                    String    @db.VarChar(45) 
+  hora_inicial           DateTime
+  hora_final             DateTime
+  duracao                Int
+  advogado               Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+
+@@map("configuracao_agenda")
 }
 
 model AreaAtuacao {

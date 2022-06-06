@@ -1,5 +1,5 @@
--- AlterTable
-ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
+-- -- AlterTable
+-- ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
 
 -- CREATE OR REPLACE FUNCTION atualizar_nota_advogado()
 --     RETURNS TRIGGER
