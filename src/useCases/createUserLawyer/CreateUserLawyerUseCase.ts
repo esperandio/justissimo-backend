@@ -1,8 +1,8 @@
 import { hash } from "bcryptjs";
 import { Advogado } from "@prisma/client";
 import { prisma } from "../../database/index";
-import { DomainError } from "../../errors";
-import { Email, NonEmptyString, PastDate, Password } from "../../validators";
+import { DomainError, UserAlreadyExistsError, AreaNotFoundError } from "../../errors";
+import { Email, NonEmptyString, PastDate, Password, NonEmptyArray } from "../../validators";
 
 interface IUserRequest {
     password: string;
@@ -17,11 +17,13 @@ interface IUserRequest {
     register_cna: string;
     state_cna: string;
     phone: string;
+    areas: Array<number>;
 }
 
 class CreateUserLawyerUseCase {
     private validStates = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA',
         'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO',];
+
     async execute(userRequest: IUserRequest): Promise<Advogado> {
         const email = Email.validate(userRequest.email);
         const fullname = NonEmptyString.validate('fullname', userRequest.fullname);
@@ -32,6 +34,9 @@ class CreateUserLawyerUseCase {
         const password = Password.validate(userRequest.password);
         const register_cna = NonEmptyString.validate('register_cna', userRequest.register_cna);
         const phone = NonEmptyString.validate('phone', userRequest.phone);
+        const areas = NonEmptyArray.validate('areas', userRequest.areas);
+
+        const passwordHash = await hash(password.value, 8);
 
         if (!this.validStates.includes(state.value) || !this.validStates.includes(state.value)) {
             throw new DomainError(`Estado inválido. Valor informado: ${state.value}. Valores possíveis: ${this.validStates.toString()}`);
@@ -51,11 +56,28 @@ class CreateUserLawyerUseCase {
         });
 
         if (userAlreadExists) {
-            throw new DomainError("Usuário já existe!");
+            throw new UserAlreadyExistsError(email.value);
         }
 
-        const passwordHash = await hash(password.value, 8);
-        
+        const areasAtuacao = await Promise.all(
+            areas.values.map(
+                async (x) => {
+                    const area = await prisma.areaAtuacao.findUnique({
+                        where: {
+                            id_area_atuacao: x
+                        }
+                    });
+    
+                    if (area == null) {
+                        throw new AreaNotFoundError(x);
+                    }
+    
+                    return area;
+                }
+            )
+        );
+
+        // Cria usuário
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
@@ -63,6 +85,7 @@ class CreateUserLawyerUseCase {
             }
         });
 
+        // Cria advogado
         const advogado = await prisma.advogado.create({
             data: {
                 dt_nascimento: birthday.value,
@@ -76,6 +99,7 @@ class CreateUserLawyerUseCase {
             }
         });
 
+        // Cria endereço
         await prisma.endereco.create({
             data: {
                 cidade: city.value,
@@ -83,6 +107,13 @@ class CreateUserLawyerUseCase {
                 nr_cep: zipcode.value,
                 fk_advogado: advogado.id_advogado
             }
+        });
+
+        // Cria áreas de atuação
+        await prisma.advogadoArea.createMany({
+            data: areasAtuacao.map(x => { 
+                return { fk_advogado: advogado.id_advogado, fk_area_atuacao: x.id_area_atuacao }
+            })
         });
 
         return advogado;

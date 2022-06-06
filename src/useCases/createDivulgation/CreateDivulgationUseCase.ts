@@ -1,5 +1,5 @@
 import { prisma } from "../../database/index";
-import { ClientNotFoundError, DomainError } from "../../errors";
+import { ClientNotFoundError, DomainError, AreaNotFoundError } from "../../errors";
 import { NonEmptyString } from "../../validators";
 import { Divulgacao } from "@prisma/client";
 
@@ -29,7 +29,7 @@ class CreateDivulgationUseCase {
         });
 
         if (areaAtuacao == null) {
-            throw new DomainError("Área de atuação não encontrada");
+            throw new AreaNotFoundError(reviewRequest.area_atuacao_id);
         }
 
         const divulgationExists = await prisma.divulgacao.findFirst({
