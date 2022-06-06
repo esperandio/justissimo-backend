@@ -92,7 +92,6 @@ class ConfigSchedulUseCase {
 
         if (daysRemove.length > 0) {
             for (let value of daysRemove.values()) {
-                console.log(value.fk_advogado)
                 const userExists = await prisma.advogado.findUnique({
                     where: {
                         id_advogado: value.fk_advogado,
