@@ -1,6 +1,6 @@
 import { prisma } from "../../database/index";
 import { LawyerNotFoundError, NotFoundError } from "../../errors";
-import { DaySchedule, DurationSchedule, TimeSchedule } from "../../validators";
+import { DaySchedule, DurationSchedule, TimeSchedule, NonEmptyArray } from "../../validators";
 
 interface IUserRequest {
     fk_advogado: number;
@@ -33,8 +33,10 @@ class ConfigSchedulUseCase {
                                                 daysInsert.map((x) => x.dia)
                                                 );
 
+        const durations = NonEmptyArray.validate("duracao", daysInsert.map((x) => x.duracao));        
+
         //validacao das duracoes recebidas
-        DurationSchedule.validate(daysInsert.map((x) => x.duracao));
+        DurationSchedule.validate(durations.values);
 
         if (daysInsert.length > 0) {
             for (let value of daysInsert.values()) {

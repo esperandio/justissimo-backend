@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-06-01T00:18:26.911Z",
+    "modified": "2022-05-28T14:14:01.053Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"senha\": \"ABCabc123\",\n    \"email\": \"davidsjsesusss357@gmail.com\",\n    \"nome\": \"Matheu2 Esperandio\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"cidade\": \"Blumenau\",\n    \"estado\": \"SC\",  \n    \"cep\": \"1234567\" \n}",
+      "raw": "{\n    \"senha\": \"ABCabc123\",\n    \"email\": \"davidsjsesuss357@gmail.com\",\n    \"nome\": \"Matheus Esperandio\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"cidade\": \"Blumenau\",\n    \"estado\": \"SC\",  \n    \"cep\": \"1234567\" \n}",
       "form": []
     },
     "tests": []
@@ -77,12 +77,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-06-01T23:43:23.128Z",
+    "modified": "2022-05-28T14:18:39.762Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"teste@teste5.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\",\n    \"areas\": [1,2,3]\n}",
+      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"teste@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\"\n}",
       "form": []
     },
     "tests": []
@@ -242,12 +242,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-30T23:56:38.195Z",
-    "modified": "2022-06-05T23:26:46.784Z",
+    "modified": "2022-06-06T00:51:49.393Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n\n    ],\n    \"dias_remover\": [\n        {\n            \"fk_advogado\": 3,\n            \"dia\": \"terca\"\n        },\n        {\n            \"fk_advogado\": 3,\n            \"dia\": \"segunda\"\n        }\n        ]   \n    }\n}\n",
+      "raw": "{\n  \"dados\": {\n    \"dias_inserir\": [\n        {\n            \"fk_advogado\": 1,\n            \"dia\": \"segunda\",\n            \"hora_inicio\": \"08:00\",\n            \"hora_final\": \"18:00\",\n            \"duracao\": 30\n        }\n    ],\n    \"dias_remover\": [\n        {\n            \"fk_advogado\": 1,\n            \"dia\": \"terca\"\n        }\n    ]\n  }\n}",
       "form": []
     },
     "tests": []
