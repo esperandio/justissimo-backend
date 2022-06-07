@@ -270,5 +270,19 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "25e3df9f-0449-4702-a326-3a5242065fb3",
+    "colId": "28ef74b6-5e8d-472f-8ab3-e4312ddd6313",
+    "containerId": "",
+    "name": "ListAllAreas",
+    "url": "{{url}}/areas",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-06-07T23:15:34.742Z",
+    "modified": "2022-06-07T23:15:50.217Z",
+    "headers": [],
+    "params": [],
+    "tests": []
   }
 ]
