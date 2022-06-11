@@ -19,5 +19,12 @@
     "created": "2022-05-10T23:44:36.597Z",
     "sortNum": 40000,
     "folders": []
+  },
+  {
+    "_id": "28ef74b6-5e8d-472f-8ab3-e4312ddd6313",
+    "colName": "Area",
+    "created": "2022-06-07T23:14:55.381Z",
+    "sortNum": 60000,
+    "folders": []
   }
 ]

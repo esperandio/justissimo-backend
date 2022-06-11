@@ -16,7 +16,11 @@ export class NonEmptyArray<T> {
     }
 
     public static validate<T>(identifier: string, values: Array<T>): NonEmptyArray<T> {
-        if (typeof values == 'undefined' || values.length <= 0) {
+        if (
+            typeof values == 'undefined' 
+            || values.length <= 0
+            || (values.length == 1 && typeof values[0] == 'undefined')
+        ) {
             throw new EmptyArrayError(identifier);
         }
 
