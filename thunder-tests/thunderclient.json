@@ -272,6 +272,20 @@
     "tests": []
   },
   {
+    "_id": "25e3df9f-0449-4702-a326-3a5242065fb3",
+    "colId": "28ef74b6-5e8d-472f-8ab3-e4312ddd6313",
+    "containerId": "",
+    "name": "ListAllAreas",
+    "url": "{{url}}/areas",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-06-07T23:15:34.742Z",
+    "modified": "2022-06-07T23:15:50.217Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
     "_id": "7febff76-570d-425d-a9e5-9a659d73ae75",
     "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
     "containerId": "",
@@ -280,7 +294,7 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-12T16:10:47.596Z",
+    "modified": "2022-06-12T16:54:35.440Z",
     "headers": [],
     "params": [],
     "body": {
@@ -290,7 +304,7 @@
     },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTUwNDYzNTIsImV4cCI6MTY1NTA1NzE1Miwic3ViIjoiMiJ9.2mJTBmPwxot_DaoNXHcirIeeVsAh3eJ1peD31cBWUvE"
+      "bearer": "{{token}}"
     },
     "tests": []
   }
