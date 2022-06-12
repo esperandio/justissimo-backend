@@ -1,7 +1,5 @@
 import { prisma } from "../../database";
-import { DomainError, NotFoundError } from "../../errors";
-import { DaySchedule, NonEmptyString } from "../../validators";
-import { HourSchedule } from "../../validators/hour-scheduling";
+import { DomainError, NotFoundError, ClientNotFoundError, LawyerNotFoundError } from "../../errors";
 import { ParmsScheduling } from "../../validators/parms-scheduling";
 
 interface ICreateSchedulingRequest {
@@ -33,7 +31,7 @@ class CreateSchedulingUseCase {
             });
 
         if (!userClient) {
-            throw new NotFoundError('Cliente não encontrado!');
+            throw new ClientNotFoundError();
         }
 
         const userLawyer = await prisma.advogado.findUnique({
@@ -43,7 +41,7 @@ class CreateSchedulingUseCase {
             });
                     
         if (!userLawyer) {
-            throw new NotFoundError('Advogado não encontrado!');
+            throw new LawyerNotFoundError();
         }
 
         const userLawyerArea = await prisma.advogadoArea.findFirst({
@@ -51,7 +49,7 @@ class CreateSchedulingUseCase {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_area_atuacao: createSchedulingRequest.fk_advogado_area,
             }
-            });
+        });
                     
         if (!userLawyerArea) {
             throw new NotFoundError('Advogado não pertence a área de atuação informada!');
@@ -66,7 +64,7 @@ class CreateSchedulingUseCase {
         });
 
         if (schedulingAlreadyExists) {
-            throw new DomainError('Não foi possível cadastrar o agendamento, pois, já existe um agendamento  para a data e horário informados!');
+            throw new DomainError('Não foi possível cadastrar o agendamento pois já existe um agendamento para a data e horário informados!');
         }
 
         await prisma.agendamento.create({
