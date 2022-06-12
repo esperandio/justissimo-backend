@@ -1,5 +1,5 @@
 -- AlterTable
-ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
+-- ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
 
 -- CreateTable
 CREATE TABLE "agendamento" (
