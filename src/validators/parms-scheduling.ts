@@ -16,7 +16,7 @@ interface ICreateSchedulingRequest {
 }
 
 export class ParmsScheduling {
-    public static validate(createSchedulingRequest: ICreateSchedulingRequest): Boolean {
+    public static validate(createSchedulingRequest: ICreateSchedulingRequest): void {
         if ((isNaN(createSchedulingRequest.fk_advogado))    ||
         (isNaN(createSchedulingRequest.fk_advogado_area))   ||
         (isNaN(createSchedulingRequest.fk_cliente))         ||
@@ -40,7 +40,5 @@ export class ParmsScheduling {
         NonEmptyString.validate('causa', createSchedulingRequest.causa);
         HourSchedule.validate(createSchedulingRequest.horario);
         DaySchedule.validateDay(createSchedulingRequest.dia);
-
-        return true;
     }
 }
