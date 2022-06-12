@@ -77,12 +77,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-05-28T14:18:39.762Z",
+    "modified": "2022-06-12T12:35:49.089Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"teste@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\"\n}",
+      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"teste@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\",\n    \"areas\": [1]\n}",
       "form": []
     },
     "tests": []
@@ -168,12 +168,12 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-05-28T13:59:36.242Z",
+    "modified": "2022-06-12T01:14:06.863Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"teste@teste.com\",\n    \"senha\": \"1!2bHkln\"\n}",
+      "raw": "{\n    \"email\": \"davidsjsesuss357@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
       "form": []
     },
     "auth": {
@@ -242,12 +242,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-30T23:56:38.195Z",
-    "modified": "2022-06-05T23:26:46.784Z",
+    "modified": "2022-06-12T14:22:39.302Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n\n    ],\n    \"dias_remover\": [\n        {\n            \"fk_advogado\": 3,\n            \"dia\": \"terca\"\n        },\n        {\n            \"fk_advogado\": 3,\n            \"dia\": \"segunda\"\n        }\n        ]   \n    }\n}\n",
+      "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n\n    ],\n    \"dias_remover\": [\n \n        ]   \n    }\n}\n",
       "form": []
     },
     "tests": []
@@ -276,11 +276,22 @@
     "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
     "containerId": "",
     "name": "createScheduling",
-    "url": "",
-    "method": "GET",
+    "url": "{{url}}/clients/scheduling",
+    "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-11T11:59:01.674Z",
-    "headers": []
+    "modified": "2022-06-12T16:10:47.596Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-03\",\n    \"duracao\": 30,\n    \"horario\": \"16:00\",\n    \"dia\": \"terca\",\n    \"observacao\": \"Teste observação\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2NTUwNDYzNTIsImV4cCI6MTY1NTA1NzE1Miwic3ViIjoiMiJ9.2mJTBmPwxot_DaoNXHcirIeeVsAh3eJ1peD31cBWUvE"
+    },
+    "tests": []
   }
 ]

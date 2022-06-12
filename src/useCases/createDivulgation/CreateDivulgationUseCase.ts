@@ -12,12 +12,21 @@ interface ICreateDivulgationRequest {
 
 class CreateDivulgationUseCase {
     async execute(reviewRequest: ICreateDivulgationRequest): Promise<Divulgacao> {
+        console.log(reviewRequest)
+
+        if (isNaN(reviewRequest.client_id)       || 
+            isNaN(reviewRequest.area_atuacao_id) ||
+            (reviewRequest.client_id <= 0)       ||
+            (reviewRequest.area_atuacao_id <= 0) ) {
+            throw new DomainError('Atenção! Informe todos os dados!')
+        }
+
         const client = await prisma.cliente.findUnique({
             where: {
                 id_cliente: reviewRequest.client_id
             }
         })
-
+        console.log(client)
         if (client == null) {
             throw new ClientNotFoundError();
         }
