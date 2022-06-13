@@ -28,7 +28,7 @@ class CreateSchedulingUseCase {
             include: {
                 usuario: true,
             },
-            });
+        });
 
         if (!userClient) {
             throw new ClientNotFoundError();
@@ -38,7 +38,7 @@ class CreateSchedulingUseCase {
             where: {
                 id_advogado: createSchedulingRequest.fk_advogado,
             }
-            });
+        });
                     
         if (!userLawyer) {
             throw new LawyerNotFoundError();
@@ -79,11 +79,13 @@ class CreateSchedulingUseCase {
             
         }
 
-        if ((hour_scheduling.valueOf() < configLawyerSchedule.hora_inicial.valueOf()) ||
-            (hour_scheduling.valueOf() > configLawyerSchedule.hora_final.valueOf())) {
+        if (
+            (hour_scheduling.valueOf() < configLawyerSchedule.hora_inicial.valueOf()) 
+            || (hour_scheduling.valueOf() > configLawyerSchedule.hora_final.valueOf())
+        ) {
             throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no horario informado!');
-            
         }
+
         await prisma.agendamento.create({
             data: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
