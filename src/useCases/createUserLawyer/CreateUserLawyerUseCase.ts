@@ -18,6 +18,7 @@ interface IUserRequest {
     state_cna: string;
     phone: string;
     areas: Array<number>;
+    info: string;
 }
 
 class CreateUserLawyerUseCase {
@@ -35,6 +36,7 @@ class CreateUserLawyerUseCase {
         const register_cna = NonEmptyString.validate('register_cna', userRequest.register_cna);
         const phone = NonEmptyString.validate('phone', userRequest.phone);
         const areas = NonEmptyArray.validate('areas', userRequest.areas);
+        const info = NonEmptyString.validate('info', userRequest.info);
 
         const passwordHash = await hash(password.value, 8);
 
@@ -95,7 +97,8 @@ class CreateUserLawyerUseCase {
                 fk_usuario: usuario.id_usuario,
                 nr_cna: register_cna.value,
                 uf_cna: userRequest.state_cna,
-                tel_celular: phone.value
+                tel_celular: phone.value,
+                info: info.value
             }
         });
 
