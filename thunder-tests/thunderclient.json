@@ -77,12 +77,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-05-28T14:18:39.762Z",
+    "modified": "2022-06-13T23:10:47.108Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"teste@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\"\n}",
+      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"testa@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\",\n    \"areas\": [1],\n    \"info\": \"teste descrição\"\n}",
       "form": []
     },
     "tests": []
