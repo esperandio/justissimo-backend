@@ -32,11 +32,20 @@ export class ParmsScheduling {
             throw new DomainError('Campo {duracao} inválido, por gentileza informe um valor igual ou maior que 30!');
         }
         //Validando se é uma data válida
-        let isValidDate = Date.parse(createSchedulingRequest.data_agendamento);
-        if (isNaN(isValidDate)) {
+        let isValidDate = new Date(createSchedulingRequest.data_agendamento);
+        let dateNow = new Date().setUTCHours(0,0,0,0);
+        let dateNowConverted = new Date(dateNow).toLocaleDateString('pt-br');
+        if (isNaN(isValidDate.getTime())) {
             throw new DomainError('Campo data inválido, esperado uma data válida, recebido: ' + createSchedulingRequest.data_agendamento);
         }
-     
+
+        console.log(new Date(dateNowConverted).valueOf());
+        console.log(isValidDate.valueOf());
+
+        if (isValidDate.valueOf() < (new Date(dateNow).valueOf())) {
+            throw new DomainError('Campo data inválido, data inferior a data atual, recebido: ' + createSchedulingRequest.data_agendamento);
+        }
+        
         NonEmptyString.validate('causa', createSchedulingRequest.causa);
         HourSchedule.validate(createSchedulingRequest.horario);
         DaySchedule.validateDay(createSchedulingRequest.dia);

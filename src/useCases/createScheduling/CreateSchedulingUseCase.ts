@@ -18,7 +18,7 @@ class CreateSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
         ParmsScheduling.validate(createSchedulingRequest);
 
-        const date_scheduling = new Date(createSchedulingRequest.data_agendamento);
+        const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
         const hour_scheduling = new Date("0001-01-01T" + createSchedulingRequest.horario + ":00.000Z");
         
         const userClient = await prisma.cliente.findUnique({
@@ -67,6 +67,24 @@ class CreateSchedulingUseCase {
             throw new DomainError('Não foi possível cadastrar o agendamento pois já existe um agendamento para a data e horário informados!');
         }
 
+        const configLawyerSchedule = await prisma.configuracao_agenda.findFirst({
+            where: {
+                fk_advogado: userLawyer.id_advogado,
+                dia: createSchedulingRequest.dia.toUpperCase()
+            }
+        });
+
+        if (!configLawyerSchedule) {
+            throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no dia informado!');
+            
+        }
+
+        console.log(configLawyerSchedule.hora_inicial)
+        if ((hour_scheduling.valueOf() < configLawyerSchedule.hora_inicial.valueOf()) ||
+            (hour_scheduling.valueOf() > configLawyerSchedule.hora_final.valueOf())) {
+            throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no horario informado!');
+            
+        }
         await prisma.agendamento.create({
             data: {
                 fk_advogado: createSchedulingRequest.fk_advogado,

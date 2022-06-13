@@ -242,12 +242,12 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-30T23:56:38.195Z",
-    "modified": "2022-06-12T14:22:39.302Z",
+    "modified": "2022-06-12T23:46:27.311Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n\n    ],\n    \"dias_remover\": [\n \n        ]   \n    }\n}\n",
+      "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n        { \n            \"fk_advogado\": 1,\n            \"dia\": \"terca\",\n            \"hora_inicio\": \"07:30\",\n            \"hora_final\": \"18:00\",\n            \"duracao\": 30\n\t\t}\n    ],\n        \"dias_remover\": [\n          \n        ]   \n    }\n}\n",
       "form": []
     },
     "tests": []
@@ -294,12 +294,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-12T16:54:35.440Z",
+    "modified": "2022-06-12T23:54:19.126Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-03\",\n    \"duracao\": 30,\n    \"horario\": \"16:00\",\n    \"dia\": \"terca\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-12\",\n    \"duracao\": 30,\n    \"horario\": \"07:35\",\n    \"dia\": \"terca\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
     "auth": {
