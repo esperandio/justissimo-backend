@@ -79,7 +79,6 @@ class CreateSchedulingUseCase {
             
         }
 
-        console.log(configLawyerSchedule.hora_inicial)
         if ((hour_scheduling.valueOf() < configLawyerSchedule.hora_inicial.valueOf()) ||
             (hour_scheduling.valueOf() > configLawyerSchedule.hora_final.valueOf())) {
             throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no horario informado!');
