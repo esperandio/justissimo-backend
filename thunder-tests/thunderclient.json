@@ -294,12 +294,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-13T22:45:09.416Z",
+    "modified": "2022-06-14T22:26:13.944Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 2,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-14\",\n    \"duracao\": 30,\n    \"horario\": \"15:14\",\n    \"dia\": \"terca\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 2,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-15\",\n    \"duracao\": 30,\n    \"horario\": \"10:30\",\n    \"dia\": \"terca\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
     "auth": {

@@ -1,6 +1,7 @@
 import { prisma } from "../../database";
 import { DomainError, NotFoundError, ClientNotFoundError, LawyerNotFoundError } from "../../errors";
 import { ParmsScheduling } from "../../validators/parms-scheduling";
+import { TimeForScheduling } from "../../validators/time-for-scheduling";
 
 interface ICreateSchedulingRequest {
     fk_advogado:        number;
@@ -16,6 +17,25 @@ interface ICreateSchedulingRequest {
 
 class CreateSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
+        let dateArray = createSchedulingRequest.data_agendamento.split('-');
+        dateArray[2] = (parseInt(dateArray[2]) + 1).toString();
+        let dataConverted = dateArray.toString().replace(',','-');
+        dataConverted = dataConverted.replace(',','-');
+
+        const dados = await prisma.agendamento.findMany({
+            where: {
+              data_agendamento: {
+                gte: new Date("2022-06-15T00:00:00.000Z"),
+                lt:  new Date(dataConverted)
+              },
+            },
+          });
+
+          TimeForScheduling.validate(dados, new Date("0001-01-01T07:30:00.000Z"), new Date("0001-01-01T18:00:00.000Z"), new Date("0001-01-01T17:30:00.000Z"));
+        //   console.log(data);
+          console.log('');
+        //   return {};
+
         ParmsScheduling.validate(createSchedulingRequest);
 
         const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
