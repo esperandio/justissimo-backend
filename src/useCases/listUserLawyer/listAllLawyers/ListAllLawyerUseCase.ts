@@ -40,7 +40,8 @@ class ListAllLawyersUseCase {
                     cidade: filterCity,
                     estado: filterState
                 },
-                nota: filterRate
+                nota: filterRate,
+                autorizado: true
             },
             include: {
                 endereco: true
