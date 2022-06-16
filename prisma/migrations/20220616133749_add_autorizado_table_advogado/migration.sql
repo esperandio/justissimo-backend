@@ -1,0 +1,4 @@
+-- AlterTable
+ALTER TABLE "advogado" 
+ADD COLUMN "autorizado" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN IF NOT EXISTS "nota" DOUBLE PRECISION;
