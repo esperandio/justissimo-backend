@@ -51,6 +51,5 @@ export class ParmsScheduling {
         
         NonEmptyString.validate('causa', createSchedulingRequest.causa);
         HourSchedule.validate(createSchedulingRequest.horario);
-        DaySchedule.validateDay(createSchedulingRequest.dia);
     }
 }

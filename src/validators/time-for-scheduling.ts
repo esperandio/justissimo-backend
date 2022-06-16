@@ -9,7 +9,6 @@ interface IScheduling {
     data_agendamento: Date;
     duracao: number;
     horario: Date;
-    dia: string;
     observacao: string | null;
     contato_cliente: string;
     data_criacao_agendamento: Date;
@@ -38,7 +37,8 @@ export class TimeForScheduling {
                 throw new DomainError('Não foi possivel cadastrar o agendameto pois já existe um agendamento no horário solicitado');
             }
 
-            const schedulingsDuration = new Date(hour_scheduling.setUTCMinutes(hour_scheduling.getUTCMinutes() + duration));
+            const cloneHourScheduling = new Date(hour_scheduling.getTime());
+            const schedulingsDuration = new Date(cloneHourScheduling.setUTCMinutes(cloneHourScheduling.getUTCMinutes() + duration));
             
             if ((schedulingsDuration.getTime() > hour_init_scheduling.getTime()) && (schedulingsDuration.getTime() < hour_final_scheduling.getTime())) {
                 throw new DomainError('Não foi possivel cadastrar o agendameto pois já existe um agendamento no horário solicitado');

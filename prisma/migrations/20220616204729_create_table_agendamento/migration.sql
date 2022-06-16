@@ -1,5 +1,5 @@
 -- AlterTable
--- ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
+ALTER TABLE "advogado" ADD COLUMN     "nota" DOUBLE PRECISION;
 
 -- CreateTable
 CREATE TABLE "agendamento" (
@@ -11,7 +11,6 @@ CREATE TABLE "agendamento" (
     "data_agendamento" TIMESTAMP(3) NOT NULL,
     "duracao" INTEGER NOT NULL,
     "horario" TIMESTAMP(3) NOT NULL,
-    "dia" VARCHAR(45) NOT NULL,
     "observacao" VARCHAR(200),
     "contato_cliente" VARCHAR(200) NOT NULL,
     "data_criacao_agendamento" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,

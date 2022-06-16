@@ -151,7 +151,6 @@ model Agendamento {
   data_agendamento          DateTime
   duracao                   Int
   horario                   DateTime
-  dia                       String    @db.VarChar(45)
   observacao                String?   @db.VarChar(200)
   contato_cliente           String    @db.VarChar(200)
   data_criacao_agendamento  DateTime  @default(now())

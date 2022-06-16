@@ -81,8 +81,7 @@ class CreateSchedulingUseCase {
         
         const configLawyerSchedule = await prisma.configuracao_agenda.findFirst({
             where: {
-                fk_advogado: userLawyer.id_advogado,
-                dia: createSchedulingRequest.dia.toUpperCase()
+                fk_advogado: userLawyer.id_advogado
             }
         });
         
@@ -92,7 +91,7 @@ class CreateSchedulingUseCase {
         }
         
         TimeForScheduling.validate(dados, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, createSchedulingRequest.duracao);
-        
+
         await prisma.agendamento.create({
             data: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
@@ -101,7 +100,6 @@ class CreateSchedulingUseCase {
                 causa: createSchedulingRequest.causa,
                 contato_cliente: userClient.usuario?.email ?? "",
                 data_agendamento: date_scheduling,
-                dia:createSchedulingRequest.dia.toUpperCase(),
                 duracao: createSchedulingRequest.duracao,
                 horario: hour_scheduling,
                 observacao: createSchedulingRequest.observacao
