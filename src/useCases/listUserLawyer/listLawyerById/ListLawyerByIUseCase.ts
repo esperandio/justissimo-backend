@@ -7,6 +7,18 @@ class ListLawyerByUseCase {
         const advogado = await prisma.advogado.findUnique({
             where: {
                 id_advogado: id_lawyer,
+            },
+            include: {
+                usuario: {
+                    select: {
+                        email: true
+                    }
+                },
+                _count: {
+                    select: {
+                        avaliacoes: true
+                    }
+                }
             }
         });
 
