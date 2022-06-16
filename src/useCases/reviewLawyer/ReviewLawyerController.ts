@@ -10,7 +10,7 @@ class ReviewLawyerController {
             descricao,
             nota
         } = request.body;
-
+       
         await new ReviewLawyerUseCase().execute({
             client_id: id_cliente,
             lawyer_id: Number.parseInt(id),
