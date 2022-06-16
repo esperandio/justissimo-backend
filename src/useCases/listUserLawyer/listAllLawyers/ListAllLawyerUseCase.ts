@@ -44,7 +44,12 @@ class ListAllLawyersUseCase {
                 autorizado: true
             },
             include: {
-                endereco: true
+                endereco: true,
+                _count: {
+                    select: {
+                        avaliacoes: true
+                    }
+                }
             }
         });
         return advogados;
