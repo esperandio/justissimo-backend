@@ -17,51 +17,50 @@ interface ICreateSchedulingRequest {
 
 class CreateSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
-
         ParmsScheduling.validate(createSchedulingRequest);
         
         const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
         const hour_scheduling = new Date("0001-01-01T" + createSchedulingRequest.horario + ":00.000Z");
-        
-        const dados = await prisma.agendamento.findMany({
+
+        const schedulingsAlreadyDoneToSpecificDay = await prisma.agendamento.findMany({
             where: {
-              data_agendamento: {
-                gte: new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z"),
-                lte: new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z")
-              },
+                data_agendamento: {
+                    gte: new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z"),
+                    lte: new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z")
+                },
             },
         });
-          
+
         const userClient = await prisma.cliente.findUnique({
             where: {
-                    id_cliente: createSchedulingRequest.fk_cliente,
-                },
-                include: {
-                    usuario: true,
-                },
-            });
-            
+                id_cliente: createSchedulingRequest.fk_cliente,
+            },
+            include: {
+                usuario: true,
+            },
+        });
+
         if (!userClient) {
             throw new ClientNotFoundError();
         }
-            
+
         const userLawyer = await prisma.advogado.findUnique({
             where: {
                 id_advogado: createSchedulingRequest.fk_advogado,
             }
         });
-            
+
         if (!userLawyer) {
             throw new LawyerNotFoundError();
         }
-            
+
         const userLawyerArea = await prisma.advogadoArea.findFirst({
             where: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_area_atuacao: createSchedulingRequest.fk_advogado_area,
             }
         });
-            
+
         if (!userLawyerArea) {
             throw new NotFoundError('Advogado não pertence a área de atuação informada!');
         }
@@ -77,20 +76,18 @@ class CreateSchedulingUseCase {
         if (schedulingAlreadyExists) {
             throw new DomainError('Não foi possível cadastrar o agendamento pois já existe um agendamento para a data e horário informados!');
         }
-
         
         const configLawyerSchedule = await prisma.configuracao_agenda.findFirst({
             where: {
                 fk_advogado: userLawyer.id_advogado
             }
         });
-        
+
         if (!configLawyerSchedule) {
             throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no dia informado!');
-            
         }
-        
-        TimeForScheduling.validate(dados, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, createSchedulingRequest.duracao);
+
+        TimeForScheduling.validate(schedulingsAlreadyDoneToSpecificDay, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, createSchedulingRequest.duracao);
 
         await prisma.agendamento.create({
             data: {
