@@ -29,6 +29,7 @@ model Cliente {
   avaliacoes    Avaliacao[]
   endereco      Endereco?
   divulgacoes   Divulgacao[]
+  agendamento   Agendamento[]
 
   @@map("cliente")
 }
@@ -45,10 +46,12 @@ model Advogado {
   tel_fixo      String?     @db.VarChar(45)
   tel_celular   String?     @db.VarChar(45)
   nota          Float?
+  info          String?     @db.Text()
   usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
   areas         AdvogadoArea[]
   endereco      Endereco?
+  agendamento   Agendamento[]
   config_agenda Configuracao_agenda[]
 
   @@map("advogado")
@@ -138,4 +141,22 @@ model AdvogadoArea {
 
   @@unique([fk_advogado, fk_area_atuacao])
   @@map("advogado_area")
+}
+
+model Agendamento {
+  id_agenda                 Int       @id @default(autoincrement())
+  fk_advogado               Int
+  fk_cliente                Int
+  fk_advogado_area          Int
+  causa                     String    @db.VarChar(45)
+  data_agendamento          DateTime
+  duracao                   Int
+  horario                   DateTime
+  observacao                String?   @db.VarChar(200)
+  contato_cliente           String    @db.VarChar(200)
+  data_criacao_agendamento  DateTime  @default(now())
+  advogado                  Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  areaAtuacao               Cliente   @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+
+  @@map("agendamento")
 }

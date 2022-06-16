@@ -43,6 +43,14 @@ export class DaySchedule {
         return true;
     }
 
+    public static validateDay(day: string): string {
+        const daysCompare = ['SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA'];
+            if (!daysCompare.includes(day.toUpperCase())) {
+                throw new InvalidDayError();
+            }
+        return day;
+    }
+
     public static validadeDuplicateDataArrays(array: Array<Object>, arrayCompare: Array<Object>) {
         array.some(el =>{ 
             if(arrayCompare.includes(el)){
