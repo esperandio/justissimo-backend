@@ -13,7 +13,7 @@ interface IListSchedulingRequest{
 class ListSchedulingUseCase {
     async execute(listSchedulingRequest: IListSchedulingRequest): Promise<Agendamento[]> {
         let filterDateInit  = new Date(-8640000000000);
-        let filterDateFinal = new Date(new Date(8640000000000));
+        let filterDateFinal = new Date(8640000000000);
         let filterLawyer = {};
         let filterArea = {};
 
@@ -36,12 +36,12 @@ class ListSchedulingUseCase {
         if (filterDateInit.getTime() > filterDateFinal.getTime()) {
             throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
         }
+
         if (NonEmptyString.isEmpty(listSchedulingRequest.fk_lawyer)) {
             throw new DomainError('Necessário receber o id do advogado') 
         }
-        else {
-            filterLawyer = { equals: Number.parseInt(listSchedulingRequest.fk_lawyer) }
-        }
+        
+        filterLawyer = { equals: Number.parseInt(listSchedulingRequest.fk_lawyer) }        
 
         if (!NonEmptyString.isEmpty(listSchedulingRequest.area)) {
             filterArea = { equals: Number.parseInt(listSchedulingRequest.area) }
