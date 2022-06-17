@@ -7,6 +7,7 @@ interface IListRequest {
     city: string;
     state: string;
     rate: string;
+    area: string;
 }
 
 class ListAllLawyersUseCase {
@@ -16,9 +17,10 @@ class ListAllLawyersUseCase {
         let filterCity = {};
         let filterState = {};
         let filterRate = {};
+        let filterArea = {};
 
         if (!NonEmptyString.isEmpty(listRequest.name)) {
-            filterName = { contains: listRequest.name }
+            filterName = { contains: listRequest.name, mode: 'insensitive' }
         }
 
         if (!NonEmptyString.isEmpty(listRequest.city)) {
@@ -33,6 +35,10 @@ class ListAllLawyersUseCase {
             filterRate = { equals: Number.parseInt(listRequest.rate) }
         }
 
+        if (!NonEmptyString.isEmpty(listRequest.area)) {
+            filterArea = { equals: Number.parseInt(listRequest.area) }
+        }
+
         const advogados = await prisma.advogado.findMany({
             where: {
                 nome: filterName,
@@ -40,10 +46,21 @@ class ListAllLawyersUseCase {
                     cidade: filterCity,
                     estado: filterState
                 },
-                nota: filterRate
+                nota: filterRate,
+                areas: {
+                    every: {
+                        fk_area_atuacao: filterArea
+                    }
+                },
+                autorizado: true
             },
             include: {
-                endereco: true
+                endereco: true,
+                _count: {
+                    select: {
+                        avaliacoes: true
+                    }
+                }
             }
         });
         return advogados;

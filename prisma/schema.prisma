@@ -47,6 +47,7 @@ model Advogado {
   tel_celular   String?     @db.VarChar(45)
   nota          Float?
   info          String?     @db.Text()
+  autorizado    Boolean     @default(false)
   usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes    Avaliacao[]
   areas         AdvogadoArea[]

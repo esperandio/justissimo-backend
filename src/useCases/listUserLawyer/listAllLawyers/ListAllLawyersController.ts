@@ -7,12 +7,14 @@ class ListAllLawyersController {
         const cidade = request.query.cidade as string;
         const estado = request.query.estado as string;
         const nota = request.query.nota as string;
+        const area = request.query.area as string;
 
         const advogados = await new ListAllLawyersUseCase().execute({
             name: nome,
             city: cidade,
             state: estado,
-            rate: nota
+            rate: nota,
+            area
         });
 
         return response.status(200).json(advogados);
