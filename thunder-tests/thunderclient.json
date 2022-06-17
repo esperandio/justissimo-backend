@@ -294,14 +294,48 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-16T20:53:53.347Z",
+    "modified": "2022-06-17T00:42:25.458Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-17\",\n    \"duracao\": 30,\n    \"horario\": \"17:00\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-19\",\n    \"duracao\": 30,\n    \"horario\": \"17:00\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "ca3f1bb1-40b1-41ae-b721-5833be66ccb8",
+    "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
+    "containerId": "",
+    "name": "getAllSchedulings",
+    "url": "{{url}}/schedulings/1?date_init=2022-06-17&date_final=2022-06-19&area=1",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-06-17T00:26:38.174Z",
+    "modified": "2022-06-17T01:50:14.987Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "date_init",
+        "value": "2022-06-17",
+        "isPath": false
+      },
+      {
+        "name": "date_final",
+        "value": "2022-06-19",
+        "isPath": false
+      },
+      {
+        "name": "area",
+        "value": "1",
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
