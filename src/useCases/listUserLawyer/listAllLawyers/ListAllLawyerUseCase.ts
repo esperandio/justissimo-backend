@@ -20,7 +20,7 @@ class ListAllLawyersUseCase {
         let filterArea = {};
 
         if (!NonEmptyString.isEmpty(listRequest.name)) {
-            filterName = { contains: listRequest.name }
+            filterName = { contains: listRequest.name, mode: 'insensitive' }
         }
 
         if (!NonEmptyString.isEmpty(listRequest.city)) {
