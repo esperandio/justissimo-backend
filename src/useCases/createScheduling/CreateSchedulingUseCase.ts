@@ -8,8 +8,7 @@ interface ICreateSchedulingRequest {
     fk_cliente:         number;
     fk_advogado_area:   number;
     causa:              string;    
-    data_agendamento:   string;
-    duracao:            number;     
+    data_agendamento:   string;    
     horario:            string;  
     dia:                string;        
     observacao:         string;
@@ -87,7 +86,7 @@ class CreateSchedulingUseCase {
             throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no dia informado!');
         }
 
-        TimeForScheduling.validate(schedulingsAlreadyDoneToSpecificDay, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, createSchedulingRequest.duracao);
+        TimeForScheduling.validate(schedulingsAlreadyDoneToSpecificDay, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, configLawyerSchedule.duracao);
 
         await prisma.agendamento.create({
             data: {
@@ -97,7 +96,7 @@ class CreateSchedulingUseCase {
                 causa: createSchedulingRequest.causa,
                 contato_cliente: userClient.usuario?.email ?? "",
                 data_agendamento: date_scheduling,
-                duracao: createSchedulingRequest.duracao,
+                duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
                 observacao: createSchedulingRequest.observacao
             }
