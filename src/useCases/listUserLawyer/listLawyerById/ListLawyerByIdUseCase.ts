@@ -15,6 +15,11 @@ class ListLawyerByIdUseCase {
                         email: true
                     }
                 },
+                areas: {
+                    select: {
+                        areaAtuacao: true
+                    }
+                },
                 _count: {
                     select: {
                         avaliacoes: true
