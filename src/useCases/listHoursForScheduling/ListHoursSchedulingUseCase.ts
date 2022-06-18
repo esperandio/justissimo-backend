@@ -16,7 +16,7 @@ interface IListHoursForSchedulingResponse{
 
 class ListHoursForSchedulingUseCase {
     async execute(listHoursRequest: IListHoursForSchedulingRequest): Promise<IListHoursForSchedulingResponse> {
-
+        const daysOfWeek = ['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'];
         const advogado = await prisma.advogado.findUnique({
             where: {
                id_advogado: listHoursRequest.id_lawyer,
@@ -38,14 +38,15 @@ class ListHoursForSchedulingUseCase {
 
         const configLawyerSchedule = await prisma.configuracao_agenda.findFirst({
             where: {
-                fk_advogado: listHoursRequest.id_lawyer
+                fk_advogado: listHoursRequest.id_lawyer,
+                dia: daysOfWeek[dateForScheduling.getUTCDay()]
             }
         });
 
         if (!configLawyerSchedule) {
             throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no dia informado!');
         }
-        
+
         const schedulingsAlreadyDoneToSpecificDay = await prisma.agendamento.findMany({
             where: {
                 data_agendamento: dateForScheduling               
