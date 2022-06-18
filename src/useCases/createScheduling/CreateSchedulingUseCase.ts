@@ -18,6 +18,7 @@ class CreateSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
         ParmsScheduling.validate(createSchedulingRequest);
         
+        const daysOfWeek = ['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'];
         const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
         const hour_scheduling = new Date("0001-01-01T" + createSchedulingRequest.horario + ":00.000Z");
 
@@ -78,7 +79,8 @@ class CreateSchedulingUseCase {
         
         const configLawyerSchedule = await prisma.configuracao_agenda.findFirst({
             where: {
-                fk_advogado: userLawyer.id_advogado
+                fk_advogado: userLawyer.id_advogado,
+                dia: daysOfWeek[date_scheduling.getUTCDay()]
             }
         });
 
