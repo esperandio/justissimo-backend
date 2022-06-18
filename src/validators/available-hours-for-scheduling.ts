@@ -20,7 +20,7 @@ export class AvailableHoursForScheduling {
         const hoursRemove = schedulings.map((x)  => (x.horario.getUTCHours() +':'+ (x.horario.getUTCMinutes() == 0 ? "00": x.horario.getUTCMinutes())));
 
         let hourInsertArray = new Date(hour_init.getTime());
-        console.log(hour_init, hourInsertArray)
+
         for (let index = 0; hourInsertArray.getTime() < hour_final.getTime(); index++) {
             arrayHours.push(hourInsertArray.getUTCHours() +':'+ (hourInsertArray.getUTCMinutes() == 0 ? "00": hourInsertArray.getUTCMinutes())); 
             hourInsertArray =  new Date(hourInsertArray.setUTCMinutes(hourInsertArray.getUTCMinutes() + duration));
