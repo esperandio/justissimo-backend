@@ -21,7 +21,10 @@ export class AvailableHoursForScheduling {
 
         let hourInsertArray = new Date(hour_init.getTime());
 
-        for (let index = 0; hourInsertArray.getTime() < hour_final.getTime(); index++) {
+        //Data máxima permitida no retorno 
+        const dateFinalCompare = new Date(hour_final.setUTCMinutes(hour_final.getUTCMinutes() - duration));
+
+        for (let index = 0; hourInsertArray.getTime() <= dateFinalCompare.getTime(); index++) {
             arrayHours.push(hourInsertArray.getUTCHours() +':'+ (hourInsertArray.getUTCMinutes() == 0 ? "00": hourInsertArray.getUTCMinutes())); 
             hourInsertArray =  new Date(hourInsertArray.setUTCMinutes(hourInsertArray.getUTCMinutes() + duration));
         }
