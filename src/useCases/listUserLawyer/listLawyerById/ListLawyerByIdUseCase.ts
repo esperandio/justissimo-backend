@@ -2,7 +2,7 @@ import { Advogado } from "@prisma/client";
 import { prisma } from "../../../database/index"
 import { NotFoundError } from '../../../errors'
 
-class ListLawyerByUseCase {
+class ListLawyerByIdUseCase {
     async execute(id_lawyer: number) : Promise<Advogado> {
         const advogado = await prisma.advogado.findFirst({
             where: {
@@ -31,4 +31,4 @@ class ListLawyerByUseCase {
     }
 }
 
-export { ListLawyerByUseCase }
+export { ListLawyerByIdUseCase }
