@@ -8,8 +8,7 @@ interface ICreateSchedulingRequest {
     fk_cliente:         number;
     fk_advogado_area:   number;
     causa:              string;    
-    data_agendamento:   string;
-    duracao:            number;     
+    data_agendamento:   string;    
     horario:            string;  
     dia:                string;        
     observacao:         string;
@@ -19,6 +18,7 @@ class CreateSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
         ParmsScheduling.validate(createSchedulingRequest);
         
+        const daysOfWeek = ['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'];
         const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
         const hour_scheduling = new Date("0001-01-01T" + createSchedulingRequest.horario + ":00.000Z");
 
@@ -79,7 +79,8 @@ class CreateSchedulingUseCase {
         
         const configLawyerSchedule = await prisma.configuracao_agenda.findFirst({
             where: {
-                fk_advogado: userLawyer.id_advogado
+                fk_advogado: userLawyer.id_advogado,
+                dia: daysOfWeek[date_scheduling.getUTCDay()]
             }
         });
 
@@ -87,7 +88,7 @@ class CreateSchedulingUseCase {
             throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no dia informado!');
         }
 
-        TimeForScheduling.validate(schedulingsAlreadyDoneToSpecificDay, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, createSchedulingRequest.duracao);
+        TimeForScheduling.validate(schedulingsAlreadyDoneToSpecificDay, configLawyerSchedule.hora_inicial, configLawyerSchedule.hora_final, hour_scheduling, configLawyerSchedule.duracao);
 
         await prisma.agendamento.create({
             data: {
@@ -97,7 +98,7 @@ class CreateSchedulingUseCase {
                 causa: createSchedulingRequest.causa,
                 contato_cliente: userClient.usuario?.email ?? "",
                 data_agendamento: date_scheduling,
-                duracao: createSchedulingRequest.duracao,
+                duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
                 observacao: createSchedulingRequest.observacao
             }
