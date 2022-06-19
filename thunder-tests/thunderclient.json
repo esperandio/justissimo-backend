@@ -22,7 +22,7 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-06-18T12:36:29.720Z",
+    "modified": "2022-06-19T01:00:55.446Z",
     "headers": [],
     "params": [],
     "body": {
@@ -294,12 +294,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-18T23:00:53.368Z",
+    "modified": "2022-06-19T01:02:30.267Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-22\",\n    \"horario\": \"15:00\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 2,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-21\",\n    \"horario\": \"14:30\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
     "auth": {
@@ -312,12 +312,12 @@
     "_id": "ca3f1bb1-40b1-41ae-b721-5833be66ccb8",
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
-    "name": "getAllSchedulings",
-    "url": "{{url}}/schedulings/1?date_init=2022-06-17&date_final=2022-06-19&area=1",
+    "name": "getAllSchedulingsLawyer",
+    "url": "{{url}}/schedulings/lawyer/1?date_init=2022-06-17&date_final=2022-06-19&area=1",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-06-17T00:26:38.174Z",
-    "modified": "2022-06-17T01:50:14.987Z",
+    "modified": "2022-06-19T01:07:05.932Z",
     "headers": [],
     "params": [
       {
@@ -365,6 +365,41 @@
       "raw": "{\n    \"date_para_scheduling\": \"2022-06-16\"\n}",
       "form": []
     },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "60103504-900d-43f8-8863-158dd55148ba",
+    "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
+    "containerId": "",
+    "name": "getAllSchedulingsClient",
+    "url": "{{url}}/schedulings/client/2?date_init=2022-06-16&date_final=2022-06-23",
+    "method": "GET",
+    "sortNum": 15000,
+    "created": "2022-06-19T00:57:10.649Z",
+    "modified": "2022-06-19T01:07:35.424Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "date_init",
+        "value": "2022-06-16",
+        "isPath": false
+      },
+      {
+        "name": "date_final",
+        "value": "2022-06-23",
+        "isPath": false
+      },
+      {
+        "name": "area",
+        "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
