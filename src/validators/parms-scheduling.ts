@@ -1,4 +1,5 @@
 import { DomainError } from "../errors";
+import { DateConvertedBr } from "./date-converted-br";
 import { DaySchedule } from "./days-schedule";
 import { HourSchedule } from "./hour-scheduling";
 import { NonEmptyString } from "./non-empty-string";
@@ -8,8 +9,7 @@ interface ICreateSchedulingRequest {
     fk_cliente:         number;
     fk_advogado_area:   number;
     causa:              string;    
-    data_agendamento:   string;
-    duracao:            number;     
+    data_agendamento:   string;    
     horario:            string;  
     dia:                string;        
     observacao:         string;
@@ -20,25 +20,19 @@ export class ParmsScheduling {
         if ((isNaN(createSchedulingRequest.fk_advogado))    ||
         (isNaN(createSchedulingRequest.fk_advogado_area))   ||
         (isNaN(createSchedulingRequest.fk_cliente))         ||
-        (isNaN(createSchedulingRequest.duracao))            ||
         (createSchedulingRequest.fk_advogado <= 0)          ||
         (createSchedulingRequest.fk_advogado_area <= 0)     ||
         (createSchedulingRequest.fk_cliente <= 0)                
         ) {
             throw new DomainError('Informações inválidas, por gentileza informe os dados corretamente!');
         }
-
-        if (createSchedulingRequest.duracao < 30){
-            throw new DomainError('Campo {duracao} inválido, por gentileza informe um valor igual ou maior que 30!');
-        }
         
         //Validando se a data do agendamento é uma  data válida
         const concatDateScheduling = createSchedulingRequest.data_agendamento +"T" + createSchedulingRequest.horario+":00.000Z";
         let isValidDate = new Date(concatDateScheduling);
-        let date = Date.now();
-
-        //Convertendo para a data atual - brasilia
-        const dateNowConverted = new Date(date).setHours(new Date(date).getUTCHours() - 6);          
+        let date = new Date().toLocaleString('pt-br');
+        
+        const dateNowConverted = DateConvertedBr.validate(date);            
              
         if (isNaN(isValidDate.getTime())) {
             throw new DomainError('Campo data inválido, esperado uma data válida, recebido: ' + createSchedulingRequest.data_agendamento);

@@ -4,13 +4,13 @@ import { DomainError } from "../../errors";
 import { NonEmptyString } from "../../validators";
 
 interface IListSchedulingRequest{
-    fk_lawyer: string;
+    fk_client: string;
     date_init: string;
     date_final: string;
     area: string;
 }
 
-class ListSchedulingUseCase {
+class ListSchedulingUseCaseClient {
     async execute(listSchedulingRequest: IListSchedulingRequest): Promise<Agendamento[]> {
         let filterDateInit  = new Date(-8640000000000);
         let filterDateFinal = new Date(8640000000000);
@@ -37,11 +37,11 @@ class ListSchedulingUseCase {
             throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
         }
 
-        if (NonEmptyString.isEmpty(listSchedulingRequest.fk_lawyer)) {
+        if (NonEmptyString.isEmpty(listSchedulingRequest.fk_client)) {
             throw new DomainError('Necessário receber o id do advogado') 
         }
         
-        filterLawyer = { equals: Number.parseInt(listSchedulingRequest.fk_lawyer) }        
+        filterLawyer = { equals: Number.parseInt(listSchedulingRequest.fk_client) }        
 
         if (!NonEmptyString.isEmpty(listSchedulingRequest.area)) {
             filterArea = { equals: Number.parseInt(listSchedulingRequest.area) }
@@ -49,7 +49,7 @@ class ListSchedulingUseCase {
 
         const schedulings = await prisma.agendamento.findMany({
             where: {
-                fk_advogado: filterLawyer,
+                fk_cliente: filterLawyer,
                 data_agendamento: {
                     gte: filterDateInit,
                     lte: filterDateFinal
@@ -62,4 +62,4 @@ class ListSchedulingUseCase {
     }
 }
 
-export { ListSchedulingUseCase }
+export { ListSchedulingUseCaseClient }

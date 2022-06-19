@@ -1,4 +1,5 @@
 import { DomainError } from "../errors";
+import { DateConvertedBr } from "./date-converted-br";
 
 class InvalidDateError extends DomainError {
     constructor (date: Date) {
@@ -15,9 +16,11 @@ export class PastDate {
     }
 
     public static validate(date: Date): PastDate {
-        const today = new Date();
+        let today = new Date().toLocaleString('pt-br');
+        
+        const dateNowConverted = DateConvertedBr.validate(today); 
 
-        if (date.getTime() >= today.getTime()) {
+        if (date.getTime() >= dateNowConverted.getTime()) {
             throw new InvalidDateError(date);
         }
 

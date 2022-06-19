@@ -9,7 +9,6 @@ class CreateSchedulingController {
             fk_advogado_area,
             causa,
             data_agendamento,
-            duracao,
             horario,
             dia,
             observacao 
@@ -21,7 +20,6 @@ class CreateSchedulingController {
             fk_advogado_area,
             causa,
             data_agendamento,
-            duracao,
             horario,
             dia,
             observacao 
