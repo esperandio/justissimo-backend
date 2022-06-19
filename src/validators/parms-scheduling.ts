@@ -26,6 +26,10 @@ export class ParmsScheduling {
             throw new DomainError('Informações inválidas, por gentileza informe os dados corretamente!');
         }
         
+        if (createSchedulingRequest.observacao.length > 200) {
+            throw new DomainError("Campo obsevacao invalido, quantidade de caracteres ultrapassa (200)!");
+        }
+
         //Validando se a data do agendamento é uma  data válida
         const concatDateScheduling = createSchedulingRequest.data_agendamento +"T" + createSchedulingRequest.horario+":00.000Z";
         let isValidDate = new Date(concatDateScheduling);
