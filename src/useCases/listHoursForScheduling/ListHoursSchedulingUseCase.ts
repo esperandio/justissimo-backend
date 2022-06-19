@@ -44,7 +44,7 @@ class ListHoursForSchedulingUseCase {
         });
 
         if (!configLawyerSchedule) {
-            throw new DomainError('Não foi possivel cadastrar o agendameto pois o advogado não atende no dia informado!');
+            throw new DomainError('Não foi possivel encontrar horários disponíveis para agendamento porque o advogado não atende no dia informado!');
         }
 
         const schedulingsAlreadyDoneToSpecificDay = await prisma.agendamento.findMany({
