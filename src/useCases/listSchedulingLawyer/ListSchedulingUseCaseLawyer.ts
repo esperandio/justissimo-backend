@@ -16,17 +16,16 @@ class ListSchedulingUseCaseLawyer {
         let filterDateFinal = new Date(8640000000000);
         let filterLawyer = {};
         let filterArea = {};
-
         if (!NonEmptyString.isEmpty(listSchedulingRequest.date_init)) {
             filterDateInit = new Date(listSchedulingRequest.date_init  + "T00:00:00.000Z");
         }
-
+        
         if (!NonEmptyString.isEmpty(listSchedulingRequest.date_final)) {
             filterDateFinal = new Date(listSchedulingRequest.date_final + "T00:00:00.000Z");
         }
         
         if (isNaN(filterDateInit.getTime())) {
-            throw new DomainError('Campo data_init inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
+            throw new DomainError('Campo data_inicial inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
         }
 
         if (isNaN(filterDateFinal.getTime())) {
