@@ -25,7 +25,7 @@ export class AvailableHoursForScheduling {
         const dateFinalCompare = new Date(hour_final.setUTCMinutes(hour_final.getUTCMinutes() - duration));
 
         for (let index = 0; hourInsertArray.getTime() <= dateFinalCompare.getTime(); index++) {
-            arrayHours.push(hourInsertArray.getUTCHours() +':'+ (hourInsertArray.getUTCMinutes() == 0 ? "00": hourInsertArray.getUTCMinutes())); 
+            arrayHours.push(`${hourInsertArray.getUTCHours()}`.padStart(2, "0") + ':' + `${hourInsertArray.getUTCMinutes()}`.padStart(2, "0")); 
             hourInsertArray =  new Date(hourInsertArray.setUTCMinutes(hourInsertArray.getUTCMinutes() + duration));
         }
 
