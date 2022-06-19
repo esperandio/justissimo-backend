@@ -11,7 +11,7 @@ class ListHoursForSchedulingController {
             date_for_scheduling: date_para_scheduling
         });
         
-        return response.status(201).json(hours_for_schedulings);
+        return response.status(200).json(hours_for_schedulings);
     }
 }
 
