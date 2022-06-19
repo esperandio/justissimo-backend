@@ -8,7 +8,6 @@ interface ICreateSchedulingRequest {
     fk_advogado:        number;
     fk_cliente:         number;
     fk_advogado_area:   number;
-    causa:              string;    
     data_agendamento:   string;    
     horario:            string;  
     dia:                string;        
@@ -27,6 +26,10 @@ export class ParmsScheduling {
             throw new DomainError('Informações inválidas, por gentileza informe os dados corretamente!');
         }
         
+        if (createSchedulingRequest.observacao.length > 200) {
+            throw new DomainError("Campo obsevacao invalido, quantidade de caracteres ultrapassa (200)!");
+        }
+
         //Validando se a data do agendamento é uma  data válida
         const concatDateScheduling = createSchedulingRequest.data_agendamento +"T" + createSchedulingRequest.horario+":00.000Z";
         let isValidDate = new Date(concatDateScheduling);
@@ -42,8 +45,7 @@ export class ParmsScheduling {
         if (isValidDate.getTime() < (new Date(dateNowConverted).getTime())) {
             throw new DomainError('Campo data ou horario inválido, data ou horário inferior a data atual, data e hora recebido: ' + createSchedulingRequest.data_agendamento   + ' - ' + createSchedulingRequest.horario);
         }
-        
-        NonEmptyString.validate('causa', createSchedulingRequest.causa);
+
         HourSchedule.validate(createSchedulingRequest.horario);
     }
 }

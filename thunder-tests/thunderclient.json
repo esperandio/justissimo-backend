@@ -294,12 +294,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-19T01:02:30.267Z",
+    "modified": "2022-06-19T13:54:03.085Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 2,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-21\",\n    \"horario\": \"14:30\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 2,\n    \"fk_advogado_area\": 1,\n    \"data_agendamento\": \"2022-06-21\",\n    \"horario\": \"14:30\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
     "auth": {
@@ -313,21 +313,21 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "getAllSchedulingsLawyer",
-    "url": "{{url}}/schedulings/lawyer/1?date_init=2022-06-17&date_final=2022-06-19&area=1",
+    "url": "{{url}}/schedulings/lawyer/1?data_inicial=2022-06-21&data_final=2022-06-21&area=1",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-06-17T00:26:38.174Z",
-    "modified": "2022-06-19T01:07:05.932Z",
+    "modified": "2022-06-19T14:43:21.732Z",
     "headers": [],
     "params": [
       {
-        "name": "date_init",
-        "value": "2022-06-17",
+        "name": "data_inicial",
+        "value": "2022-06-21",
         "isPath": false
       },
       {
-        "name": "date_final",
-        "value": "2022-06-19",
+        "name": "data_final",
+        "value": "2022-06-21",
         "isPath": false
       },
       {
@@ -372,41 +372,6 @@
     "tests": []
   },
   {
-    "_id": "60103504-900d-43f8-8863-158dd55148ba",
-    "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
-    "containerId": "",
-    "name": "getAllSchedulingsClient",
-    "url": "{{url}}/schedulings/client/2?date_init=2022-06-16&date_final=2022-06-23",
-    "method": "GET",
-    "sortNum": 15000,
-    "created": "2022-06-19T00:57:10.649Z",
-    "modified": "2022-06-19T01:07:35.424Z",
-    "headers": [],
-    "params": [
-      {
-        "name": "date_init",
-        "value": "2022-06-16",
-        "isPath": false
-      },
-      {
-        "name": "date_final",
-        "value": "2022-06-23",
-        "isPath": false
-      },
-      {
-        "name": "area",
-        "value": "1",
-        "isDisabled": true,
-        "isPath": false
-      }
-    ],
-    "auth": {
-      "type": "bearer",
-      "bearer": "{{token}}"
-    },
-    "tests": []
-  },
-  {
     "_id": "4ec2eefa-71a8-4fd7-96ac-c866d7ca38d2",
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
@@ -423,6 +388,40 @@
       "raw": "{\n    \"id_advogado\": 1,\n    \"id_agenda\": 9\n}",
       "form": []
     },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "60103504-900d-43f8-8863-158dd55148ba",
+    "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
+    "containerId": "",
+    "name": "getAllSchedulingsClient",
+    "url": "{{url}}/schedulings/client/2?data_incial=2022-06-16&data_final=2022-06-23&area=1",
+    "method": "GET",
+    "sortNum": 15000,
+    "created": "2022-06-19T00:57:10.649Z",
+    "modified": "2022-06-19T14:50:41.570Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "data_incial",
+        "value": "2022-06-16",
+        "isPath": false
+      },
+      {
+        "name": "data_final",
+        "value": "2022-06-23",
+        "isPath": false
+      },
+      {
+        "name": "area",
+        "value": "1",
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"

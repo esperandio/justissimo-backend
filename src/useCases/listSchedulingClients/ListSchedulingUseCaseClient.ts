@@ -26,7 +26,7 @@ class ListSchedulingUseCaseClient {
         }
         
         if (isNaN(filterDateInit.getTime())) {
-            throw new DomainError('Campo data_init inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
+            throw new DomainError('Campo data_inicial inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
         }
 
         if (isNaN(filterDateFinal.getTime())) {

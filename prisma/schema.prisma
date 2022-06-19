@@ -149,7 +149,6 @@ model Agendamento {
   fk_advogado               Int
   fk_cliente                Int
   fk_advogado_area          Int
-  causa                     String    @db.VarChar(45)
   data_agendamento          DateTime
   duracao                   Int
   horario                   DateTime
