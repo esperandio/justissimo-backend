@@ -17,7 +17,7 @@ export class AvailableHoursForScheduling {
         let arrayHours: Array<string> = []
 
         //Horarios que não devem ser retornados pois já estão agendados
-        const hoursRemove = schedulings.map((x)  => (x.horario.getUTCHours() +':'+ (x.horario.getUTCMinutes() == 0 ? "00": x.horario.getUTCMinutes())));
+        const hoursRemove = schedulings.map((x)  => (this.formatTime(x.horario)));
 
         let hourInsertArray = new Date(hour_init.getTime());
 
@@ -25,7 +25,7 @@ export class AvailableHoursForScheduling {
         const dateFinalCompare = new Date(hour_final.setUTCMinutes(hour_final.getUTCMinutes() - duration));
 
         for (let index = 0; hourInsertArray.getTime() <= dateFinalCompare.getTime(); index++) {
-            arrayHours.push(`${hourInsertArray.getUTCHours()}`.padStart(2, "0") + ':' + `${hourInsertArray.getUTCMinutes()}`.padStart(2, "0")); 
+            arrayHours.push(this.formatTime(hourInsertArray)); 
             hourInsertArray =  new Date(hourInsertArray.setUTCMinutes(hourInsertArray.getUTCMinutes() + duration));
         }
 
@@ -36,5 +36,9 @@ export class AvailableHoursForScheduling {
         });
 
         return hoursForSchedulingValids;
+    }
+
+    private static formatTime(date: Date) {
+        return `${date.getUTCHours()}`.padStart(2, "0") + ':' + `${date.getUTCMinutes()}`.padStart(2, "0")
     }
 }
