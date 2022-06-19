@@ -7,7 +7,6 @@ interface ICreateSchedulingRequest {
     fk_advogado:        number;
     fk_cliente:         number;
     fk_advogado_area:   number;
-    causa:              string;    
     data_agendamento:   string;    
     horario:            string;  
     dia:                string;        
@@ -95,7 +94,6 @@ class CreateSchedulingUseCase {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_cliente: createSchedulingRequest.fk_cliente,
                 fk_advogado_area: createSchedulingRequest.fk_advogado_area,
-                causa: createSchedulingRequest.causa,
                 contato_cliente: userClient.usuario?.email ?? "",
                 data_agendamento: date_scheduling,
                 duracao: configLawyerSchedule.duracao,

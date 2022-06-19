@@ -8,7 +8,6 @@ interface ICreateSchedulingRequest {
     fk_advogado:        number;
     fk_cliente:         number;
     fk_advogado_area:   number;
-    causa:              string;    
     data_agendamento:   string;    
     horario:            string;  
     dia:                string;        
@@ -42,8 +41,7 @@ export class ParmsScheduling {
         if (isValidDate.getTime() < (new Date(dateNowConverted).getTime())) {
             throw new DomainError('Campo data ou horario inválido, data ou horário inferior a data atual, data e hora recebido: ' + createSchedulingRequest.data_agendamento   + ' - ' + createSchedulingRequest.horario);
         }
-        
-        NonEmptyString.validate('causa', createSchedulingRequest.causa);
+
         HourSchedule.validate(createSchedulingRequest.horario);
     }
 }

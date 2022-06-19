@@ -3,7 +3,6 @@ interface ISchedulings {
     fk_advogado: number;
     fk_cliente: number;
     fk_advogado_area: number;
-    causa: string;
     data_agendamento: Date;
     duracao: number;
     horario: Date;

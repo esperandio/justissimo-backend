@@ -294,12 +294,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-06-19T01:02:30.267Z",
+    "modified": "2022-06-19T13:54:03.085Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 2,\n    \"fk_advogado_area\": 1,\n    \"causa\": \"Trabalhista\",\n    \"data_agendamento\": \"2022-06-21\",\n    \"horario\": \"14:30\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 2,\n    \"fk_advogado_area\": 1,\n    \"data_agendamento\": \"2022-06-21\",\n    \"horario\": \"14:30\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
     "auth": {
@@ -372,6 +372,29 @@
     "tests": []
   },
   {
+    "_id": "4ec2eefa-71a8-4fd7-96ac-c866d7ca38d2",
+    "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
+    "containerId": "",
+    "name": "deleteScheduling",
+    "url": "{{url}}/scheduling",
+    "method": "DELETE",
+    "sortNum": 30000,
+    "created": "2022-06-19T00:31:31.880Z",
+    "modified": "2022-06-19T00:35:48.303Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"id_advogado\": 1,\n    \"id_agenda\": 9\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
     "_id": "60103504-900d-43f8-8863-158dd55148ba",
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
@@ -400,29 +423,6 @@
         "isPath": false
       }
     ],
-    "auth": {
-      "type": "bearer",
-      "bearer": "{{token}}"
-    },
-    "tests": []
-  },
-  {
-    "_id": "4ec2eefa-71a8-4fd7-96ac-c866d7ca38d2",
-    "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
-    "containerId": "",
-    "name": "deleteScheduling",
-    "url": "{{url}}/scheduling",
-    "method": "DELETE",
-    "sortNum": 30000,
-    "created": "2022-06-19T00:31:31.880Z",
-    "modified": "2022-06-19T00:35:48.303Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"id_advogado\": 1,\n    \"id_agenda\": 9\n}",
-      "form": []
-    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
