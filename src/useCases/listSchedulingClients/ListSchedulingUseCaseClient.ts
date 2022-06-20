@@ -56,6 +56,9 @@ class ListSchedulingUseCaseClient {
                 },
                 fk_advogado_area: filterArea
             },
+            include:{
+                cliente: true
+            }
         });
 
         return schedulings;

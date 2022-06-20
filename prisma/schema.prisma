@@ -156,7 +156,7 @@ model Agendamento {
   contato_cliente           String    @db.VarChar(200)
   data_criacao_agendamento  DateTime  @default(now())
   advogado                  Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  areaAtuacao               Cliente   @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  cliente                   Cliente   @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
 
   @@map("agendamento")
 }
