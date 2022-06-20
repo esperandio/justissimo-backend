@@ -47,9 +47,16 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
         });
     }
 
+    if (process.env.NODE_ENV !== "production") {
+        return response.status(500).json({
+            status: "Internal Server Error",
+            message: error.message
+        });
+    }
+
     return response.status(500).json({
         status: "Internal Server Error",
-        message: error.message
+        message: `🤨 Algo deu errado! Tente novamente mais tarde`
     });
 });
 
