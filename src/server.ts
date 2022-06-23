@@ -47,7 +47,8 @@ app.use((error: Error, request: Request, response: Response, next: NextFunction)
         });
     }
 
-    if (process.env.NODE_ENV !== "production") {
+    const base = "production";
+    if (process.env.NODE_ENV !== base) {
         return response.status(500).json({
             status: "Internal Server Error",
             message: error.message
