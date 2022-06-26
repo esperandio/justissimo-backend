@@ -48,7 +48,7 @@ class ListAllLawyersUseCase {
                 },
                 nota: filterRate,
                 areas: {
-                    every: {
+                    some: {
                         fk_area_atuacao: filterArea
                     }
                 },
@@ -63,6 +63,7 @@ class ListAllLawyersUseCase {
                 }
             }
         });
+
         return advogados;
     }
 }
