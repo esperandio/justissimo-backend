@@ -28,6 +28,8 @@ class ListLawyerByIdUseCase {
                 avaliacoes  : {
                     select: {
                         descricao: true,
+                        nota: true,
+                        data_avaliacao: true,
                     }
                 }
             }
