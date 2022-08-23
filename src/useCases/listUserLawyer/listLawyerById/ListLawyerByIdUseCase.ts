@@ -22,7 +22,14 @@ class ListLawyerByIdUseCase {
                 },
                 _count: {
                     select: {
-                        avaliacoes: true
+                        avaliacoes:  true,
+                    },
+                },
+                avaliacoes  : {
+                    select: {
+                        descricao: true,
+                        nota: true,
+                        data_avaliacao: true,
                     }
                 }
             }
