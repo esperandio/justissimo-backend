@@ -38,7 +38,7 @@ class ListSchedulingUseCaseClient {
         }
 
         if (NonEmptyString.isEmpty(listSchedulingRequest.fk_client)) {
-            throw new DomainError('Necessário receber o id do advogado') 
+            throw new DomainError('Necessário receber o id do cliente') 
         }
         
         filterLawyer = { equals: Number.parseInt(listSchedulingRequest.fk_client) }        
@@ -57,7 +57,24 @@ class ListSchedulingUseCaseClient {
                 fk_advogado_area: filterArea
             },
             include:{
-                cliente: true
+                advogado: {
+                    select: {
+                        nome: true,
+                        nr_cna: true,
+                        nr_cnpj: true,
+                        nr_cpf: true,
+                        tel_celular: true,
+                        endereco: {
+                            select: {
+                                logradouro: true,
+                                numero: true,
+                                nr_cep: true,
+                                cidade: true,
+                                estado: true,
+                            }
+                        }
+                    }
+                }
             }
         });
 
