@@ -31,6 +31,9 @@ class ListLawyerByIdUseCase {
                         descricao: true,
                         nota: true,
                         data_avaliacao: true,
+                    },
+                    orderBy: {
+                        data_avaliacao: 'desc'
                     }
                 }
             }
