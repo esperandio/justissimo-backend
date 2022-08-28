@@ -1,4 +1,5 @@
 import { Router } from "express";
+import multer from "multer";
 import { ensureAuthenticated } from "../../middlewares/ensureAutheticated";
 import { CreateUserClientController } from "../../useCases/createUserClient/CreateUserClientController";
 import { ListAllClientsController } from "../../useCases/listUserClient/listAllClients/ListAllClientsController";
@@ -9,7 +10,7 @@ import { CreateSchedulingController } from "../../useCases/createScheduling/Crea
 const router = Router();
 
 /**Clients*/
-router.post("/clients", new CreateUserClientController().handle);
+router.post("/clients", multer().single('file'),new CreateUserClientController().handle);
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/clients/:id",ensureAuthenticated, new ListClientByIdController().handle);
 
