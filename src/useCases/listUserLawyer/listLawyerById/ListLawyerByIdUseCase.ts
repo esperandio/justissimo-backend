@@ -27,9 +27,13 @@ class ListLawyerByIdUseCase {
                 },
                 avaliacoes  : {
                     select: {
+                        id_avaliacao: true,
                         descricao: true,
                         nota: true,
                         data_avaliacao: true,
+                    },
+                    orderBy: {
+                        data_avaliacao: 'desc'
                     }
                 }
             }
