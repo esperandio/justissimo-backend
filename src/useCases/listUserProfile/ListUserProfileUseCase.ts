@@ -28,6 +28,7 @@ class ListUserProfileUseCase {
                             areaAtuacao: true
                         }
                     },
+                    endereco: true,
                 },
             });
         

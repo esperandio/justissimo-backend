@@ -543,11 +543,11 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "listUserProfile",
-    "url": "{{url}}/user/profile/1?tipo_usuario=advogado",
+    "url": "{{url}}/user/profile/3?tipo_usuario=advogado",
     "method": "GET",
     "sortNum": 35000,
     "created": "2022-09-08T00:54:40.180Z",
-    "modified": "2022-09-08T01:01:12.932Z",
+    "modified": "2022-09-08T01:32:53.952Z",
     "headers": [],
     "params": [
       {
