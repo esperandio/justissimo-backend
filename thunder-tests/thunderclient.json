@@ -22,13 +22,60 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-06-19T01:00:55.446Z",
+    "modified": "2022-09-07T23:57:01.966Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\n    \"senha\": \"ABCabc123\",\n    \"email\": \"davidsajsesuss357@gmail.com\",\n    \"nome\": \"Matheus Esperandio\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"00011100011\",\n    \"cnpj\": \"\",\n    \"cidade\": \"Blumenau\",\n    \"estado\": \"SC\",  \n    \"cep\": \"1234567\" \n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "senha",
+          "value": "1!2bHkln"
+        },
+        {
+          "name": "email",
+          "value": "testeaaavfasa@teste.com"
+        },
+        {
+          "name": "nome",
+          "value": "david"
+        },
+        {
+          "name": "dt_nascimento",
+          "value": "2000-07-08"
+        },
+        {
+          "name": "cpf",
+          "value": "11111111111"
+        },
+        {
+          "name": "cnpj",
+          "value": ""
+        },
+        {
+          "name": "cidade",
+          "value": "blumenau"
+        },
+        {
+          "name": "estado",
+          "value": "SC"
+        },
+        {
+          "name": "cep",
+          "value": "89526314"
+        },
+        {
+          "name": "tel_celular",
+          "value": "479999999"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "..\\..\\..\\..\\..\\..\\Pictures\\Screenshots\\husky.jpg"
+        }
+      ]
     },
     "tests": []
   },
@@ -37,11 +84,11 @@
     "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
     "containerId": "",
     "name": "listClientById",
-    "url": "{{url}}/clients/7",
+    "url": "{{url}}/clients/18",
     "method": "GET",
     "sortNum": 15000,
     "created": "2022-05-07T13:33:25.718Z",
-    "modified": "2022-05-28T15:19:22.239Z",
+    "modified": "2022-09-08T00:02:03.345Z",
     "headers": [],
     "params": [],
     "auth": {
@@ -168,12 +215,12 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-06-12T01:14:06.863Z",
+    "modified": "2022-09-08T00:02:49.985Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"davidsjsesuss357@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
+      "raw": "{\n    \"email\": \"testeaaavfasa@teste.com\",\n    \"senha\": \"1!2bHkln\"\n}",
       "form": []
     },
     "auth": {
@@ -219,16 +266,16 @@
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
     "name": "reviewLawyer",
-    "url": "{{url}}/lawyers/2/review",
+    "url": "{{url}}/lawyers/1/review",
     "method": "POST",
     "sortNum": 55000,
     "created": "2022-05-28T14:33:08.048Z",
-    "modified": "2022-06-05T21:57:15.326Z",
+    "modified": "2022-08-28T02:55:13.363Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id_cliente\": 7,\n  \"nota\": 4.5,\n  \"descricao\": \"teste\"\n}",
+      "raw": "{\n  \"id_cliente\": 1,\n  \"nota\": 4.5,\n  \"descricao\": \"teste asc\"\n}",
       "form": []
     },
     "tests": []
