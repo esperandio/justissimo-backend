@@ -14,6 +14,7 @@ interface IUserRequest {
     city: string;
     state: string;
     zipcode: string;
+    url_image: string;
 }
 
 interface IUserRespose {
@@ -23,8 +24,8 @@ interface IUserRespose {
 
 class CreateUserClientUseCase {
     private validStates = ['AC','AL','AP','AM','BA','CE','DF','ES','GO','MA','MT','MS','MG','PA', 
-                           'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',];
-
+    'PB','PR','PE','PI','RJ','RN','RS','RO','RR','SC','SP','SE','TO',];
+    
     async execute(userRequest : IUserRequest): Promise<Cliente> {
         const email = Email.validate(userRequest.email);
         const fullname = NonEmptyString.validate('fullname', userRequest.fullname);
@@ -33,7 +34,9 @@ class CreateUserClientUseCase {
         const state = NonEmptyString.validate('state', userRequest.state);
         const birthday = PastDate.validate(new Date(userRequest.birthday));
         const password = Password.validate(userRequest.password);
+        const url_image = userRequest.url_image;
 
+        // return url_image
         if (!this.validStates.includes(state.value)) {
             throw new DomainError(`Estado inválido. Valor informado: ${state.value}. Valores possíveis: ${this.validStates.toString()}`);
         }
@@ -61,7 +64,8 @@ class CreateUserClientUseCase {
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
-                senha: passwordHash
+                senha: passwordHash,
+                url_foto_perfil: url_image,
             }
         });
 
