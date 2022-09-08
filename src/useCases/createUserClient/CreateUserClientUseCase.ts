@@ -36,7 +36,6 @@ class CreateUserClientUseCase {
         const password = Password.validate(userRequest.password);
         const url_image = userRequest.url_image;
 
-        // return url_image
         if (!this.validStates.includes(state.value)) {
             throw new DomainError(`Estado inválido. Valor informado: ${state.value}. Valores possíveis: ${this.validStates.toString()}`);
         }

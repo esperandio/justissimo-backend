@@ -124,13 +124,76 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-06-16T17:02:19.180Z",
+    "modified": "2022-09-08T01:26:05.082Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\n    \"senha\": \"1!2bHkln\",\n    \"email\": \"testeaa@teste.com\",\n    \"nome\": \"david\",\n    \"dt_nascimento\": \"2000-07-08\",\n    \"cpf\": \"11111111111\",\n    \"cnpj\": \"\",\n    \"cidade\": \"blumenau\",\n    \"estado\": \"SC\",\n    \"cep\": \"89526314\",\n    \"nr_cna\": \"321\",\n    \"uf_cna\": \"SC\",\n    \"tel_celular\": \"479999999\",\n    \"areas\": [1],\n    \"info\": \"Teste descrição\"\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "senha",
+          "value": "1!2bHkln"
+        },
+        {
+          "name": "email",
+          "value": "testseaaa@teste.com"
+        },
+        {
+          "name": "nome",
+          "value": "david"
+        },
+        {
+          "name": "dt_nascimento",
+          "value": "2000-07-08"
+        },
+        {
+          "name": "cpf",
+          "value": "11111111111"
+        },
+        {
+          "name": "cnpj",
+          "value": ""
+        },
+        {
+          "name": "cidade",
+          "value": "blumenau"
+        },
+        {
+          "name": "cep",
+          "value": "89526314"
+        },
+        {
+          "name": "nr_cna",
+          "value": "321"
+        },
+        {
+          "name": "uf_cna",
+          "value": "SC"
+        },
+        {
+          "name": "tel_celular",
+          "value": "479999999"
+        },
+        {
+          "name": "areas",
+          "value": "[1, 2]"
+        },
+        {
+          "name": "info",
+          "value": "teste descrição"
+        },
+        {
+          "name": "estado",
+          "value": "SC"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "..\\..\\..\\..\\..\\..\\Pictures\\Screenshots\\gato_site.png"
+        }
+      ]
     },
     "tests": []
   },
