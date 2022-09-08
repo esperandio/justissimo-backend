@@ -1,8 +1,13 @@
 import { DomainError } from "../errors";
 
 class InvalidPasswordError extends DomainError {
-    constructor (passwordReg: RegExp) {
-        super(`Informe uma senha que atenda ao seguinte padrão: ${passwordReg}.`)
+    constructor () {
+        super(`Informe uma senha que atenda ao seguinte padrão: \n
+        - Possua no mínimo 8 caracteres \n
+        - Pelo menos 1 caractere maiúsculo \n 
+        - Pelo menos 1 caractere minúsculo \n 
+        - Contenha 1 caractere especial \n 
+        - Contenha 1 algarismo número.`)
     }
 }
 
@@ -18,7 +23,7 @@ export class Password {
         const passwordReg = /^(?=.*[A-Z])(?=.*[0-9])(?=.*[a-z]).{8,}$/
 
         if (!passwordReg.test(password)) {
-            throw new InvalidPasswordError(passwordReg)
+            throw new InvalidPasswordError()
         }
 
         return new Password(password)
