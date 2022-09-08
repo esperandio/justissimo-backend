@@ -5,10 +5,12 @@ import { DeleteUserController } from "../../useCases/deleteUser/DeleteUserContro
 import { GeneratePasswordRecoveryCodeController } from "../../useCases/generatePasswordRecoveryCode/GeneratePasswordRecoveryCodeController";
 import { ValidatePasswordRecoveryCodeController } from "../../useCases/validatePasswordRecoveryCode/ValidatePasswordRecoveryCodeController";
 import { ChangePasswordController } from "../../useCases/changePassword/ChangePasswordController";
+import { ListUserProfileController } from "../../useCases/listUserProfile/ListUserProfileController";
 
 const router = Router();
 /**User*/
 router.delete("/user/:id", ensureAuthenticated, new DeleteUserController().handle);
+router.get("/user/profile/:id", ensureAuthenticated, new ListUserProfileController().handle);
 router.post("/login", new AuthenticateUserController().handle);
 router.post("/login/recovery", new GeneratePasswordRecoveryCodeController().handle);
 router.get("/login/recovery/:codigo_recuperacao", new ValidatePasswordRecoveryCodeController().handle);

@@ -474,5 +474,29 @@
       "bearer": "{{token}}"
     },
     "tests": []
+  },
+  {
+    "_id": "80e592c5-118a-4df5-8499-86d6dc9fd7ad",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "listUserProfile",
+    "url": "{{url}}/user/profile/1?tipo_usuario=advogado",
+    "method": "GET",
+    "sortNum": 35000,
+    "created": "2022-09-08T00:54:40.180Z",
+    "modified": "2022-09-08T01:01:12.932Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "tipo_usuario",
+        "value": "advogado",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
   }
 ]

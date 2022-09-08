@@ -2,10 +2,10 @@ import { prisma } from "../../../database/index"
 import { ClientNotFoundError } from '../../../errors'
 
 class ListClientByIdUseCase {
-    async execute(id_client: number) {
+    async execute(user_id: number) {
         const client = await prisma.cliente.findUnique({
             where: {
-                id_cliente: id_client,
+                id_cliente: user_id,
             },
             include: {
                 usuario: {
