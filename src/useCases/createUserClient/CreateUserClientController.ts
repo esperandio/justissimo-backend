@@ -17,13 +17,9 @@ class CreateUserClientController {
             estado,
             cep 
         } = request.body;
-
-        console.log(senha);
-        console.log(request.file);
         
         const values = await Object.entries(request.file || {});
         await values.find(([key, value]) => {
-            console.log(value);
             if (key === "location") {
                 url_image = value;
             } 
