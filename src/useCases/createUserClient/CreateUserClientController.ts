@@ -4,7 +4,6 @@ import { CreateUserClientUseCase } from "./CreateUserClientUseCase";
 class CreateUserClientController {
     async handle(request: Request, response: Response) {
         let url_image = "";
-
         
         const { 
             senha,
@@ -25,7 +24,6 @@ class CreateUserClientController {
             } 
         });
         
-        // return response.status(201).json({message: "Cliente criado com sucesso!"});
         const userResponse = await new CreateUserClientUseCase().execute({
             password: senha,
             email,
