@@ -18,8 +18,6 @@ class UpadateProfileController {
         } 
     });
 
-    // return response.status(200).json({message: url_image});
-
     const user = await new UpadateProfileUseCase().execute({
         user_id: Number.parseInt(id),
         email  : email,

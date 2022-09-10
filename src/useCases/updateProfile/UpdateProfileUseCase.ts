@@ -43,7 +43,7 @@ class UpadateProfileUseCase {
         }
 
         if(user.tipo_usuario === 'advogado') {
-            console.log(email)
+
             const lawyer = await prisma.advogado.update({
                 where: {
                     fk_usuario: user.id_usuario,
