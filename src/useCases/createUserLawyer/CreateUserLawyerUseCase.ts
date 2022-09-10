@@ -87,6 +87,7 @@ class CreateUserLawyerUseCase {
                 email: email.value,
                 senha: passwordHash,
                 url_foto_perfil: url_image,
+                tipo_usuario: "advogado",
             }
         });
 
