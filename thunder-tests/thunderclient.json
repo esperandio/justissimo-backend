@@ -364,14 +364,14 @@
   },
   {
     "_id": "bf83d78c-a85b-4a21-a077-35fcfe9b7516",
-    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "createDivulgation",
     "url": "{{url}}/clients/1/divulgations",
     "method": "POST",
-    "sortNum": 40000,
+    "sortNum": 13750,
     "created": "2022-05-30T23:57:32.827Z",
-    "modified": "2022-05-31T22:36:48.991Z",
+    "modified": "2022-09-10T22:35:31.848Z",
     "headers": [],
     "params": [],
     "body": {
@@ -543,13 +543,75 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "listUserProfile",
-    "url": "{{url}}/user/profile/25",
+    "url": "{{url}}/user/profile/23",
     "method": "GET",
     "sortNum": 35000,
     "created": "2022-09-08T00:54:40.180Z",
-    "modified": "2022-09-10T14:49:43.624Z",
+    "modified": "2022-09-10T21:37:24.827Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "78ecfa87-4927-40ad-92c3-2dbb4fe21602",
+    "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
+    "containerId": "",
+    "name": "updateProfile",
+    "url": "{{url}}/user/22",
+    "method": "PUT",
+    "sortNum": 11250,
+    "created": "2022-09-10T22:35:26.917Z",
+    "modified": "2022-09-10T23:57:27.533Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "email",
+          "value": "david_jesus@teste.com"
+        },
+        {
+          "name": "nome",
+          "value": "Joao"
+        },
+        {
+          "name": "dt_nascimento",
+          "value": "2000-07-08"
+        },
+        {
+          "name": "cpf",
+          "value": ""
+        },
+        {
+          "name": "cnpj",
+          "value": "12345678912356"
+        },
+        {
+          "name": "cidade",
+          "value": "blumenau"
+        },
+        {
+          "name": "estado",
+          "value": "PE"
+        },
+        {
+          "name": "cep",
+          "value": "89526318"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "..\\..\\..\\..\\..\\..\\Pictures\\Screenshots\\gato_site.png"
+        }
+      ]
+    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
