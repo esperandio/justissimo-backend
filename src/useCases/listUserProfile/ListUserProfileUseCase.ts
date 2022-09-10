@@ -65,6 +65,7 @@ class ListUserProfileUseCase {
                     },
                     usuario: {
                         select: {
+                                email: true,
                                 url_foto_perfil: true
                             }
                         }
