@@ -5,11 +5,10 @@ import { ListUserProfileUseCase } from "./ListUserProfileUseCase";
 
     async handle(request: Request, response: Response) {
         const { id } = request.params;
-        const type_user = request.query.tipo_usuario as string;
 
-        const  userProfile = await new ListUserProfileUseCase().execute( Number.parseInt(id), type_user);
+        const  userProfile = await new ListUserProfileUseCase().execute( Number.parseInt(id));
     
-        return  response.json(userProfile);
+        return  response.status(200).json(userProfile);
     }
  }
 

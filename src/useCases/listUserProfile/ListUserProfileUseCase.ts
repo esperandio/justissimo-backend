@@ -1,35 +1,41 @@
 import { prisma } from "../../database/index"
 import { UserNotFoundError } from "../../errors";
 
-
 class ListUserProfileUseCase {
-    async execute(id_client: number, type_user: string) {
-
-        const types = ["advogado", "cliente"];
+    async execute(user_id: number) {
+        const user = await prisma.usuario.findFirst({
+            where: {
+                id_usuario: user_id
+            }
+        });
         
-        if (!types.includes(type_user)) {
+        if (!user) {
             throw new UserNotFoundError();
         }
-
-        if (type_user == "advogado") {
+        
+        if(user.tipo_usuario === 'advogado') {
             const lawyer = await prisma.advogado.findFirst({
                 where: {
-                    id_advogado: id_client
+                    fk_usuario: user.id_usuario,
                 },
-                include: {
+                select: {
+                    nome: true,
+                    nr_cnpj: true,
+                    nr_cpf: true,
+                    dt_nascimento: true,
+                    endereco: {
+                        select: {
+                            cidade: true,
+                            estado: true,
+                            nr_cep: true,
+                        }
+                    },
                     usuario: {
                         select: {
-                            email: true,
-                            url_foto_perfil: true
+                                url_foto_perfil: true
+                            }
                         }
                     },
-                    areas: {
-                        select: {
-                            areaAtuacao: true
-                        }
-                    },
-                    endereco: true,
-                },
             });
         
             if (lawyer == null) {
@@ -39,20 +45,30 @@ class ListUserProfileUseCase {
                 return lawyer;
             }
         }
-        else {
+
+        else if (user.tipo_usuario == "cliente") {
             const client = await prisma.cliente.findUnique({
                 where: {
-                    id_cliente: id_client,
+                    fk_usuario: user.id_usuario,
                 },
-                include: {
-                    usuario: {
+                select: {
+                    nome: true,
+                    nr_cnpj: true,
+                    nr_cpf: true,
+                    dt_nascimento: true,
+                    endereco: {
                         select: {
-                            email: true,
-                            url_foto_perfil: true
+                            cidade: true,
+                            estado: true,
+                            nr_cep: true,
                         }
                     },
-                    endereco: true,
-                },
+                    usuario: {
+                        select: {
+                                url_foto_perfil: true
+                            }
+                        }
+                    },
             });
             
             if (client == null) {
@@ -61,6 +77,9 @@ class ListUserProfileUseCase {
             else {
                 return client;
             }
+        }
+        else {
+            throw new UserNotFoundError();
         }
     }
 }
