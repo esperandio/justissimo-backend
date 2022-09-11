@@ -543,11 +543,11 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "listUserProfile",
-    "url": "{{url}}/user/profile/23",
+    "url": "{{url}}/user/22",
     "method": "GET",
     "sortNum": 35000,
     "created": "2022-09-08T00:54:40.180Z",
-    "modified": "2022-09-10T21:37:24.827Z",
+    "modified": "2022-09-11T00:00:30.167Z",
     "headers": [],
     "params": [],
     "auth": {
