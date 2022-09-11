@@ -12,7 +12,8 @@ class ListLawyerByIdUseCase {
             include: {
                 usuario: {
                     select: {
-                        email: true
+                        email: true,
+                        url_foto_perfil: true
                     }
                 },
                 areas: {

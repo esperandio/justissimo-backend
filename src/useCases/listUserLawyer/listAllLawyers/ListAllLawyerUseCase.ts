@@ -52,7 +52,7 @@ class ListAllLawyersUseCase {
                         fk_area_atuacao: filterArea
                     }
                 },
-                autorizado: true
+                autorizado: true,
             },
             include: {
                 endereco: true,
@@ -60,7 +60,12 @@ class ListAllLawyersUseCase {
                     select: {
                         avaliacoes: true
                     }
-                }
+                },
+                usuario: {
+                    select: {
+                        url_foto_perfil: true
+                    },
+                },
             }
         });
 

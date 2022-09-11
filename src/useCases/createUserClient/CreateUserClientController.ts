@@ -3,6 +3,8 @@ import { CreateUserClientUseCase } from "./CreateUserClientUseCase";
 
 class CreateUserClientController {
     async handle(request: Request, response: Response) {
+        let url_image = "";
+        
         const { 
             senha,
             email,
@@ -14,7 +16,14 @@ class CreateUserClientController {
             estado,
             cep 
         } = request.body;
-
+        
+        const values = await Object.entries(request.file || {});
+        await values.find(([key, value]) => {
+            if (key === "location") {
+                url_image = value;
+            } 
+        });
+        
         const userResponse = await new CreateUserClientUseCase().execute({
             password: senha,
             email,
@@ -24,7 +33,8 @@ class CreateUserClientController {
             cnpj,
             city: cidade,
             state: estado,
-            zipcode: cep
+            zipcode: cep,
+            url_image
         });
 
         return response.status(201).json(userResponse);

@@ -19,6 +19,7 @@ interface IUserRequest {
     phone: string;
     areas: Array<number>;
     info: string;
+    url_image: string;
 }
 
 class CreateUserLawyerUseCase {
@@ -37,6 +38,7 @@ class CreateUserLawyerUseCase {
         const phone = NonEmptyString.validate('phone', userRequest.phone);
         const areas = NonEmptyArray.validate('areas', userRequest.areas);
         const info = NonEmptyString.validate('info', userRequest.info);
+        const url_image = userRequest.url_image;
 
         const passwordHash = await hash(password.value, 8);
 
@@ -83,7 +85,9 @@ class CreateUserLawyerUseCase {
         const usuario = await prisma.usuario.create({
             data: {
                 email: email.value,
-                senha: passwordHash
+                senha: passwordHash,
+                url_foto_perfil: url_image,
+                tipo_usuario: "advogado",
             }
         });
 

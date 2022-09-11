@@ -1,4 +1,5 @@
 import { Router } from "express";
+import uploadImage from "../../config/multer";
 import { ConfigScheduleController } from "../../useCases/config_schedule/ConfigScheduleController";
 import { CreateUserLawyerController } from "../../useCases/createUserLawyer/CreateUserLawyerController";
 import { ListAllLawyersController } from "../../useCases/listUserLawyer/listAllLawyers/ListAllLawyersController";
@@ -8,7 +9,7 @@ import { ReviewLawyerController } from "../../useCases/reviewLawyer/ReviewLawyer
 const router = Router();
 
 /**Lawyers*/
-router.post('/lawyers', new CreateUserLawyerController().handle);
+router.post('/lawyers', uploadImage.single('file'), new CreateUserLawyerController().handle);
 router.get("/lawyers", new ListAllLawyersController().handle);
 router.get("/lawyers/:id", new ListLawyerByIdController().handle);
 router.post('/lawyers/:id/review', new ReviewLawyerController().handle);

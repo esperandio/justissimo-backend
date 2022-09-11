@@ -3,6 +3,8 @@ import { CreateUserLawyerUseCase } from "./CreateUserLawyerUseCase";
 
 class CreateUserLawyerController {
  async handle(request: Request, response: Response) {
+    let url_image = "";
+
     const { 
         senha,
         email,
@@ -19,8 +21,15 @@ class CreateUserLawyerController {
         areas,
         info
     } = request.body;
+ 
+    const values = await Object.entries(request.file || {});
+    await values.find(([key, value]) => {
+        if (key === "location") {
+            url_image = value;
+        } 
+    });
 
-     const userResponse = await new CreateUserLawyerUseCase().execute({
+    const userResponse = await new CreateUserLawyerUseCase().execute({
         password: senha,
         email,
         fullname: nome,
@@ -33,8 +42,9 @@ class CreateUserLawyerController {
         register_cna: nr_cna,
         state_cna: uf_cna,
         phone: tel_celular,
-        areas,
-        info
+        areas: JSON.parse(areas),
+        info,
+        url_image
      });
 
      return response.status(201).json(userResponse);
