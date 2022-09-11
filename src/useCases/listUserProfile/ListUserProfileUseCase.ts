@@ -32,7 +32,8 @@ class ListUserProfileUseCase {
                     },
                     usuario: {
                         select: {
-                                url_foto_perfil: true
+                                url_foto_perfil: true,
+                                email: true
                             }
                         }
                     },
