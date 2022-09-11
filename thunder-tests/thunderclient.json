@@ -22,60 +22,13 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-09-07T23:57:01.966Z",
+    "modified": "2022-09-11T00:30:53.944Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "formdata",
-      "raw": "",
-      "form": [
-        {
-          "name": "senha",
-          "value": "1!2bHkln"
-        },
-        {
-          "name": "email",
-          "value": "testeaaavfasa@teste.com"
-        },
-        {
-          "name": "nome",
-          "value": "david"
-        },
-        {
-          "name": "dt_nascimento",
-          "value": "2000-07-08"
-        },
-        {
-          "name": "cpf",
-          "value": "11111111111"
-        },
-        {
-          "name": "cnpj",
-          "value": ""
-        },
-        {
-          "name": "cidade",
-          "value": "blumenau"
-        },
-        {
-          "name": "estado",
-          "value": "SC"
-        },
-        {
-          "name": "cep",
-          "value": "89526314"
-        },
-        {
-          "name": "tel_celular",
-          "value": "479999999"
-        }
-      ],
-      "files": [
-        {
-          "name": "file",
-          "value": "..\\..\\..\\..\\..\\..\\Pictures\\Screenshots\\husky.jpg"
-        }
-      ]
+      "type": "json",
+      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidsajsesussas357@gmail.com\",\n  \"nome\": \"Matheus Esperandio\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\"\n}",
+      "form": []
     },
     "tests": []
   },
