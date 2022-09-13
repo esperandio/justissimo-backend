@@ -24,7 +24,7 @@ class UpadateProfileUseCase {
         const zipcode = NonEmptyString.validate('zipcode', data.zip_code).value;
         const state = NonEmptyString.validate('state', data.state).value;
         const birthday = PastDate.validate(new Date(data.birthday)).value;
-        const url_image = data.url_image;
+        let url_image = data.url_image;
         
         if ((data.cpf == "" && data.cnpj == "")
             || (data.cpf != "" && data.cnpj != "")
@@ -42,7 +42,11 @@ class UpadateProfileUseCase {
             throw new UserNotFoundError();
         }
 
-        if(user.tipo_usuario === 'advogado') {
+        if (url_image == "") {
+            url_image = user.url_foto_perfil != "" ? user.url_foto_perfil : "";
+        }
+
+        if (user.tipo_usuario === 'advogado') {
 
             const lawyer = await prisma.advogado.update({
                 where: {
@@ -75,7 +79,7 @@ class UpadateProfileUseCase {
             return lawyer;
         }
 
-        if(user.tipo_usuario === 'cliente') {
+        if (user.tipo_usuario === 'cliente') {
             const client = await prisma.cliente.update({
                 where: {
                     fk_usuario: user.id_usuario,
