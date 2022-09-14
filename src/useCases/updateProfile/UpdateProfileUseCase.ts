@@ -1,6 +1,7 @@
 import { prisma } from "../../database/index"
 import { DomainError, UserNotFoundError } from "../../errors";
 import { Email, NonEmptyString, Password, PastDate } from "../../validators";
+import { ZipCode } from "../../validators/zip-code";
 
 interface IUpdateProfileRequest {
     user_id: number;
@@ -21,7 +22,7 @@ class UpadateProfileUseCase {
         const email = Email.validate(data.email).value;
         const fullname = NonEmptyString.validate('fullname', data.fullname).value;
         const city = NonEmptyString.validate('city', data.city).value;
-        const zipcode = NonEmptyString.validate('zipcode', data.zip_code).value;
+        const zipcode = ZipCode.validate(data.zip_code);
         const state = NonEmptyString.validate('state', data.state).value;
         const birthday = PastDate.validate(new Date(data.birthday)).value;
         let url_image = data.url_image;
