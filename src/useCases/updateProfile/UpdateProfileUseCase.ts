@@ -44,7 +44,7 @@ class UpadateProfileUseCase {
         }
 
         if (url_image == "") {
-            url_image = user.url_foto_perfil != "" ? user.url_foto_perfil : "";
+            url_image = (user.url_foto_perfil != null) && (user.url_foto_perfil) != "" ? user.url_foto_perfil : "";  
         }
 
         if (user.tipo_usuario === 'advogado') {
