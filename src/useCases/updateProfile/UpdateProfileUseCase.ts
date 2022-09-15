@@ -1,6 +1,7 @@
 import { prisma } from "../../database/index"
 import { DomainError, UserNotFoundError } from "../../errors";
 import { Email, NonEmptyString, Password, PastDate } from "../../validators";
+import { ZipCode } from "../../validators/zip-code";
 
 interface IUpdateProfileRequest {
     user_id: number;
@@ -21,10 +22,10 @@ class UpadateProfileUseCase {
         const email = Email.validate(data.email).value;
         const fullname = NonEmptyString.validate('fullname', data.fullname).value;
         const city = NonEmptyString.validate('city', data.city).value;
-        const zipcode = NonEmptyString.validate('zipcode', data.zip_code).value;
+        const zipcode = ZipCode.validate(data.zip_code);
         const state = NonEmptyString.validate('state', data.state).value;
         const birthday = PastDate.validate(new Date(data.birthday)).value;
-        const url_image = data.url_image;
+        let url_image = data.url_image;
         
         if ((data.cpf == "" && data.cnpj == "")
             || (data.cpf != "" && data.cnpj != "")
@@ -42,7 +43,11 @@ class UpadateProfileUseCase {
             throw new UserNotFoundError();
         }
 
-        if(user.tipo_usuario === 'advogado') {
+        if (url_image == "") {
+            url_image = user.url_foto_perfil != "" ? user.url_foto_perfil : "";
+        }
+
+        if (user.tipo_usuario === 'advogado') {
 
             const lawyer = await prisma.advogado.update({
                 where: {
@@ -75,7 +80,7 @@ class UpadateProfileUseCase {
             return lawyer;
         }
 
-        if(user.tipo_usuario === 'cliente') {
+        if (user.tipo_usuario === 'cliente') {
             const client = await prisma.cliente.update({
                 where: {
                     fk_usuario: user.id_usuario,
