@@ -1,6 +1,7 @@
-require('dotenv').config();
-
 import cors from 'cors';
+import * as dotenv from 'dotenv';
+dotenv.config();
+
 import "express-async-errors";
 import express, { application, NextFunction, Request, Response } from "express";
 import { router_clients } from './routes/clients/router';
@@ -9,6 +10,7 @@ import { router_user } from './routes/user/router';
 import { router_areas } from './routes/areas/router';
 import { router_schedulings } from './routes/schedulings/router';
 import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
+
 
 const app = express();
 // Add a list of allowed origins.
