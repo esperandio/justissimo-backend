@@ -1,17 +1,14 @@
 import multer from "multer";
 import path from "path";
 import crypto from "crypto";
-import * as AWS from "aws-sdk";
 import multerS3 from "multer-s3";
 import encrypt from "./utils/crypto";
-import { S3Client } from "@aws-sdk/client-s3";
+const aws = require("aws-sdk");
 
-let s3 = new S3Client({
-    region: "us-east-1",
-    credentials: {
-        accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
-        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
-    }
+const client = new aws.S3({
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID || "",
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY || "",
+    region: "us-east-1"
 });
 
 const storageTypes = {
@@ -24,16 +21,16 @@ const storageTypes = {
         },
       }),
 
-    s3: multerS3({
-        s3: s3,
+      s3: multerS3({
+        s3: client,
         bucket: process.env.AWS_BUCKET || "",
         contentType: multerS3.AUTO_CONTENT_TYPE,
         acl: "public-read",
         key: (req, file, cb) => {
             const fileName = encrypt(new Date().toLocaleString()) + "-" + file.originalname;
-            cb(null, fileName);
-        },
-    })
+                cb(null, fileName);
+            },
+      }),
 }
 
 const fileFilter = (
