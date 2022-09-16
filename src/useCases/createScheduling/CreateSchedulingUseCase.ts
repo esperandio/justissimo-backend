@@ -15,7 +15,7 @@ interface ICreateSchedulingRequest {
 
 class CreateSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
-        ParmsScheduling.validate(createSchedulingRequest);
+        ParmsScheduling.validate(createSchedulingRequest, false);
         
         const daysOfWeek = ['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'];
         const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
