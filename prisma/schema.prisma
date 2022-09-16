@@ -150,16 +150,18 @@ model AdvogadoArea {
 model Agendamento {
   id_agenda                 Int       @id @default(autoincrement())
   fk_advogado               Int
-  fk_cliente                Int
+  fk_cliente                Int?
   fk_advogado_area          Int
   data_agendamento          DateTime
   duracao                   Int
   horario                   DateTime
   observacao                String?   @db.VarChar(200)
   contato_cliente           String    @db.VarChar(200)
+  nome_cliente              String?   @db.VarChar(200)
   data_criacao_agendamento  DateTime  @default(now())
+  encerrado                 Boolean   @default(false)
   advogado                  Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  cliente                   Cliente   @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  cliente                   Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
 
   @@map("agendamento")
 }
