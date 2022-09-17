@@ -1,6 +1,7 @@
 import { DomainError } from "../errors";
 import { DateConvertedBr } from "./date-converted-br";
 import { DaySchedule } from "./days-schedule";
+import { Email } from "./email";
 import { HourSchedule } from "./hour-scheduling";
 import { NonEmptyString } from "./non-empty-string";
 
@@ -29,8 +30,9 @@ interface ICreateManualSchedulingRequest {
 
 export class ParmsScheduling {
     public static validate(createSchedulingRequest: any, manual: Boolean): void {
-
+        
         if (manual) {
+            Email.validate(createSchedulingRequest.email_cliente);
             const createManualSchedulingRequest = createSchedulingRequest as ICreateManualSchedulingRequest;
             
             if ((isNaN(createManualSchedulingRequest.fk_advogado))       ||
