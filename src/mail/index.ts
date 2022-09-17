@@ -6,6 +6,7 @@ interface IMailOptions {
     to: string;
     subject: string;
     html: string;
+    attachments?: any;
 }
 
 class SendMailError extends DomainError {
