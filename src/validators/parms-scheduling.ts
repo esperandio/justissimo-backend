@@ -1,6 +1,7 @@
 import { DomainError } from "../errors";
 import { DateConvertedBr } from "./date-converted-br";
 import { DaySchedule } from "./days-schedule";
+import { Email } from "./email";
 import { HourSchedule } from "./hour-scheduling";
 import { NonEmptyString } from "./non-empty-string";
 
@@ -8,22 +9,55 @@ interface ICreateSchedulingRequest {
     fk_advogado:        number;
     fk_cliente:         number;
     fk_advogado_area:   number;
-    data_agendamento:   string;    
+    data_agendamento:   string;
+    nome_cliente:       string;
+    email_cliente:      string;    
+    horario:            string;  
+    dia:                string;        
+    observacao:         string;
+}
+
+interface ICreateManualSchedulingRequest {
+    fk_advogado:        number;
+    fk_advogado_area:   number;
+    data_agendamento:   string;
+    nome_cliente:       string;
+    email_cliente:      string;    
     horario:            string;  
     dia:                string;        
     observacao:         string;
 }
 
 export class ParmsScheduling {
-    public static validate(createSchedulingRequest: ICreateSchedulingRequest): void {
-        if ((isNaN(createSchedulingRequest.fk_advogado))    ||
-        (isNaN(createSchedulingRequest.fk_advogado_area))   ||
-        (isNaN(createSchedulingRequest.fk_cliente))         ||
-        (createSchedulingRequest.fk_advogado <= 0)          ||
-        (createSchedulingRequest.fk_advogado_area <= 0)     ||
-        (createSchedulingRequest.fk_cliente <= 0)                
-        ) {
-            throw new DomainError('Informações inválidas, por gentileza informe os dados corretamente!');
+    public static validate(createSchedulingRequest: any, manual: Boolean): void {
+        
+        if (manual) {
+            Email.validate(createSchedulingRequest.email_cliente);
+            const createManualSchedulingRequest = createSchedulingRequest as ICreateManualSchedulingRequest;
+            
+            if ((isNaN(createManualSchedulingRequest.fk_advogado))       ||
+               (isNaN(createManualSchedulingRequest.fk_advogado_area))   ||
+               (createManualSchedulingRequest.fk_advogado <= 0)          ||
+               (createManualSchedulingRequest.fk_advogado_area <= 0)     ||
+               (createManualSchedulingRequest.data_agendamento == "")    ||
+               (createManualSchedulingRequest.nome_cliente == "")        ||
+               (createManualSchedulingRequest.email_cliente == "")) {
+                
+                throw new DomainError('Informações inválidas, por gentileza informe os dados corretamente!');
+            }
+        }
+        else{
+            const createClientSchedulingRequest = createSchedulingRequest as ICreateSchedulingRequest;
+            
+            if ((isNaN(createClientSchedulingRequest.fk_advogado))    ||
+               (isNaN(createClientSchedulingRequest.fk_advogado_area))   ||
+               (isNaN(createClientSchedulingRequest.fk_cliente))         ||
+               (createClientSchedulingRequest.fk_advogado <= 0)          ||
+               (createClientSchedulingRequest.fk_advogado_area <= 0)     ||
+               (createClientSchedulingRequest.fk_cliente <= 0)                
+            ) {
+                throw new DomainError('Informações inválidas, por gentileza informe os dados corretamente!');
+            }
         }
         
         if (createSchedulingRequest.observacao.length > 200) {

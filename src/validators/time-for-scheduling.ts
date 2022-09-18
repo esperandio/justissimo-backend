@@ -3,14 +3,16 @@ import { DomainError } from "../errors";
 interface IScheduling {
     id_agenda: number;
     fk_advogado: number;
-    fk_cliente: number;
+    fk_cliente: number | null;
     fk_advogado_area: number;
     data_agendamento: Date;
     duracao: number;
     horario: Date;
     observacao: string | null;
+    nome_cliente: string | null;
     contato_cliente: string;
     data_criacao_agendamento: Date;
+    encerrado: boolean;
 }
 
 export class TimeForScheduling {

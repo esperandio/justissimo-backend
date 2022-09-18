@@ -7,23 +7,23 @@ import { TimeForScheduling } from "../../validators/time-for-scheduling";
 
 interface ICreateSchedulingRequest {
     fk_advogado:        number;
-    fk_cliente:         number;
     fk_advogado_area:   number;
-    data_agendamento:   string;    
+    data_agendamento:   string;
+    nome_cliente:       string;
+    email_cliente:      string;    
     horario:            string;  
     dia:                string;        
     observacao:         string;
 }
 
-class CreateSchedulingUseCase {
+class CreateManualSchedulingUseCase {
     async execute(createSchedulingRequest: ICreateSchedulingRequest) {
-        ParmsScheduling.validate(createSchedulingRequest, false);
+        ParmsScheduling.validate(createSchedulingRequest, true);
         
         const daysOfWeek = ['DOMINGO', 'SEGUNDA', 'TERCA', 'QUARTA', 'QUINTA', 'SEXTA', 'SABADO'];
         const date_scheduling = new Date(createSchedulingRequest.data_agendamento + "T00:00:00.000Z");
         const hour_scheduling = new Date("0001-01-01T" + createSchedulingRequest.horario + ":00.000Z");
         let email_lawyer = "";
-        let email_client = "";
 
         const schedulingsAlreadyDoneToSpecificDay = await prisma.agendamento.findMany({
             where: {
@@ -34,24 +34,6 @@ class CreateSchedulingUseCase {
             },
         });
 
-        const userClient = await prisma.cliente.findUnique({
-            where: {
-                id_cliente: createSchedulingRequest.fk_cliente,
-            },
-            include: {
-                usuario: true,
-            },
-        });
-
-        if (!userClient) {
-            throw new ClientNotFoundError();
-        }
-        
-        if (userClient.usuario != null) {
-            Email.validate(userClient.usuario.email);
-            email_client = userClient.usuario.email;
-        }
-        
         const userLawyer = await prisma.advogado.findUnique({
             where: {
                 id_advogado: createSchedulingRequest.fk_advogado,
@@ -62,13 +44,14 @@ class CreateSchedulingUseCase {
                         email: true,
                     }
                 }
-            },
+            }
         });
 
         if (!userLawyer) {
             throw new LawyerNotFoundError();
         }
         
+        // validar se o email do advogado é válido pois será enviado um email para ele
         if (userLawyer.usuario != null) {
             Email.validate(userLawyer.usuario.email);
             email_lawyer = userLawyer.usuario.email;
@@ -113,17 +96,18 @@ class CreateSchedulingUseCase {
         await prisma.agendamento.create({
             data: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
-                fk_cliente: createSchedulingRequest.fk_cliente,
+                fk_cliente: 2,
                 fk_advogado_area: createSchedulingRequest.fk_advogado_area,
-                contato_cliente: userClient.usuario?.email ?? "",
+                contato_cliente: createSchedulingRequest.email_cliente,
+                nome_cliente: createSchedulingRequest.nome_cliente,
                 data_agendamento: date_scheduling,
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
-                observacao: createSchedulingRequest.observacao
+                observacao: createSchedulingRequest.observacao,
             }
         });
 
-        const emails = [email_lawyer, email_client];
+        const emails = [email_lawyer, createSchedulingRequest.email_cliente];
 
         // Padronizar informação de data e hora para o formato brasileiro
         const daysOfWeekFormated = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
@@ -131,12 +115,11 @@ class CreateSchedulingUseCase {
         const date_scheduling_formatted = date[2] + '/' + date[1] + '/' + date[0];
         const dayOfWeek = daysOfWeekFormated[date_scheduling.getUTCDay()];
 
-        emails.forEach(function (to) {
+        emails.forEach(function (to, i) {
             mail.sendEmail({
                 from: process.env.SMTP_AUTH_USER ?? "",
                 html: `<p>Olá, o agendamento foi realizado com sucesso!<br> </p>
-                <p><b>Cliente:</b> ${userClient.nome}</p>
-                <p><b>Advogado:</b> ${userLawyer.nome}</p>
+                <p><b>Cliente:</b> ${createSchedulingRequest.nome_cliente}</p>
                 <p><b>Data:</b> ${date_scheduling_formatted}</p>
                 <p><b>Horário:</b> ${createSchedulingRequest.horario}</p>
                 <p><b>Dia:</b> ${dayOfWeek}</p>
@@ -152,7 +135,8 @@ class CreateSchedulingUseCase {
                 }]
             });
         });
+
     }
 }
 
-export { CreateSchedulingUseCase }
+export { CreateManualSchedulingUseCase }
