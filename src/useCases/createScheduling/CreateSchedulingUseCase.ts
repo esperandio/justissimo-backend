@@ -116,6 +116,7 @@ class CreateSchedulingUseCase {
                 fk_cliente: createSchedulingRequest.fk_cliente,
                 fk_advogado_area: createSchedulingRequest.fk_advogado_area,
                 contato_cliente: userClient.usuario?.email ?? "",
+                nome_cliente: userClient.nome,
                 data_agendamento: date_scheduling,
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
