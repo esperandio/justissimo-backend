@@ -96,7 +96,6 @@ class CreateManualSchedulingUseCase {
         await prisma.agendamento.create({
             data: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
-                fk_cliente: 2,
                 fk_advogado_area: createSchedulingRequest.fk_advogado_area,
                 contato_cliente: createSchedulingRequest.email_cliente,
                 nome_cliente: createSchedulingRequest.nome_cliente,
