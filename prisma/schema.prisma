@@ -123,7 +123,7 @@ model AreaAtuacao {
 }
 
 model Divulgacao {
-  id_avaliacao     Int       @id @default(autoincrement())
+  id_divulgacao    Int       @id @default(autoincrement())
   fk_area_atuacao  Int
   fk_cliente       Int
   titulo           String   @db.VarChar(55)
