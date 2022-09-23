@@ -42,7 +42,7 @@ class CreateUserLawyerController {
         register_cna: nr_cna,
         state_cna: uf_cna,
         phone: tel_celular,
-        areas: JSON.parse(areas),
+        areas: areas,
         info,
         url_image
      });
