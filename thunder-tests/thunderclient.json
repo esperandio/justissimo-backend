@@ -300,6 +300,25 @@
     "tests": []
   },
   {
+    "_id": "bf83d78c-a85b-4a21-a077-35fcfe9b7516",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "createDivulgation",
+    "url": "{{url}}/clients/1/divulgations",
+    "method": "POST",
+    "sortNum": 40000,
+    "created": "2022-05-30T23:57:32.827Z",
+    "modified": "2022-05-31T22:36:48.991Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n    \"titulo\": \"ABC\",\n    \"descricao\": \"ABCDEF\",\n    \"id_area_atuacao\": 1\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
     "_id": "40f7e0d0-27b4-4dc5-8ccc-01635ce2f454",
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
@@ -382,29 +401,13 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "getAllSchedulingsLawyer",
-    "url": "{{url}}/schedulings/lawyer/1?data_inicial=2022-06-21&data_final=2022-06-21&area=1",
+    "url": "{{url}}/schedulings/lawyer/1",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-06-17T00:26:38.174Z",
-    "modified": "2022-06-19T14:43:21.732Z",
+    "modified": "2022-09-23T00:01:20.708Z",
     "headers": [],
-    "params": [
-      {
-        "name": "data_inicial",
-        "value": "2022-06-21",
-        "isPath": false
-      },
-      {
-        "name": "data_final",
-        "value": "2022-06-21",
-        "isPath": false
-      },
-      {
-        "name": "area",
-        "value": "1",
-        "isPath": false
-      }
-    ],
+    "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
@@ -586,14 +589,32 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-09-17T14:34:30.089Z",
-    "modified": "2022-09-17T19:49:13.105Z",
+    "modified": "2022-09-23T00:01:10.902Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"fk_advogado\": 1,\n  \"fk_advogado_area\": 1,\n  \"nome_cliente\": \"Gabriel Ratke\",\n  \"email_cliente\": \"davidjesus357@gmail.com\",\n  \"data_agendamento\": \"2022-09-21\",\n  \"horario\": \"09:30\",\n   \"observacao\": \"Reunião para verificar situação trabalhista\"\n}",
+      "raw": "{\n  \"fk_advogado\": 1,\n  \"fk_advogado_area\": 1,\n  \"nome_cliente\": \"Gabriel Ratke\",\n  \"email_cliente\": \"davidjesus357@gmail.com\",\n  \"data_agendamento\": \"2022-09-28\",\n  \"horario\": \"09:30\",\n   \"observacao\": \"Reunião para verificar situação trabalhista\"\n}",
       "form": []
     },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "73d889f1-24a1-4ee7-b9f8-e55fafc9ecb7",
+    "colId": "d831cf28-0a15-4208-b59e-18f00f5528ec",
+    "containerId": "",
+    "name": "getAllDivulgations",
+    "url": "{{url}}/divulgations",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-09-23T00:37:45.067Z",
+    "modified": "2022-09-23T00:38:17.695Z",
+    "headers": [],
+    "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
