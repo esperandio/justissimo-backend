@@ -87,7 +87,6 @@ class CreateSchedulingUseCase {
         if (!userLawyerArea) {
             throw new NotFoundError('Advogado não pertence a área de atuação informada!');
         }
-        console.log("userLawyerArea", userLawyerArea.areaAtuacao.titulo);
 
         const schedulingAlreadyExists = await prisma.agendamento.findFirst({
             where: {
@@ -125,7 +124,7 @@ class CreateSchedulingUseCase {
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
                 observacao: createSchedulingRequest.observacao,
-                area_atuacao: userLawyerArea.areaAtuacao.titulo ?? "",
+                area_atuacao: userLawyerArea.areaAtuacao.titulo ?? ""
             }
         });
 
