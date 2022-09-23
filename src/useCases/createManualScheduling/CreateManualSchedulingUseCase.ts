@@ -61,6 +61,9 @@ class CreateManualSchedulingUseCase {
             where: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_area_atuacao: createSchedulingRequest.fk_advogado_area,
+            },
+            include:{
+                areaAtuacao: true,
             }
         });
 
@@ -96,7 +99,6 @@ class CreateManualSchedulingUseCase {
         await prisma.agendamento.create({
             data: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
-                fk_cliente: 2,
                 fk_advogado_area: createSchedulingRequest.fk_advogado_area,
                 contato_cliente: createSchedulingRequest.email_cliente,
                 nome_cliente: createSchedulingRequest.nome_cliente,
@@ -104,6 +106,7 @@ class CreateManualSchedulingUseCase {
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
                 observacao: createSchedulingRequest.observacao,
+                area_atuacao: userLawyerArea.areaAtuacao.titulo ?? "",
             }
         });
 

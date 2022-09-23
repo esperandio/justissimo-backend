@@ -78,6 +78,9 @@ class CreateSchedulingUseCase {
             where: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_area_atuacao: createSchedulingRequest.fk_advogado_area,
+            },
+            include: {
+                areaAtuacao: true,
             }
         });
 
@@ -116,10 +119,12 @@ class CreateSchedulingUseCase {
                 fk_cliente: createSchedulingRequest.fk_cliente,
                 fk_advogado_area: createSchedulingRequest.fk_advogado_area,
                 contato_cliente: userClient.usuario?.email ?? "",
+                nome_cliente: userClient.nome,
                 data_agendamento: date_scheduling,
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
-                observacao: createSchedulingRequest.observacao
+                observacao: createSchedulingRequest.observacao,
+                area_atuacao: userLawyerArea.areaAtuacao.titulo ?? ""
             }
         });
 
