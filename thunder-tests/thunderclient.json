@@ -382,29 +382,13 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "getAllSchedulingsLawyer",
-    "url": "{{url}}/schedulings/lawyer/1?data_inicial=2022-06-21&data_final=2022-06-21&area=1",
+    "url": "{{url}}/schedulings/lawyer/1",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-06-17T00:26:38.174Z",
-    "modified": "2022-06-19T14:43:21.732Z",
+    "modified": "2022-09-23T00:01:20.708Z",
     "headers": [],
-    "params": [
-      {
-        "name": "data_inicial",
-        "value": "2022-06-21",
-        "isPath": false
-      },
-      {
-        "name": "data_final",
-        "value": "2022-06-21",
-        "isPath": false
-      },
-      {
-        "name": "area",
-        "value": "1",
-        "isPath": false
-      }
-    ],
+    "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
@@ -586,12 +570,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-09-17T14:34:30.089Z",
-    "modified": "2022-09-17T19:49:13.105Z",
+    "modified": "2022-09-23T00:01:10.902Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"fk_advogado\": 1,\n  \"fk_advogado_area\": 1,\n  \"nome_cliente\": \"Gabriel Ratke\",\n  \"email_cliente\": \"davidjesus357@gmail.com\",\n  \"data_agendamento\": \"2022-09-21\",\n  \"horario\": \"09:30\",\n   \"observacao\": \"Reunião para verificar situação trabalhista\"\n}",
+      "raw": "{\n  \"fk_advogado\": 1,\n  \"fk_advogado_area\": 1,\n  \"nome_cliente\": \"Gabriel Ratke\",\n  \"email_cliente\": \"davidjesus357@gmail.com\",\n  \"data_agendamento\": \"2022-09-28\",\n  \"horario\": \"09:30\",\n   \"observacao\": \"Reunião para verificar situação trabalhista\"\n}",
       "form": []
     },
     "auth": {

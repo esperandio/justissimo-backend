@@ -78,12 +78,16 @@ class CreateSchedulingUseCase {
             where: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_area_atuacao: createSchedulingRequest.fk_advogado_area,
+            },
+            include: {
+                areaAtuacao: true,
             }
         });
 
         if (!userLawyerArea) {
             throw new NotFoundError('Advogado não pertence a área de atuação informada!');
         }
+        console.log("userLawyerArea", userLawyerArea.areaAtuacao.titulo);
 
         const schedulingAlreadyExists = await prisma.agendamento.findFirst({
             where: {
@@ -120,7 +124,8 @@ class CreateSchedulingUseCase {
                 data_agendamento: date_scheduling,
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
-                observacao: createSchedulingRequest.observacao
+                observacao: createSchedulingRequest.observacao,
+                area_atuacao: userLawyerArea.areaAtuacao.titulo ?? "",
             }
         });
 

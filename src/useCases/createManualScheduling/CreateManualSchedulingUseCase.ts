@@ -61,6 +61,9 @@ class CreateManualSchedulingUseCase {
             where: {
                 fk_advogado: createSchedulingRequest.fk_advogado,
                 fk_area_atuacao: createSchedulingRequest.fk_advogado_area,
+            },
+            include:{
+                areaAtuacao: true,
             }
         });
 
@@ -103,6 +106,7 @@ class CreateManualSchedulingUseCase {
                 duracao: configLawyerSchedule.duracao,
                 horario: hour_scheduling,
                 observacao: createSchedulingRequest.observacao,
+                area_atuacao: userLawyerArea.areaAtuacao.titulo ?? "",
             }
         });
 
