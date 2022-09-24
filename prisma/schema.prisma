@@ -158,6 +158,7 @@ model Agendamento {
   observacao                String?   @db.VarChar(200)
   contato_cliente           String    @db.VarChar(200)
   nome_cliente              String?   @db.VarChar(200)
+  area_atuacao              String?   @db.VarChar(100)
   data_criacao_agendamento  DateTime  @default(now())
   encerrado                 Boolean   @default(false)
   advogado                  Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
