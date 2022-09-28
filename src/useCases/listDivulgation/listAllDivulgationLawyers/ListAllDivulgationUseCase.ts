@@ -72,6 +72,9 @@ class ListAllDivulgationUseCase {
                     titulo: true,
                 }
             }
+        },
+        orderBy: {
+            dt_cadastro: 'desc'
         }
     });
 

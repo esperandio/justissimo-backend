@@ -1,7 +1,7 @@
 import { Router } from "express";
 import uploadImage from "../../config/multer";
 import { ensureAuthenticated } from "../../middlewares/ensureAutheticated";
-import { ListAllDivulgationController } from "../../useCases/listDivulgation/listAllDivulgation/ListAllDivulgationController";
+import { ListAllDivulgationController } from "../../useCases/listDivulgation/listAllDivulgationLawyers/ListAllDivulgationController";
 
 
 const router = Router();
