@@ -10,6 +10,7 @@ import { router_user } from './routes/user/router';
 import { router_areas } from './routes/areas/router';
 import { router_schedulings } from './routes/schedulings/router';
 import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
+import { router_divulgations } from './routes/divulgations/router';
 
 
 const app = express();
@@ -28,6 +29,7 @@ app.use(router_lawyers);
 app.use(router_user);
 app.use(router_areas);
 app.use(router_schedulings);
+app.use(router_divulgations);
 
 app.use((error: Error, request: Request, response: Response, next: NextFunction) => {
     if (error instanceof NotFoundError) {
