@@ -85,10 +85,11 @@ class ListSchedulingUseCaseClient {
                             }
                         }
                     }
-                },
+                }
             },
-            
-
+            orderBy: {
+                data_agendamento: 'desc'
+            }
         });
 
         return schedulings;

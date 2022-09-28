@@ -54,6 +54,9 @@ class ListSchedulingUseCaseLawyer {
                     lte: filterDateFinal
                 },
                 fk_advogado_area: filterArea
+            },
+            orderBy: {
+                data_agendamento: 'desc'
             }
         });
 
