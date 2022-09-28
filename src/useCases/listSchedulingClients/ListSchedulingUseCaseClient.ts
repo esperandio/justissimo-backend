@@ -11,7 +11,7 @@ interface IListSchedulingRequest{
 }
 
 class ListSchedulingUseCaseClient {
-    async execute(listSchedulingRequest: IListSchedulingRequest): Promise<Agendamento[]> {
+    async execute(listSchedulingRequest: IListSchedulingRequest) {
         let filterDateInit  = new Date(-8640000000000);
         let filterDateFinal = new Date(8640000000000);
         let filterLawyer = {};
@@ -56,8 +56,19 @@ class ListSchedulingUseCaseClient {
                 },
                 fk_advogado_area: filterArea
             },
-            include:{
-                advogado: {
+            select: {
+                id_agenda: true,
+                fk_advogado: true,
+                fk_cliente: true,
+                fk_advogado_area: true,
+                data_agendamento: true,
+                duracao: true,
+                horario: true,
+                observacao: true,
+                area_atuacao: true,
+                data_criacao_agendamento: true,
+                encerrado: true,
+                advogado:{
                     select: {
                         nome: true,
                         nr_cna: true,
@@ -74,8 +85,10 @@ class ListSchedulingUseCaseClient {
                             }
                         }
                     }
-                }
-            }
+                },
+            },
+            
+
         });
 
         return schedulings;
