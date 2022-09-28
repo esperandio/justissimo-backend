@@ -77,13 +77,76 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-09-23T02:03:50.937Z",
+    "modified": "2022-09-08T01:26:05.082Z",
     "headers": [],
     "params": [],
     "body": {
-      "type": "json",
-      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidsajsesu345@gmail.com\",\n  \"nome\": \"David\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\",\n  \"nr_cna\": \"321\",\n  \"uf_cna\": \"SC\",\n  \"tel_celular\": \"479999999\",\n  \"areas\": [1,2],\n  \"info\": \"teste descrição\"\n}",
-      "form": []
+      "type": "formdata",
+      "raw": "",
+      "form": [
+        {
+          "name": "senha",
+          "value": "1!2bHkln"
+        },
+        {
+          "name": "email",
+          "value": "testseaaa@teste.com"
+        },
+        {
+          "name": "nome",
+          "value": "david"
+        },
+        {
+          "name": "dt_nascimento",
+          "value": "2000-07-08"
+        },
+        {
+          "name": "cpf",
+          "value": "11111111111"
+        },
+        {
+          "name": "cnpj",
+          "value": ""
+        },
+        {
+          "name": "cidade",
+          "value": "blumenau"
+        },
+        {
+          "name": "cep",
+          "value": "89526314"
+        },
+        {
+          "name": "nr_cna",
+          "value": "321"
+        },
+        {
+          "name": "uf_cna",
+          "value": "SC"
+        },
+        {
+          "name": "tel_celular",
+          "value": "479999999"
+        },
+        {
+          "name": "areas",
+          "value": "[1, 2]"
+        },
+        {
+          "name": "info",
+          "value": "teste descrição"
+        },
+        {
+          "name": "estado",
+          "value": "SC"
+        }
+      ],
+      "files": [
+        {
+          "name": "file",
+          "value": "..\\..\\..\\..\\..\\..\\Pictures\\Screenshots\\gato_site.png"
+        }
+      ]
     },
     "tests": []
   },
@@ -171,12 +234,12 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-09-17T18:20:12.740Z",
+    "modified": "2022-09-27T23:22:01.893Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"davidjesus357@gmail.com\",\n    \"senha\": \"1!2bHkln\"\n}",
+      "raw": "{\n    \"email\": \"davidsajsesussas357@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
       "form": []
     },
     "auth": {
@@ -237,25 +300,6 @@
     "tests": []
   },
   {
-    "_id": "bf83d78c-a85b-4a21-a077-35fcfe9b7516",
-    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
-    "containerId": "",
-    "name": "createDivulgation",
-    "url": "{{url}}/clients/1/divulgations",
-    "method": "POST",
-    "sortNum": 40000,
-    "created": "2022-05-30T23:57:32.827Z",
-    "modified": "2022-05-31T22:36:48.991Z",
-    "headers": [],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n    \"titulo\": \"ABC\",\n    \"descricao\": \"ABCDEF\",\n    \"id_area_atuacao\": 1\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
     "_id": "40f7e0d0-27b4-4dc5-8ccc-01635ce2f454",
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
@@ -264,13 +308,16 @@
     "method": "POST",
     "sortNum": 60000,
     "created": "2022-05-30T23:56:38.195Z",
-    "modified": "2022-09-23T01:27:04.437Z",
+    "modified": "2022-09-17T14:41:42.538Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
       "raw": " {\n    \"dados\":\n    {\n        \"dias_inserir\":[\n        { \n            \"fk_advogado\": 1,\n            \"dia\": \"quarta\",\n            \"hora_inicio\": \"07:30\",\n            \"hora_final\": \"18:00\",\n            \"duracao\":40\n\t\t}\n    ],\n        \"dias_remover\": [\n          \n        ]   \n    }\n}\n",
       "form": []
+    },
+    "auth": {
+      "type": "bearer"
     },
     "tests": []
   },
@@ -283,12 +330,12 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-05-30T23:57:32.827Z",
-    "modified": "2022-05-31T22:36:48.991Z",
+    "modified": "2022-09-28T00:31:49.583Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"titulo\": \"ABC\",\n    \"descricao\": \"ABCDEF\",\n    \"id_area_atuacao\": 1\n}",
+      "raw": "{\n    \"titulo\": \"ABC\",\n    \"descricao\": \"ABCDEF\",\n    \"id_area_atuacao\": 2\n}",
       "form": []
     },
     "tests": []
@@ -335,12 +382,12 @@
     "method": "POST",
     "sortNum": 50000,
     "created": "2022-06-11T11:59:01.674Z",
-    "modified": "2022-09-23T01:44:33.705Z",
+    "modified": "2022-09-17T22:39:18.387Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 1,\n    \"fk_advogado_area\": 2,\n    \"data_agendamento\": \"2022-09-28\",\n    \"horario\": \"10:30\",\n    \"observacao\": \"Teste observação\"\n}",
+      "raw": "{\n    \"fk_advogado\": 1,\n    \"fk_cliente\": 2,\n    \"fk_advogado_area\": 1,\n    \"data_agendamento\": \"2022-09-21\",\n    \"horario\": \"10:50\",\n    \"observacao\": \"Teste observação\"\n}",
       "form": []
     },
     "auth": {
@@ -424,26 +471,29 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "getAllSchedulingsClient",
-    "url": "{{url}}/schedulings/client/2?data_incial=2022-06-16&data_final=2022-06-23&area=1",
+    "url": "{{url}}/schedulings/client/1",
     "method": "GET",
     "sortNum": 15000,
     "created": "2022-06-19T00:57:10.649Z",
-    "modified": "2022-06-19T14:50:41.570Z",
+    "modified": "2022-09-23T03:34:51.458Z",
     "headers": [],
     "params": [
       {
         "name": "data_incial",
         "value": "2022-06-16",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "data_final",
         "value": "2022-06-23",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "area",
         "value": "1",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -560,14 +610,70 @@
     "_id": "73d889f1-24a1-4ee7-b9f8-e55fafc9ecb7",
     "colId": "d831cf28-0a15-4208-b59e-18f00f5528ec",
     "containerId": "",
-    "name": "getAllDivulgations",
+    "name": "getAllDivulgationsLawyers",
     "url": "{{url}}/divulgations",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-09-23T00:37:45.067Z",
-    "modified": "2022-09-23T00:38:17.695Z",
+    "modified": "2022-09-28T00:36:24.381Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "data_inicial",
+        "value": "2022-09-27",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "data_final",
+        "value": "2022-09-27",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "area",
+        "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "47bdf25f-3790-4fd2-84e8-d90e58b22a69",
+    "colId": "d831cf28-0a15-4208-b59e-18f00f5528ec",
+    "containerId": "",
+    "name": "getAllDivulgationsByClient",
+    "url": "{{url}}/clients/divulgations/1",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-09-28T00:30:21.360Z",
+    "modified": "2022-09-28T00:36:45.177Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "data_inicial",
+        "value": "2022-09-27",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "data_final",
+        "value": "2022-09-27",
+        "isDisabled": true,
+        "isPath": false
+      },
+      {
+        "name": "area",
+        "value": "1",
+        "isDisabled": true,
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
