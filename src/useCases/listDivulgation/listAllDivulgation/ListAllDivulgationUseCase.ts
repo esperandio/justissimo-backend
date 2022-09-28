@@ -34,6 +34,14 @@ class ListAllDivulgationUseCase {
         throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
     }    
 
+    if (isNaN(filterDateFinal.getTime())) {
+        throw new DomainError('Campo data_final inválido, esperado uma data válida, recebido: ' + listDivulgationRequest.date_final);
+    }
+
+    if (filterDateInit.getTime() > filterDateFinal.getTime()) {
+        throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
+    }    
+
     if (!NonEmptyString.isEmpty(listDivulgationRequest.area)) {
         filterArea = { equals: Number.parseInt(listDivulgationRequest.area) }
     }
