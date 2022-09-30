@@ -1,5 +1,5 @@
 import { prisma } from "../../database";
-import { LawyerNotFoundError } from "../../errors";
+import { DomainError, LawyerNotFoundError } from "../../errors";
 import { DivulgationNotFoundError } from "../../errors/divulgation-not-found-error";
 import { mail } from "../../mail";
 import { NonEmptyString } from "../../validators";
@@ -12,21 +12,21 @@ interface IMessageDivulgationRequest {
 
 class MessageDivulgationUseCase {
     async execute(reviewRequest: IMessageDivulgationRequest): Promise<void> {
-        const { fk_lawyer, fk_divulgation, message } = reviewRequest;
+        const fk_lawyer = NonEmptyString.validate("fk_lawyer", reviewRequest.fk_lawyer).value;
+        const fk_divulgation = NonEmptyString.validate("fk_divulgation", reviewRequest.fk_divulgation).value;
+        const message = NonEmptyString.validate("message", reviewRequest.message).value;
+
         let fk_client = 0;
         let email_client = "";
+        let name_client = "";
 
-        if (NonEmptyString.validate("fk_lawyer",fk_lawyer) ) {
-            throw new LawyerNotFoundError()
-        }
-
-        if (NonEmptyString.validate("fk_divulgation",fk_divulgation) ) {
-            throw new DivulgationNotFoundError()
+        if (message.length > 200) {
+            throw new DomainError("Mensagem muito grande, máximo de 200 caracteres!");
         }
 
         const lawyer = await prisma.advogado.findUnique({
             where: {
-                id_advogado: Number(fk_lawyer),
+                id_advogado: Number.parseInt(fk_lawyer),
             },
             include: {
                 usuario: {
@@ -42,6 +42,9 @@ class MessageDivulgationUseCase {
                 }
             }
         });
+        if (!lawyer) {
+            throw new LawyerNotFoundError()
+        }
 
         const divulgacao = await prisma.divulgacao.findUnique({
             where: {
@@ -51,6 +54,7 @@ class MessageDivulgationUseCase {
                 cliente: {
                     select: {
                         id_cliente: true,
+                        nome: true,
                         usuario: {
                             select: {
                                 email: true
@@ -61,9 +65,13 @@ class MessageDivulgationUseCase {
             }
         });
 
-        if (divulgacao) {
+        if (!divulgacao) {
+            throw new DivulgationNotFoundError()
+        }
+        else {
             fk_client = divulgacao.cliente.id_cliente;
             email_client = divulgacao.cliente.usuario?.email || "";
+            name_client = divulgacao.cliente.nome || "";
         }
 
         await prisma.mensagemDivulgacao.create({
@@ -76,17 +84,21 @@ class MessageDivulgationUseCase {
             },    
         });
         
+        // pegar somente o primeiro nome do cliente
+        const name = name_client.split(" ")[0];
+
         mail.sendEmail({
             from: process.env.SMTP_AUTH_USER ?? "",
-            html: `<p>Olá, o advogado abaixo encaminhou uma mensagem referente à divulgação em aberto:!<br> </p>
-            <p><b>Nome:</b> ${lawyer?.nome}}</p>
-            <p><b>Nota:</b> ${lawyer?.nota}</p>
+            html: `<p>Olá ${name}, o advogado abaixo encaminhou uma mensagem referente a divulgação em aberto:<br> </p>
+            <p><b>Nome:</b> ${lawyer?.nome}</p>
+            <p><b>Nota:</b> ${lawyer?.nota != null ? lawyer?.nota : "Sem avaliações."}</p>
             <p><b>E-mail:</b> ${lawyer?.usuario?.email}</p>
             <p><b>Telefone:</b> ${lawyer?.tel_celular != "" ? lawyer?.tel_celular : "Não informado"}</p>
             <p><b>Mensagem:</b> ${message}</p>
             <p><b>Cidade:</b> ${lawyer?.endereco?.cidade}</p>
             <p><b>Estado:</b> ${lawyer?.endereco?.estado}</p>
-            <p><b>Caso seja do seu interesse entre em contato com o mesmo através dos contatos informado ou agende uma conversa direto pelo site!</b></p>
+            <p><b>Caso seja do seu interesse entre em contato com o mesmo através dos contatos informados acima ou agende uma conversa direto pelo site!</b></p>
+            <p><b><a href="https://justissimo-frontend.herokuapp.com/">Clique aqui para acessar o Justíssimo</a></b></p>
             <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
             <img src="cid:justissimo_logo"}>`,
             subject: "Contato de advogado",

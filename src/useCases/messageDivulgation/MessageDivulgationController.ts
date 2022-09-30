@@ -5,7 +5,7 @@ class MessageDivulgationController {
 
     async handle(request: Request, response: Response) {
         const { id } = request.params;
-
+    
         const { 
             id_divulgacao,
             mensagem
