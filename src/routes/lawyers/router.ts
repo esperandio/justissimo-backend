@@ -19,6 +19,6 @@ router.get("/lawyers/:id", new ListLawyerByIdController().handle);
 router.post('/lawyers/:id/review', new ReviewLawyerController().handle);
 router.post('/lawyers/config-schedule', ensureAuthenticated, new ConfigScheduleController().handle);
 router.post("/lawyers/scheduling", ensureAuthenticated, new CreateManualSchedulingController().handle);
-router.post("/lawyers/:id/message", ensureAuthenticated, new MessageDivulgationController().handle);
+router.post("/divulgation/message/:id", ensureAuthenticated, new MessageDivulgationController().handle);
 
 export { router as router_lawyers };
