@@ -1,6 +1,6 @@
 
 import { prisma } from "../../database";
-import { DomainError } from "../../errors";
+import { DomainError, LawyerNotFoundError } from "../../errors";
 import { DivulgationNotFoundError } from "../../errors/divulgation-not-found-error";
 import { NonEmptyString } from "../../validators";
 
@@ -20,6 +20,16 @@ class ListMessagesDivulgationLawyerUseCase {
         
         if (Number.parseInt(fk_lawyer) <= 0) {
             throw new DomainError("Id do advogado invalido!");
+        }
+
+        const lawyer = await prisma.advogado.findUnique({
+            where: {
+                id_advogado: Number.parseInt(fk_lawyer)
+            }
+        });
+
+        if (!lawyer) {
+            throw new LawyerNotFoundError();
         }
 
         const listDivulgationsWithMessages = await prisma.divulgacao.findMany({
