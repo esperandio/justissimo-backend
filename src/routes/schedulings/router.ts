@@ -3,7 +3,7 @@ import { ensureAuthenticated } from "../../middlewares/ensureAutheticated";
 import { CloseSchedulingController } from "../../useCases/closeScheduling/CloseSchedulingController";
 import { ListHoursForSchedulingController } from "../../useCases/listHoursForScheduling/ListHoursSchedulingController";
 import { ListSchedulingControllerLawyer } from "../../useCases/listSchedulingLawyer/ListSchedulingControllerLawyer";
-import { ListSchedulingControllerClient } from "../../useCases/listSchedulingClients/ListSchedulingControllerClient";
+import { ListSchedulingControllerClient } from "../../useCases/listSchedulingClients/ListSchedulingControllerClients";
 
 const router = Router();
 
