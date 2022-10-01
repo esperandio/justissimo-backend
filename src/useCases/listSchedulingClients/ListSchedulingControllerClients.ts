@@ -1,5 +1,5 @@
 import { Request, Response} from "express";
-import { ListSchedulingUseCaseClient } from "./ListSchedulingUseCaseClient";
+import { ListSchedulingUseCaseClient } from "./ListSchedulingUseCaseClients";
 
 class ListSchedulingControllerClient {
     async handle(request: Request, response: Response) {

@@ -21,41 +21,43 @@ model Usuario {
 }
 
 model Cliente {
-  id_cliente    Int         @id @default(autoincrement())
-  fk_usuario    Int?        @unique
-  nome          String      @db.VarChar(55)
-  dt_nascimento DateTime
-  nr_cpf        String      @db.VarChar(11)
-  nr_cnpj       String      @db.VarChar(14)
-  usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
-  avaliacoes    Avaliacao[]
-  endereco      Endereco?
-  divulgacoes   Divulgacao[]
-  agendamento   Agendamento[]
+  id_cliente          Int                  @id @default(autoincrement())
+  fk_usuario          Int?                 @unique
+  nome                String               @db.VarChar(55)
+  dt_nascimento       DateTime
+  nr_cpf              String               @db.VarChar(11)
+  nr_cnpj             String               @db.VarChar(14)
+  usuario             Usuario?             @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
+  avaliacoes          Avaliacao[]
+  endereco            Endereco?
+  divulgacoes         Divulgacao[]
+  agendamento         Agendamento[]
+  mensagem_divulgacao MensagemDivulgacao[]
 
   @@map("cliente")
 }
 
 model Advogado {
-  id_advogado   Int         @id @default(autoincrement())
-  fk_usuario    Int?        @unique
-  nome          String      @db.VarChar(55)
-  dt_nascimento DateTime
-  nr_cna        String      @db.VarChar(15)
-  uf_cna        String      @db.VarChar(2)
-  nr_cpf        String      @db.VarChar(11)
-  nr_cnpj       String      @db.VarChar(14)
-  tel_fixo      String?     @db.VarChar(45)
-  tel_celular   String?     @db.VarChar(45)
-  nota          Float?
-  info          String?     @db.Text()
-  autorizado    Boolean     @default(false)
-  usuario       Usuario?    @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
-  avaliacoes    Avaliacao[]
-  areas         AdvogadoArea[]
-  endereco      Endereco?
-  agendamento   Agendamento[]
-  config_agenda Configuracao_agenda[]
+  id_advogado         Int                   @id @default(autoincrement())
+  fk_usuario          Int?                  @unique
+  nome                String                @db.VarChar(55)
+  dt_nascimento       DateTime
+  nr_cna              String                @db.VarChar(15)
+  uf_cna              String                @db.VarChar(2)
+  nr_cpf              String                @db.VarChar(11)
+  nr_cnpj             String                @db.VarChar(14)
+  tel_fixo            String?               @db.VarChar(45)
+  tel_celular         String?               @db.VarChar(45)
+  nota                Float?
+  info                String?               @db.Text()
+  autorizado          Boolean               @default(false)
+  usuario             Usuario?              @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
+  avaliacoes          Avaliacao[]
+  areas               AdvogadoArea[]
+  endereco            Endereco?
+  agendamento         Agendamento[]
+  config_agenda       Configuracao_agenda[]
+  mensagem_divulgacao MensagemDivulgacao[]
 
   @@map("advogado")
 }
@@ -79,14 +81,14 @@ model Endereco {
 }
 
 model Avaliacao {
-  id_avaliacao    Int       @id @default(autoincrement())
-  fk_cliente      Int?
-  fk_advogado     Int?
-  nota            Float
-  descricao       String?   @db.VarChar(200)
-  data_avaliacao  DateTime @default(now())
-  advogado        Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  cliente         Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  id_avaliacao   Int       @id @default(autoincrement())
+  fk_cliente     Int?
+  fk_advogado    Int?
+  nota           Float
+  descricao      String?   @db.VarChar(200)
+  data_avaliacao DateTime  @default(now())
+  advogado       Advogado? @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  cliente        Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
 
   @@map("avaliacao")
 }
@@ -102,20 +104,20 @@ model RecuperacaoSenha {
 }
 
 model Configuracao_agenda {
-  id_configuracao_agenda Int       @id @default(autoincrement())
+  id_configuracao_agenda Int      @id @default(autoincrement())
   fk_advogado            Int
-  dia                    String    @db.VarChar(45) 
+  dia                    String   @db.VarChar(45)
   hora_inicial           DateTime
   hora_final             DateTime
   duracao                Int
-  advogado               Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  advogado               Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
 
-@@map("configuracao_agenda")
+  @@map("configuracao_agenda")
 }
 
 model AreaAtuacao {
-  id_area_atuacao Int       @id @default(autoincrement())
-  titulo          String?   @db.VarChar(100)
+  id_area_atuacao Int            @id @default(autoincrement())
+  titulo          String?        @db.VarChar(100)
   divulgacoes     Divulgacao[]
   advogados       AdvogadoArea[]
 
@@ -123,46 +125,61 @@ model AreaAtuacao {
 }
 
 model Divulgacao {
-  id_divulgacao    Int       @id @default(autoincrement())
-  fk_area_atuacao  Int
-  fk_cliente       Int
-  titulo           String   @db.VarChar(55)
-  descricao        String?   @db.VarChar(255)
-  dt_cadastro      DateTime @default(now())
-  encerrado        Boolean @default(false)
-  dt_encerramento  DateTime?
-  areaAtuacao      AreaAtuacao @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
-  cliente          Cliente  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  id_divulgacao       Int                  @id @default(autoincrement())
+  fk_area_atuacao     Int
+  fk_cliente          Int
+  titulo              String               @db.VarChar(55)
+  descricao           String?              @db.VarChar(255)
+  dt_cadastro         DateTime             @default(now())
+  encerrado           Boolean              @default(false)
+  dt_encerramento     DateTime?
+  areaAtuacao         AreaAtuacao          @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
+  cliente             Cliente              @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  mensagens           MensagemDivulgacao[]
 
   @@map("divulgacao")
 }
 
 model AdvogadoArea {
-  fk_advogado       Int
-  fk_area_atuacao   Int
-  advogado          Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  areaAtuacao       AreaAtuacao @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
+  fk_advogado     Int
+  fk_area_atuacao Int
+  advogado        Advogado    @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  areaAtuacao     AreaAtuacao @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
 
   @@unique([fk_advogado, fk_area_atuacao])
   @@map("advogado_area")
 }
 
 model Agendamento {
-  id_agenda                 Int       @id @default(autoincrement())
-  fk_advogado               Int
-  fk_cliente                Int?
-  fk_advogado_area          Int
-  data_agendamento          DateTime
-  duracao                   Int
-  horario                   DateTime
-  observacao                String?   @db.VarChar(200)
-  contato_cliente           String    @db.VarChar(200)
-  nome_cliente              String?   @db.VarChar(200)
-  area_atuacao              String?   @db.VarChar(100)
-  data_criacao_agendamento  DateTime  @default(now())
-  encerrado                 Boolean   @default(false)
-  advogado                  Advogado  @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
-  cliente                   Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  id_agenda                Int      @id @default(autoincrement())
+  fk_advogado              Int
+  fk_cliente               Int?
+  fk_advogado_area         Int
+  data_agendamento         DateTime
+  duracao                  Int
+  horario                  DateTime
+  observacao               String?  @db.VarChar(200)
+  contato_cliente          String   @db.VarChar(200)
+  nome_cliente             String?  @db.VarChar(200)
+  area_atuacao             String?  @db.VarChar(100)
+  data_criacao_agendamento DateTime @default(now())
+  encerrado                Boolean  @default(false)
+  advogado                 Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+  cliente                  Cliente? @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
 
   @@map("agendamento")
+}
+
+model MensagemDivulgacao {
+  id_mensagem_divulgacao Int        @id @default(autoincrement())
+  fk_divulgacao          Int
+  fk_cliente             Int
+  fk_advogado            Int
+  mensagem               String     @db.VarChar(255)
+  dt_mensagem            DateTime   
+  divulgacao             Divulgacao @relation(fields: [fk_divulgacao], references: [id_divulgacao], onDelete: Cascade)
+  cliente                Cliente    @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  advogado               Advogado   @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+
+  @@map("mensagens_divulgacao")
 }

@@ -7,13 +7,15 @@ import { ListClientByIdController } from "../../useCases/listUserClient/listClie
 import { CreateDivulgationController } from "../../useCases/createDivulgation/CreateDivulgationController";
 import { CreateSchedulingController } from "../../useCases/createScheduling/CreateSchedulingController";
 import { ListAllDivulgationController } from "../../useCases/listDivulgation/listDivulgationClient/ListAlldivulgationControler";
+import { ListMessagesDivulgationController } from "../../useCases/listMessagesDivulgationClient/ListMessagesDivulgationClientController";
 
 const router = Router();
 
 /**Clients*/
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/clients/:id",ensureAuthenticated, new ListClientByIdController().handle);
-router.get("/clients/divulgations/:id",ensureAuthenticated, new ListAllDivulgationController().handle);
+router.get("/clients/:id/divulgations",ensureAuthenticated, new ListAllDivulgationController().handle);
+router.get("/clients/divulgation/:id",ensureAuthenticated, new ListMessagesDivulgationController().handle);
 
 router.post("/clients", uploadImage.single('file'), new CreateUserClientController().handle) ;
 router.post("/clients/:id/divulgations", new CreateDivulgationController().handle);
