@@ -171,12 +171,12 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-09-30T02:54:32.215Z",
+    "modified": "2022-10-01T12:30:52.009Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"davidsajsesussas357@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
+      "raw": "{\n    \"email\": \"davidsajsesud57@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
       "form": []
     },
     "auth": {
@@ -267,12 +267,12 @@
     "method": "POST",
     "sortNum": 40000,
     "created": "2022-05-30T23:57:32.827Z",
-    "modified": "2022-05-31T22:36:48.991Z",
+    "modified": "2022-10-01T12:32:21.950Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"titulo\": \"ABC\",\n    \"descricao\": \"ABCDEF\",\n    \"id_area_atuacao\": 1\n}",
+      "raw": "{\n    \"titulo\": \"Título\",\n    \"descricao\": \"Descrição\",\n    \"id_area_atuacao\": 5\n}",
       "form": []
     },
     "tests": []
@@ -645,12 +645,58 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-09-30T02:13:26.549Z",
-    "modified": "2022-09-30T02:51:09.337Z",
+    "modified": "2022-10-01T12:32:35.470Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id_divulgacao\": 6,\n  \"mensagem\": \"Olá gostaria de conversar sobre sua divulgação\"\n}",
+      "raw": "{\n  \"id_divulgacao\": 5,\n  \"mensagem\": \"Olá gostaria de conversar sobre sua divulgação\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b2ef95f2-98dd-4aba-a070-b01e597db3a3",
+    "colId": "dd128eae-4413-410a-afe6-8945dce62d55",
+    "containerId": "",
+    "name": "listMessagesDivulgation",
+    "url": "{{url}}/clients/divulgation/5",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-10-01T12:28:57.655Z",
+    "modified": "2022-10-01T14:20:30.517Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"fk_cliente\": 1\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "8a312944-5775-4b03-84f3-6077f5890599",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "listMessagesDivulgationLawyer",
+    "url": "{{url}}/lawyers/divulgation/2",
+    "method": "GET",
+    "sortNum": 90000,
+    "created": "2022-10-01T13:46:26.597Z",
+    "modified": "2022-10-01T14:20:22.687Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"fk_advogado\": 2\n}",
       "form": []
     },
     "auth": {
