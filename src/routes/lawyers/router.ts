@@ -16,7 +16,6 @@ const router = Router();
 router.post('/lawyers', uploadImage.single('file'), new CreateUserLawyerController().handle);
 router.get("/lawyers", new ListAllLawyersController().handle);
 router.get("/lawyers/:id", new ListLawyerByIdController().handle);
-router.get("lawyers/divulgation/:id", ensureAuthenticated, new ListMessagesDivulgationLawyerController().handle);
 router.get("/lawyers/divulgation/:id", ensureAuthenticated, new ListMessagesDivulgationLawyerController().handle);
 
 router.post('/lawyers/:id/review', new ReviewLawyerController().handle);
