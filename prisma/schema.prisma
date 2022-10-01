@@ -135,7 +135,7 @@ model Divulgacao {
   dt_encerramento     DateTime?
   areaAtuacao         AreaAtuacao          @relation(fields: [fk_area_atuacao], references: [id_area_atuacao], onDelete: Cascade)
   cliente             Cliente              @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
-  mensagem_divulgacao MensagemDivulgacao[]
+  mensagens           MensagemDivulgacao[]
 
   @@map("divulgacao")
 }
