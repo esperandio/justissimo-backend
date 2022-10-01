@@ -68,11 +68,10 @@ class MessageDivulgationUseCase {
         if (!divulgacao) {
             throw new DivulgationNotFoundError()
         }
-        else {
-            fk_client = divulgacao.cliente.id_cliente;
-            email_client = divulgacao.cliente.usuario?.email || "";
-            name_client = divulgacao.cliente.nome || "";
-        }
+       
+        fk_client = divulgacao.cliente.id_cliente;
+        email_client = divulgacao.cliente.usuario?.email || "";
+        name_client = divulgacao.cliente.nome || "";
 
         await prisma.mensagemDivulgacao.create({
             data: {
