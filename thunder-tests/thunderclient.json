@@ -648,14 +648,9 @@
     "method": "GET",
     "sortNum": 60000,
     "created": "2022-10-01T12:28:57.655Z",
-    "modified": "2022-10-01T14:20:30.517Z",
+    "modified": "2022-10-01T18:52:19.775Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"fk_cliente\": 1\n}",
-      "form": []
-    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
@@ -667,18 +662,13 @@
     "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
     "containerId": "",
     "name": "listMessagesDivulgationLawyer",
-    "url": "{{url}}/lawyers/divulgation/1",
+    "url": "{{url}}/lawyers/2/divulgation/1",
     "method": "GET",
     "sortNum": 90000,
     "created": "2022-10-01T13:46:26.597Z",
-    "modified": "2022-10-01T16:32:37.367Z",
+    "modified": "2022-10-01T18:46:12.060Z",
     "headers": [],
     "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"fk_advogado\": 2\n}",
-      "form": []
-    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"

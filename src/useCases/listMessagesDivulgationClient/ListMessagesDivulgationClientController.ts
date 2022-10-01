@@ -4,12 +4,9 @@ import { ListMessageClientUseCase } from "./ListMessagesDivulgationClientUseCase
 class ListMessagesDivulgationController {
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id, fk_cliente } = request.params;
+    const { id } = request.params;
     
-    const messages = await new ListMessageClientUseCase().execute({
-        id_divulgation: id,
-        fk_client: fk_cliente
-    });
+    const messages = await new ListMessageClientUseCase().execute(id);
 
     return response.json(messages);
   }
