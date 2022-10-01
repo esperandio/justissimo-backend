@@ -24,7 +24,7 @@ class ListMessageClientUseCase{
             throw new DomainError("Id do cliente invalido!");
         }
         
-        const messages = await prisma.divulgacao.findMany({
+        const listDivulgationsWithMessages = await prisma.divulgacao.findMany({
             where: {
                 id_divulgacao: Number.parseInt(id_divulgation)
             },
@@ -56,11 +56,11 @@ class ListMessageClientUseCase{
             }
         });
         
-        if (messages.length === 0) {
+        if (listDivulgationsWithMessages.length === 0) {
             throw new DivulgationNotFoundError();
         }
 
-        return messages;
+        return listDivulgationsWithMessages;
     }
 }
 

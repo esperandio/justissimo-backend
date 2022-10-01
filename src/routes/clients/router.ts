@@ -7,7 +7,7 @@ import { ListClientByIdController } from "../../useCases/listUserClient/listClie
 import { CreateDivulgationController } from "../../useCases/createDivulgation/CreateDivulgationController";
 import { CreateSchedulingController } from "../../useCases/createScheduling/CreateSchedulingController";
 import { ListAllDivulgationController } from "../../useCases/listDivulgation/listDivulgationClient/ListAlldivulgationControler";
-import { ListMessagesDivulgationController } from "../../useCases/listMessagesDivulgation/ListMessagesDivulgationClientController";
+import { ListMessagesDivulgationController } from "../../useCases/listMessagesDivulgationClient/ListMessagesDivulgationClientController";
 
 const router = Router();
 

@@ -6,12 +6,12 @@ class ListMessagesDivulgationLawyerController {
         const { id } = request.params;
         const { fk_advogado } = request.body;
         
-        const messages = await new ListMessagesDivulgationLawyerUseCase().execute({ 
+        const listDivulgationsWithMessages = await new ListMessagesDivulgationLawyerUseCase().execute({ 
             id_divulgation: id,
             fk_lawyer: fk_advogado
         });
 
-        return response.json(messages);
+        return response.json(listDivulgationsWithMessages);
     }
 }
 
