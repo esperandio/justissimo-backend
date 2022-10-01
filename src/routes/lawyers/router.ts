@@ -16,10 +16,11 @@ const router = Router();
 router.post('/lawyers', uploadImage.single('file'), new CreateUserLawyerController().handle);
 router.get("/lawyers", new ListAllLawyersController().handle);
 router.get("/lawyers/:id", new ListLawyerByIdController().handle);
-router.get("/lawyers/divulgation/:id", ensureAuthenticated, new ListMessagesDivulgationLawyerController().handle);
+router.get("/lawyers/:fk_advogado/divulgation/:id", ensureAuthenticated, new ListMessagesDivulgationLawyerController().handle);
 
 router.post('/lawyers/:id/review', new ReviewLawyerController().handle);
 router.post('/lawyers/config-schedule', ensureAuthenticated, new ConfigScheduleController().handle);
 router.post("/lawyers/scheduling", ensureAuthenticated, new CreateManualSchedulingController().handle);
+router.post("/divulgation/message/:id", ensureAuthenticated, new MessageDivulgationController().handle);
 
 export { router as router_lawyers };
