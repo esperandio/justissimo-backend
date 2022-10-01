@@ -625,12 +625,12 @@
     "method": "POST",
     "sortNum": 80000,
     "created": "2022-09-30T02:13:26.549Z",
-    "modified": "2022-10-01T19:56:53.634Z",
+    "modified": "2022-10-01T20:00:00.998Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id_divulgacao\": 5,\n  \"mensagem\": \"Olá gostaria de conversar sobre sua divulgação\"\n}",
+      "raw": "{\n  \"mensagem\": \"Olá gostaria de conversar sobre sua divulgação\"\n}",
       "form": []
     },
     "auth": {
