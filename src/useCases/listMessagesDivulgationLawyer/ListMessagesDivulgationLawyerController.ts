@@ -3,8 +3,7 @@ import { ListMessagesDivulgationLawyerUseCase } from "./ListMessagensDivulgation
 
 class ListMessagesDivulgationLawyerController {
     async handle(request: Request, response: Response) {
-        const { id } = request.params;
-        const { fk_advogado } = request.body;
+        const { id, fk_advogado } = request.params;
         
         const listDivulgationsWithMessages = await new ListMessagesDivulgationLawyerUseCase().execute({ 
             id_divulgation: id,

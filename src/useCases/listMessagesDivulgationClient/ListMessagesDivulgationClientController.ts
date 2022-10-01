@@ -4,8 +4,7 @@ import { ListMessageClientUseCase } from "./ListMessagesDivulgationClientUseCase
 class ListMessagesDivulgationController {
 
   async handle(request: Request, response: Response): Promise<Response> {
-    const { id } = request.params;
-    const { fk_cliente } = request.body;
+    const { id, fk_cliente } = request.params;
     
     const messages = await new ListMessageClientUseCase().execute({
         id_divulgation: id,
