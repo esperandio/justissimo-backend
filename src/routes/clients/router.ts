@@ -14,7 +14,7 @@ const router = Router();
 /**Clients*/
 router.get("/clients", new ListAllClientsController().handle);
 router.get("/clients/:id",ensureAuthenticated, new ListClientByIdController().handle);
-router.get("/clients/divulgations/:id",ensureAuthenticated, new ListAllDivulgationController().handle);
+router.get("/clients/:id/divulgations",ensureAuthenticated, new ListAllDivulgationController().handle);
 router.get("/clients/divulgation/:id",ensureAuthenticated, new ListMessagesDivulgationController().handle);
 
 router.post("/clients", uploadImage.single('file'), new CreateUserClientController().handle) ;
