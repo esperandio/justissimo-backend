@@ -4,15 +4,14 @@ import { MessageDivulgationUseCase } from "./MessageDivulgationUseCase";
 class MessageDivulgationController {
 
     async handle(request: Request, response: Response) {
-        const { id } = request.params;
+        const { id_advogado, id_divulgacao } = request.params;
     
         const { 
-            id_divulgacao,
             mensagem
         } = request.body;
 
         await new MessageDivulgationUseCase().execute({
-            fk_lawyer: id,
+            fk_lawyer: id_advogado,
             fk_divulgation: id_divulgacao,
             message: mensagem
         });
