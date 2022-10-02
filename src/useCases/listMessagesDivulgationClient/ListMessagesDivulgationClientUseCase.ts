@@ -19,7 +19,7 @@ class ListMessageClientUseCase{
         }
 
         
-        const listDivulgationsWithMessages = await prisma.divulgacao.findMany({
+        const listDivulgationsWithMessages = await prisma.divulgacao.findFirst({
             where: {
                 id_divulgacao: Number.parseInt(id_divulgation)
             },
@@ -54,7 +54,7 @@ class ListMessageClientUseCase{
             }
         });
         
-        if (listDivulgationsWithMessages.length === 0) {
+        if (listDivulgationsWithMessages == null) {
             throw new DivulgationNotFoundError();
         }
 
