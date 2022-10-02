@@ -38,6 +38,11 @@ class ListMessageClientUseCase{
                             select: {
                                 id_advogado: true,
                                 nome: true,
+                                usuario: {
+                                    select: {
+                                        url_foto_perfil: true
+                                    }
+                                },
                                 endereco: {
                                     select: {
                                         cidade: true,
