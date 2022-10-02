@@ -142,7 +142,7 @@ class CloseSchedulingUseCaseLawyer {
             mail.sendEmail({
                 from: process.env.SMTP_AUTH_USER ?? "",
                 html: `<p>Olá,</p>
-                <p>Informamos que o agendamento foi <b>encerrado</b> com sucesso!.</p>
+                <p>Informamos que o agendamento foi <b>encerrado</b> com sucesso!</p>
                 <p><b>Justificativa:</b> ${jsutification}</p>
                 <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                 <img src="cid:justissimo_logo"}>`,
