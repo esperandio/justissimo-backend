@@ -14,7 +14,7 @@ class CloseSchedulingControllerLawyer {
             id_user: id_usuario
         });
 
-        return response.status(200).json({message: "Registro excluído com sucesso"});
+        return response.status(200).json({message: "Agendamento encerrado com sucesso!"});
     }
 }
 
