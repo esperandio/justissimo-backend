@@ -1,9 +1,9 @@
 import { Router } from "express";
 import { ensureAuthenticated } from "../../middlewares/ensureAutheticated";
-import { CloseSchedulingController } from "../../useCases/closeScheduling/CloseSchedulingController";
 import { ListHoursForSchedulingController } from "../../useCases/listHoursForScheduling/ListHoursSchedulingController";
 import { ListSchedulingControllerLawyer } from "../../useCases/listSchedulingLawyer/ListSchedulingControllerLawyer";
 import { ListSchedulingControllerClient } from "../../useCases/listSchedulingClients/ListSchedulingControllerClients";
+import { CloseSchedulingControllerLawyer } from "../../useCases/closeScheduling/CloseSchedulingController";
 
 const router = Router();
 
@@ -16,7 +16,7 @@ router.get("/schedulings/client/:id", ensureAuthenticated , new ListSchedulingCo
 /**hours Available - Schedulings*/
 router.get("/hour-schedulings/:id", ensureAuthenticated , new ListHoursForSchedulingController().handle);
 
-/**Delete - Scheduling*/
-router.delete("/scheduling", ensureAuthenticated , new CloseSchedulingController().handle);
+/**Close - Scheduling*/
+router.put("/scheduling/:id_agendamento", ensureAuthenticated , new CloseSchedulingControllerLawyer().handle);
 
 export { router as router_schedulings };

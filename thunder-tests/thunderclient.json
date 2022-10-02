@@ -403,17 +403,17 @@
     "_id": "4ec2eefa-71a8-4fd7-96ac-c866d7ca38d2",
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
-    "name": "deleteScheduling",
-    "url": "{{url}}/scheduling",
-    "method": "DELETE",
+    "name": "closeScheduling",
+    "url": "{{url}}/scheduling/1",
+    "method": "PUT",
     "sortNum": 30000,
     "created": "2022-06-19T00:31:31.880Z",
-    "modified": "2022-06-19T00:35:48.303Z",
+    "modified": "2022-10-02T04:19:34.204Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"id_advogado\": 1,\n    \"id_agenda\": 9\n}",
+      "raw": "{\n    \"id_usuario\": 1,\n    \"justificativa\": \"Realizado consulta.\",\n    \"motivo\": \"Atendimento encerrado\"\n}",
       "form": []
     },
     "auth": {
