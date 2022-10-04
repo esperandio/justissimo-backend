@@ -5,16 +5,16 @@ import { NonEmptyString } from "../../validators";
 
 interface ICloseSchedulingRequest {
     id_scheduling: string;
-    jsutification: string;
+    justification: string;
     reason: string;
     id_user: string;
 }
-class CloseSchedulingUseCaseLawyer {
+class CloseSchedulingUseCase {
     async execute(closeSchedulingRequest: ICloseSchedulingRequest) {
 
         const reasons = ["Cancelamento", "Atendimento encerrado"];
         const id_scheduling = NonEmptyString.validate("id_scheduling", closeSchedulingRequest.id_scheduling).value;
-        const jsutification = NonEmptyString.validate("jsutification", closeSchedulingRequest.jsutification).value;
+        const jsutification = NonEmptyString.validate("justificativa", closeSchedulingRequest.justification).value;
         const reason = NonEmptyString.validate("reason", closeSchedulingRequest.reason).value;
         const id_user = NonEmptyString.validate("id_user", closeSchedulingRequest.id_user).value;
 
@@ -160,4 +160,4 @@ class CloseSchedulingUseCaseLawyer {
     }
 }
 
-export { CloseSchedulingUseCaseLawyer }
+export { CloseSchedulingUseCase }

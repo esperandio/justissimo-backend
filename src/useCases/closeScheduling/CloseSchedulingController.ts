@@ -1,15 +1,15 @@
 import { Request, Response } from 'express';
-import { CloseSchedulingUseCaseLawyer } from "./CloseShcedulingUseCase"
+import { CloseSchedulingUseCase } from "./CloseShcedulingUseCase"
 
-class CloseSchedulingControllerLawyer {
+class CloseSchedulingController {
     async handle(request: Request, response: Response) {
 
         const { id_agendamento } = request.params;
         const { justificativa, motivo, id_usuario } = request.body;
 
-        await new CloseSchedulingUseCaseLawyer().execute({
+        await new CloseSchedulingUseCase().execute({
             id_scheduling: id_agendamento,
-            jsutification: justificativa,
+            justification: justificativa,
             reason: motivo,
             id_user: id_usuario
         });
@@ -18,4 +18,4 @@ class CloseSchedulingControllerLawyer {
     }
 }
 
-export { CloseSchedulingControllerLawyer }
+export { CloseSchedulingController }
