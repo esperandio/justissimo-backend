@@ -105,7 +105,7 @@ class CloseSchedulingUseCase {
                      <p><b>Justificativa:</b> ${jsutification}</p>
                      <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                      <img src="cid:justissimo_logo"}>`,
-                     subject: "Contato de advogado",
+                     subject: "Encerramento de Agendamento",
                      to: schedulingExists.cliente?.usuario?.email ?? "",
                      attachments: [{
                          filename: 'logo_justissimo.png',
@@ -124,7 +124,7 @@ class CloseSchedulingUseCase {
                     <p><b>Justificativa:</b> ${jsutification}</p>
                     <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                     <img src="cid:justissimo_logo"}>`,
-                    subject: "Contato de advogado",
+                    subject: "Encerramento de Agendamento",
                     to: schedulingExists.advogado?.usuario?.email ?? "",
                     attachments: [{
                         filename: 'logo_justissimo.png',
