@@ -4,14 +4,17 @@ import { CloseSchedulingUseCase } from "./CloseShcedulingUseCase"
 class CloseSchedulingController {
     async handle(request: Request, response: Response) {
 
-        const {id_advogado, id_agenda} = request.body;
+        const { id_agendamento } = request.params;
+        const { justificativa, motivo, id_usuario } = request.body;
 
         await new CloseSchedulingUseCase().execute({
-            id_lawyer: parseInt(id_advogado),
-            id_scheduling: parseInt(id_agenda)
+            id_scheduling: id_agendamento,
+            justification: justificativa,
+            reason: motivo,
+            id_user: id_usuario
         });
 
-        return response.status(200).json({message: "Registro excluído com sucesso"});
+        return response.status(200).json({message: "Agendamento encerrado com sucesso!"});
     }
 }
 
