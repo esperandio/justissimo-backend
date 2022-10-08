@@ -171,7 +171,7 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-10-01T12:30:52.009Z",
+    "modified": "2022-10-02T22:05:12.043Z",
     "headers": [],
     "params": [],
     "body": {
@@ -669,6 +669,29 @@
     "modified": "2022-10-01T19:57:58.485Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "6c65a075-2dcc-4dbe-974b-e64339894a09",
+    "colId": "d831cf28-0a15-4208-b59e-18f00f5528ec",
+    "containerId": "",
+    "name": "closeDivulgation",
+    "url": "{{url}}/divulgations/3",
+    "method": "PUT",
+    "sortNum": 30000,
+    "created": "2022-10-04T22:26:32.568Z",
+    "modified": "2022-10-04T22:56:23.260Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_usuario\": 2\n}",
+      "form": []
+    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"

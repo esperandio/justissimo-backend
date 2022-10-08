@@ -11,7 +11,7 @@ interface IListRequest {
 }
 
 class ListAllLawyersUseCase {
-    async execute(listRequest: IListRequest): Promise<Advogado[]> {
+    async execute(listRequest: IListRequest) {
 
         let filterName = {};
         let filterCity = {};
@@ -54,7 +54,11 @@ class ListAllLawyersUseCase {
                 },
                 autorizado: true,
             },
-            include: {
+            select: {
+                id_advogado: true,
+                nome: true,
+                info: true,
+                nota: true,
                 endereco: true,
                 _count: {
                     select: {

@@ -3,13 +3,17 @@ import { prisma } from "../../../database/index"
 import { NotFoundError } from '../../../errors'
 
 class ListLawyerByIdUseCase {
-    async execute(id_lawyer: number) : Promise<Advogado> {
+    async execute(id_lawyer: number) {
         const advogado = await prisma.advogado.findFirst({
             where: {
                 id_advogado: id_lawyer,
                 autorizado: true
             },
-            include: {
+            select: {
+                id_advogado: true,
+                nome: true,
+                info: true,
+                nota: true,
                 usuario: {
                     select: {
                         email: true,
@@ -24,6 +28,12 @@ class ListLawyerByIdUseCase {
                 _count: {
                     select: {
                         avaliacoes:  true,
+                    },
+                },
+                endereco: {
+                    select: {
+                        cidade: true,
+                        estado: true
                     },
                 },
                 avaliacoes  : {
