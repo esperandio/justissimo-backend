@@ -12,36 +12,30 @@ interface IListSchedulingRequest{
 
 class ListSchedulingUseCaseClient {
     async execute(listSchedulingRequest: IListSchedulingRequest) {
-        let filterDateInit  = new Date(-8640000000000);
-        let filterDateFinal = new Date(8640000000000);
-        let filterLawyer = {};
+        let filterDateInit;
+        let filterDateFinal;
+        let filterClient = {};
         let filterArea = {};
 
-        if (!NonEmptyString.isEmpty(listSchedulingRequest.date_init)) {
+        if (!NonEmptyString.isEmpty(listSchedulingRequest.date_init) && !NonEmptyString.isEmpty(listSchedulingRequest.date_final)) {
             filterDateInit = new Date(listSchedulingRequest.date_init  + "T00:00:00.000Z");
-        }
 
-        if (!NonEmptyString.isEmpty(listSchedulingRequest.date_final)) {
+            if (isNaN(filterDateInit.getTime())) {
+                throw new DomainError('Campo data_inicial inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
+            }
+
             filterDateFinal = new Date(listSchedulingRequest.date_final + "T00:00:00.000Z");
+
+            if (isNaN(filterDateFinal.getTime())) {
+                throw new DomainError('Campo data_final inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_final);
+            }
+
+            if (filterDateInit.getTime() > filterDateFinal.getTime()) {
+                throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
+            }
         }
         
-        if (isNaN(filterDateInit.getTime())) {
-            throw new DomainError('Campo data_inicial inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
-        }
-
-        if (isNaN(filterDateFinal.getTime())) {
-            throw new DomainError('Campo data_final inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_final);
-        }
-
-        if (filterDateInit.getTime() > filterDateFinal.getTime()) {
-            throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
-        }
-
-        if (NonEmptyString.isEmpty(listSchedulingRequest.fk_client)) {
-            throw new DomainError('Necessário receber o id do cliente') 
-        }
-        
-        filterLawyer = { equals: Number.parseInt(listSchedulingRequest.fk_client) }        
+        filterClient = { equals: Number.parseInt(listSchedulingRequest.fk_client) }        
 
         if (!NonEmptyString.isEmpty(listSchedulingRequest.area)) {
             filterArea = { equals: Number.parseInt(listSchedulingRequest.area) }
@@ -49,7 +43,7 @@ class ListSchedulingUseCaseClient {
 
         const schedulings = await prisma.agendamento.findMany({
             where: {
-                fk_cliente: filterLawyer,
+                fk_cliente: filterClient,
                 data_agendamento: {
                     gte: filterDateInit,
                     lte: filterDateFinal
