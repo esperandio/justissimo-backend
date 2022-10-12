@@ -377,11 +377,11 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "getAllSchedulingsLawyer",
-    "url": "{{url}}/schedulings/lawyer/1?encerrado=true&data_inicial=2022-10-12&data_final=2022-10-10",
+    "url": "{{url}}/schedulings/lawyer/1?encerrado=true",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-06-17T00:26:38.174Z",
-    "modified": "2022-10-08T02:50:55.917Z",
+    "modified": "2022-10-10T16:48:00.237Z",
     "headers": [],
     "params": [
       {
@@ -392,11 +392,13 @@
       {
         "name": "data_inicial",
         "value": "2022-10-12",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "data_final",
         "value": "2022-10-10",
+        "isDisabled": true,
         "isPath": false
       }
     ],
@@ -440,11 +442,11 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "closeScheduling",
-    "url": "{{url}}/scheduling/1",
+    "url": "{{url}}/scheduling/5",
     "method": "PUT",
     "sortNum": 30000,
     "created": "2022-06-19T00:31:31.880Z",
-    "modified": "2022-10-02T04:19:34.204Z",
+    "modified": "2022-10-11T02:13:26.331Z",
     "headers": [],
     "params": [],
     "body": {
@@ -565,12 +567,12 @@
     "method": "POST",
     "sortNum": 70000,
     "created": "2022-09-17T14:34:30.089Z",
-    "modified": "2022-09-23T00:01:10.902Z",
+    "modified": "2022-10-11T02:12:20.220Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"fk_advogado\": 1,\n  \"fk_advogado_area\": 1,\n  \"nome_cliente\": \"Gabriel Ratke\",\n  \"email_cliente\": \"davidjesus357@gmail.com\",\n  \"data_agendamento\": \"2022-09-28\",\n  \"horario\": \"09:30\",\n   \"observacao\": \"Reunião para verificar situação trabalhista\"\n}",
+      "raw": "{\n  \"fk_advogado\": 1,\n  \"fk_advogado_area\": 1,\n  \"nome_cliente\": \"Gabriel Ratke\",\n  \"email_cliente\": \"davidjesus357@gmail.com\",\n  \"data_agendamento\": \"2022-10-12\",\n  \"horario\": \"12:30\",\n   \"observacao\": \"Reunião para verificar situação trabalhista\"\n}",
       "form": []
     },
     "auth": {
@@ -708,6 +710,29 @@
     "body": {
       "type": "json",
       "raw": "{\n  \"id_usuario\": 2\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d9e46fb5-836d-4005-92ea-e099b77c029a",
+    "colId": "09f1b13f-ced7-48ad-9a22-f8bf3f790ccd",
+    "containerId": "",
+    "name": "sendMessageToLawyer",
+    "url": "{{url}}/user/1/message",
+    "method": "POST",
+    "sortNum": 10000,
+    "created": "2022-10-12T18:25:37.841Z",
+    "modified": "2022-10-12T18:38:13.327Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"fk_advogado\": 2,\n  \"menssagem\": \"Teste de envio de mensagem\"\n}",
       "form": []
     },
     "auth": {
