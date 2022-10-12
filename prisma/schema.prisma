@@ -33,6 +33,7 @@ model Cliente {
   divulgacoes         Divulgacao[]
   agendamento         Agendamento[]
   mensagem_divulgacao MensagemDivulgacao[]
+  mensagem            Mensagem[]
 
   @@map("cliente")
 }
@@ -58,6 +59,7 @@ model Advogado {
   agendamento         Agendamento[]
   config_agenda       Configuracao_agenda[]
   mensagem_divulgacao MensagemDivulgacao[]
+  mensagem            Mensagem[]
 
   @@map("advogado")
 }
@@ -185,4 +187,16 @@ model MensagemDivulgacao {
   advogado               Advogado   @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
 
   @@map("mensagens_divulgacao")
+}
+
+model Mensagem {
+  id_mensagem    Int      @id @default(autoincrement())
+  fk_cliente     Int
+  fk_advogado    Int
+  mensagem       String   @db.VarChar(255)
+  dt_mensagem    DateTime @default(now())
+  cliente        Cliente  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  advogado       Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+
+  @@map("mensagens")
 }
