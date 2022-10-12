@@ -81,7 +81,7 @@ class CloseSchedulingUseCase {
             throw new DomainError('Não foi possível encerrar o agendamento pois o registro não existe ou já foi encerrado!');
         }
 
-        await prisma.agendamento.update({
+        const updateSheduling = prisma.agendamento.update({
             where: {
                 id_agenda: Number.parseInt(id_scheduling),
             },
@@ -98,26 +98,33 @@ class CloseSchedulingUseCase {
 
         if (reason === "Cancelamento") {
             if (userExists.advogado) {
-                mail.sendEmail({
-                     from: process.env.SMTP_AUTH_USER ?? "",
-                     html: `<p>Olá ${firstNameClient},</p>
-                     <p>Informamos que o agendamento foi <b>cancelado</b> pelo advogado ${firstNameLawyer}.</p>
-                     <p><b>Justificativa:</b> ${jsutification}</p>
-                     <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
-                     <img src="cid:justissimo_logo"}>`,
-                     subject: "Encerramento de Agendamento",
-                     to: schedulingExists.cliente?.usuario?.email ?? "",
-                     attachments: [{
-                         filename: 'logo_justissimo.png',
-                         path: '././src/images/logo_justissimo.png',
-                         cid: 'justissimo_logo' //same cid value as in the html img src
-                     }]
-                 });
+                try {
+                    await mail.sendEmail({
+                        from: process.env.SMTP_AUTH_USER ?? "",
+                        html: `<p>Olá ${firstNameClient},</p>
+                        <p>Informamos que o agendamento foi <b>cancelado</b> pelo advogado ${firstNameLawyer}.</p>
+                        <p><b>Justificativa:</b> ${jsutification}</p>
+                        <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
+                        <img src="cid:justissimo_logo"}>`,
+                        subject: "Encerramento de Agendamento",
+                        to: schedulingExists.contato_cliente,
+                        attachments: [{
+                            filename: 'logo_justissimo.png',
+                            path: '././src/images/logo_justissimo.png',
+                            cid: 'justissimo_logo' //same cid value as in the html img src
+                        }]
+                    });
 
-                 return;
-             }
+                    await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
+                } catch (error) {
+                    throw new DomainError("Ocorreu um erro ao encerrar o agendamento! Motivo: Erro ao enviar email de encerramento de agendamento.");
+                }
+
+                return;
+            }
             
-            mail.sendEmail({
+            try {
+                await mail.sendEmail({
                     from: process.env.SMTP_AUTH_USER ?? "",
                     html: `<p>Olá ${firstNameLawyer},</p>
                     <p>Informamos que o agendamento foi <b>cancelado</b> pelo cliente ${firstNameClient}.</p>
@@ -132,14 +139,17 @@ class CloseSchedulingUseCase {
                         cid: 'justissimo_logo' //same cid value as in the html img src
                     }]
                 });
-            
+
+                await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
+            } catch (error) {
+                throw new DomainError("Ocorreu um erro ao encerrar o agendamento! Motivo: Erro ao enviar e-mail de encerramento de agendamento.");
+            }
+
             return;
         }
-
-        const emails = [schedulingExists.advogado?.usuario?.email, schedulingExists.cliente?.usuario?.email];
-
-        emails.forEach(function (to, i) {
-            mail.sendEmail({
+        
+        try {
+            await mail.sendEmail({
                 from: process.env.SMTP_AUTH_USER ?? "",
                 html: `<p>Olá,</p>
                 <p>Informamos que o agendamento foi <b>encerrado</b> com sucesso!</p>
@@ -147,14 +157,19 @@ class CloseSchedulingUseCase {
                 <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                 <img src="cid:justissimo_logo"}>`,
                 subject: "Encerramento de Agendamento",
-                to: to ?? "",
+                to: `${schedulingExists.advogado?.usuario?.email, schedulingExists.contato_cliente}`,
                 attachments: [{
                     filename: 'logo_justissimo.png',
                     path: '././src/images/logo_justissimo.png',
                     cid: 'justissimo_logo' //same cid value as in the html img src
                 }]
             });
-        });
+            
+            await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
+        }
+        catch (error) {
+            throw new DomainError("Ocorreu um erro ao encerrar o agendamento! Motivo: Erro ao enviar e-mail de encerramento de agendamento.");
+        }
 
         return;
     }

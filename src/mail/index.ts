@@ -1,5 +1,5 @@
 import * as nodemailer from "nodemailer";
-import { DomainError } from "../errors";
+import { DomainError } from "../errors/domain-error";
 
 interface IMailOptions {
     from: string;
@@ -16,8 +16,8 @@ class SendMailError extends DomainError {
 }
 
 class Mail {
-    sendEmail(mailOptions : IMailOptions) {
-        const transporter = nodemailer.createTransport({
+    async  sendEmail(mailOptions : IMailOptions) {
+        let transporter = nodemailer.createTransport({
             service: process.env.SMTP_SERVICE,
             host: process.env.SMTP_HOST,
             port: Number.parseInt(process.env.SMTP_PORT ?? ""),
@@ -29,14 +29,15 @@ class Mail {
             tls: { rejectUnauthorized: false }
         });
 
-
-        transporter.sendMail(mailOptions, function (error) {
-            if (error) {
-                throw new SendMailError(error.message);
-            }
+        
+        await transporter.sendMail(mailOptions).catch((error) => {
+            throw new Error(error.message);
         });
+
+        transporter.close(); // fechando a conexão com o servidor de e-mail
     }
 }
+
 
 const mail = new Mail();
 
