@@ -1,5 +1,6 @@
 import { prisma } from "../../database";
 import { DomainError, LawyerNotFoundError, UserNotFoundError } from "../../errors";
+import { SendMailSchedulingError } from "../../errors/send-email-scheduling-error";
 import { mail } from "../../mail";
 import { NonEmptyString } from "../../validators";
 
@@ -95,10 +96,9 @@ class CloseSchedulingUseCase {
 
         const firstNameClient = schedulingExists.cliente?.nome.split(" ")[0];
         const firstNameLawyer = schedulingExists.advogado?.nome.split(" ")[0];
-
-        if (reason === "Cancelamento") {
-            if (userExists.advogado) {
-                try {
+        try{
+            if (reason === "Cancelamento") {
+                if (userExists.advogado) {
                     await mail.sendEmail({
                         from: process.env.SMTP_AUTH_USER ?? "",
                         html: `<p>Olá ${firstNameClient},</p>
@@ -116,14 +116,10 @@ class CloseSchedulingUseCase {
                     });
 
                     await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
-                } catch (error) {
-                    throw new DomainError("Ocorreu um erro ao encerrar o agendamento! Motivo: Erro ao enviar email de encerramento de agendamento.");
-                }
 
-                return;
-            }
-            
-            try {
+                    return;
+                }
+                
                 await mail.sendEmail({
                     from: process.env.SMTP_AUTH_USER ?? "",
                     html: `<p>Olá ${firstNameLawyer},</p>
@@ -141,14 +137,10 @@ class CloseSchedulingUseCase {
                 });
 
                 await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
-            } catch (error) {
-                throw new DomainError("Ocorreu um erro ao encerrar o agendamento! Motivo: Erro ao enviar e-mail de encerramento de agendamento.");
-            }
 
-            return;
-        }
-        
-        try {
+                return;
+            }
+            
             await mail.sendEmail({
                 from: process.env.SMTP_AUTH_USER ?? "",
                 html: `<p>Olá,</p>
@@ -168,7 +160,7 @@ class CloseSchedulingUseCase {
             await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
         }
         catch (error) {
-            throw new DomainError("Ocorreu um erro ao encerrar o agendamento! Motivo: Erro ao enviar e-mail de encerramento de agendamento.");
+            throw new SendMailSchedulingError();
         }
 
         return;
