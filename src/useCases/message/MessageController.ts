@@ -4,11 +4,11 @@ import { MessageUseCase } from './MessageUseCase';
 class MessageController {
     async handle(request: Request, response: Response) {
         const { id_usuario } = request.params;
-        const { mensagem, fk_advogado } = request.body;
+        const { menssagem, fk_advogado } = request.body;
 
         await new MessageUseCase().execute({
             id_user: id_usuario,
-            message: mensagem,
+            message: menssagem,
             fk_lawyer:  fk_advogado,
         });
 
