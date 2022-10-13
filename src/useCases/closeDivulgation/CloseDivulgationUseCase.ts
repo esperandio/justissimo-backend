@@ -60,7 +60,7 @@ class CloseDivulgationUseCase {
                 },
                 data: {
                     encerrado: true,
-                    dt_encerramento: DateConvertedBr.validate(new Date().toLocaleString())
+                    dt_encerramento: new Date()
                 }
             });
 

@@ -8,32 +8,37 @@ interface IListSchedulingRequest{
     date_init: string;
     date_final: string;
     area: string;
+    encerrado: boolean;
 }
 
 class ListSchedulingUseCaseLawyer {
     async execute(listSchedulingRequest: IListSchedulingRequest): Promise<Agendamento[]> {
-        let filterDateInit  = new Date(-8640000000000);
-        let filterDateFinal = new Date(8640000000000);
+        let filterDateInit;
+        let filterDateFinal;
         let filterLawyer = {};
         let filterArea = {};
-        if (!NonEmptyString.isEmpty(listSchedulingRequest.date_init)) {
+        let filterEncerrado = {};
+
+        if (!NonEmptyString.isEmpty(listSchedulingRequest.date_init) && !NonEmptyString.isEmpty(listSchedulingRequest.date_final)) {
             filterDateInit = new Date(listSchedulingRequest.date_init  + "T00:00:00.000Z");
-        }
-        
-        if (!NonEmptyString.isEmpty(listSchedulingRequest.date_final)) {
+
+            if (isNaN(filterDateInit.getTime())) {
+                throw new DomainError('Campo data_inicial inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
+            }
+
             filterDateFinal = new Date(listSchedulingRequest.date_final + "T00:00:00.000Z");
-        }
-        
-        if (isNaN(filterDateInit.getTime())) {
-            throw new DomainError('Campo data_inicial inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_init);
+
+            if (isNaN(filterDateFinal.getTime())) {
+                throw new DomainError('Campo data_final inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_final);
+            }
+
+            if (filterDateInit.getTime() > filterDateFinal.getTime()) {
+                throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
+            }
         }
 
-        if (isNaN(filterDateFinal.getTime())) {
-            throw new DomainError('Campo data_final inválido, esperado uma data válida, recebido: ' + listSchedulingRequest.date_final);
-        }
-
-        if (filterDateInit.getTime() > filterDateFinal.getTime()) {
-            throw new DomainError('Filtro inválido pois a data inicial é maior que a data final!');
+        if (listSchedulingRequest.encerrado != null) {
+            filterEncerrado = { equals: listSchedulingRequest.encerrado };
         }
 
         if (NonEmptyString.isEmpty(listSchedulingRequest.fk_lawyer)) {
@@ -53,7 +58,8 @@ class ListSchedulingUseCaseLawyer {
                     gte: filterDateInit,
                     lte: filterDateFinal
                 },
-                fk_advogado_area: filterArea
+                fk_advogado_area: filterArea,
+                encerrado: filterEncerrado
             },
             orderBy: {
                 data_agendamento: 'desc'
