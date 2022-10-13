@@ -59,13 +59,12 @@ class MessageUseCase {
         if (!user.cliente) {
             throw new DomainError("Usuário não está cadastrado como um cliente!");
         }
-        
+
         const messageCreate = prisma.mensagem.create({
             data: {
                 mensagem: message,
                 fk_cliente: user.cliente.id_cliente,
-                fk_advogado: Number.parseInt(fk_lawyer),
-                dt_mensagem: DateConvertedBr.validate(new Date().toLocaleString())
+                fk_advogado: Number.parseInt(fk_lawyer)
             }
         });
     
