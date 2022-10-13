@@ -78,7 +78,6 @@ class MessageDivulgationUseCase {
                 fk_advogado: Number.parseInt(fk_lawyer),
                 fk_divulgacao: Number.parseInt(fk_divulgation),
                 mensagem: message,
-                dt_mensagem: new Date(),
                 fk_cliente: fk_client,
             },    
         });
