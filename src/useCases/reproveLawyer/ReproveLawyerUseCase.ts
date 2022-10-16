@@ -58,6 +58,7 @@ class ReproveLawyerUseCase {
                     id_advogado: id_advogado,
                 },
                 data: {
+                    autorizado: false,
                     dt_reprovacao: new Date(),
                 },
             });
