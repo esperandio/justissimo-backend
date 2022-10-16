@@ -26,6 +26,7 @@ class ListPendingLawyersuseCase {
         const pendingLawyers = await prisma.advogado.findMany({
             where: {
                 autorizado: false,
+                dt_reprovacao: null,
             },
             select: {
                 id_advogado: true,
