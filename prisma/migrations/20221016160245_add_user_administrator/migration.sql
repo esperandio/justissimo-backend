@@ -1,0 +1,2 @@
+-- create user administrator
+INSERT INTO "usuario" ( email, senha, tipo_usuario, url_foto_perfil) VALUES ('justissimo.corporation@gmail.com', '$2a$08$JDQ7TF5lmlAfsxvXbvBJvOEj25mQFsC1liqEmywqC89Wjpe0TfUjy', 'administrador', '');

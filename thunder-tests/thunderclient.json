@@ -22,12 +22,12 @@
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-05-07T13:33:25.717Z",
-    "modified": "2022-10-04T23:47:15.173Z",
+    "modified": "2022-10-16T13:15:40.890Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidsajsesussaas35a7@gmail.com\",\n  \"nome\": \"David Jesusa\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\"\n}",
+      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"justissimo.corporation@gmail.com\",\n  \"nome\": \"David Jesusa\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\"\n}",
       "form": []
     },
     "tests": []
@@ -77,12 +77,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-10-04T23:47:25.067Z",
+    "modified": "2022-10-16T15:55:05.453Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidsajsesud57@gmail.com\",\n  \"nome\": \"David\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\",\n  \"nr_cna\": \"321\",\n  \"uf_cna\": \"SC\",\n  \"tel_celular\": \"479999999\",\n  \"areas\": [1,2],\n  \"info\": \"teste descrição\"\n}",
+      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidjsus345@gmail.com\",\n  \"nome\": \"David\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\",\n  \"nr_cna\": \"321\",\n  \"uf_cna\": \"SC\",\n  \"tel_celular\": \"479999999\",\n  \"areas\": [1,2],\n  \"info\": \"teste descrição\"\n}",
       "form": []
     },
     "tests": []
@@ -96,7 +96,7 @@
     "method": "GET",
     "sortNum": 30000,
     "created": "2022-05-11T00:11:29.154Z",
-    "modified": "2022-09-17T14:39:07.367Z",
+    "modified": "2022-10-16T14:20:09.019Z",
     "headers": [],
     "params": [
       {
@@ -124,9 +124,6 @@
         "isPath": false
       }
     ],
-    "auth": {
-      "type": "bearer"
-    },
     "tests": []
   },
   {
@@ -171,12 +168,12 @@
     "method": "POST",
     "sortNum": 12500,
     "created": "2022-05-21T00:28:21.832Z",
-    "modified": "2022-10-05T00:51:56.771Z",
+    "modified": "2022-10-16T13:05:42.323Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n    \"email\": \"davidsajsesud57@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
+      "raw": "{\n    \"email\": \"justissimo.corporation@gmail.com\",\n    \"senha\": \"ABCabc123\"\n}",
       "form": []
     },
     "tests": []
@@ -483,11 +480,11 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "listUserProfile",
-    "url": "{{url}}/user/22",
+    "url": "{{url}}/user/3",
     "method": "GET",
     "sortNum": 35000,
     "created": "2022-09-08T00:54:40.180Z",
-    "modified": "2022-09-11T00:00:30.167Z",
+    "modified": "2022-10-16T16:20:20.358Z",
     "headers": [],
     "params": [],
     "auth": {
@@ -727,12 +724,82 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-10-12T18:25:37.841Z",
-    "modified": "2022-10-12T18:38:13.327Z",
+    "modified": "2022-10-15T14:54:15.490Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"fk_advogado\": 2,\n  \"menssagem\": \"Teste de envio de mensagem\"\n}",
+      "raw": "{\n  \"fk_advogado\": 1,\n  \"menssagem\": \"Teste de envio de mensagem\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "277c7788-5ca8-49da-beb6-6b28bce96200",
+    "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
+    "containerId": "",
+    "name": "listPendingLawyers",
+    "url": "{{url}}/lawyers/pending?id_usuario=3",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-10-16T13:51:15.973Z",
+    "modified": "2022-10-16T15:38:16.009Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "id_usuario",
+        "value": "3",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "bb4796c4-8a63-4720-b31b-f3add32a3eb6",
+    "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
+    "containerId": "",
+    "name": "aproveLawyer",
+    "url": "{{url}}/lawyers/approve",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-10-16T15:02:22.695Z",
+    "modified": "2022-10-16T19:25:48.348Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_usuario\": 6,\n  \"id_advogado\": 1\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "1804c242-56d9-45e5-a541-4ff8c8c8aea9",
+    "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
+    "containerId": "",
+    "name": "reproveLawyer",
+    "url": "{{url}}/lawyers/reprove",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-10-16T19:09:43.904Z",
+    "modified": "2022-10-16T19:18:28.359Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_usuario\": 6,\n  \"id_advogado\": 3\n}",
       "form": []
     },
     "auth": {

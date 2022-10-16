@@ -52,6 +52,7 @@ model Advogado {
   nota                Float?
   info                String?               @db.Text()
   autorizado          Boolean               @default(false)
+  dt_reprovacao       DateTime?
   usuario             Usuario?              @relation(fields: [fk_usuario], references: [id_usuario], onDelete: Cascade)
   avaliacoes          Avaliacao[]
   areas               AdvogadoArea[]
