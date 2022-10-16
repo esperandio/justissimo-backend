@@ -743,19 +743,42 @@
     "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
     "containerId": "",
     "name": "listPendingLawyers",
-    "url": "{{url}}/lawyers/pending?id_usuario=2",
+    "url": "{{url}}/lawyers/pending?id_usuario=3",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-10-16T13:51:15.973Z",
-    "modified": "2022-10-16T14:23:09.600Z",
+    "modified": "2022-10-16T15:38:16.009Z",
     "headers": [],
     "params": [
       {
         "name": "id_usuario",
-        "value": "2",
+        "value": "3",
         "isPath": false
       }
     ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "bb4796c4-8a63-4720-b31b-f3add32a3eb6",
+    "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
+    "containerId": "",
+    "name": "aproveLawyer",
+    "url": "{{url}}/lawyers/aprove",
+    "method": "POST",
+    "sortNum": 20000,
+    "created": "2022-10-16T15:02:22.695Z",
+    "modified": "2022-10-16T15:40:56.643Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_usuario\": 3,\n  \"id_advogado\": 2,\n  \"aprovado\": true\n}",
+      "form": []
+    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
