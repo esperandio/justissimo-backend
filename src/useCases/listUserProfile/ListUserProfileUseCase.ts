@@ -80,6 +80,15 @@ class ListUserProfileUseCase {
                 return client;
             }
         }
+        else if (user.tipo_usuario == "administrador") {
+            const admin = {
+                email: user.email,
+                url_foto_perfil: user.url_foto_perfil,
+            }      
+            
+            return admin;
+            
+        }
         else {
             throw new UserNotFoundError();
         }
