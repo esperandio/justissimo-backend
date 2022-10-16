@@ -57,7 +57,8 @@ class ApproveLawyerUseCase {
                 id_advogado: id_advogado,
             },
             data: {
-                autorizado: true
+                autorizado: true,
+                dt_reprovacao: null
             },
         });
 
