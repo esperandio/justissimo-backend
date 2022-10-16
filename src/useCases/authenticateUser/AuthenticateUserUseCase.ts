@@ -53,33 +53,39 @@ class AuthenticateUserUseCase {
             
             return { token, tipo_usuario, id_cliente, url_foto_perfil, id_usuario };
         }
-        else {
-            const userLawyer = await prisma.advogado.findUnique({
-                where:{
-                    fk_usuario: userAlreadyExists.id_usuario,
-                },
-                include: {
-                    usuario: {
-                        select: {
-                            id_usuario: true,
-                            url_foto_perfil: true
-                        }
+
+        const userLawyer = await prisma.advogado.findUnique({
+            where:{
+                fk_usuario: userAlreadyExists.id_usuario,
+            },
+            include: {
+                usuario: {
+                    select: {
+                        id_usuario: true,
+                        url_foto_perfil: true
                     }
                 }
-            });
+            }
+        });
 
-            if (userLawyer) {
-                const tipo_usuario = "Advogado";
-                const id_advogado = userLawyer.id_advogado;
-                const url_foto_perfil = userLawyer.usuario != null ? userLawyer.usuario.url_foto_perfil : "";
-                const id_usuario = userLawyer.usuario != null ? userLawyer.usuario.id_usuario : 0;
-                
-                return { token, tipo_usuario, id_advogado, url_foto_perfil, id_usuario };
-            }
-            else {
-                throw new UnauthorizedError("Usuario ou senha incorreto!");
-            }
+        if (userLawyer) {
+            const tipo_usuario = "Advogado";
+            const id_advogado = userLawyer.id_advogado;
+            const url_foto_perfil = userLawyer.usuario != null ? userLawyer.usuario.url_foto_perfil : "";
+            const id_usuario = userLawyer.usuario != null ? userLawyer.usuario.id_usuario : 0;
+            
+            return { token, tipo_usuario, id_advogado, url_foto_perfil, id_usuario };
         }
+
+        if (userAlreadyExists.tipo_usuario === "administrador") {
+            const tipo_usuario = "Administrador";
+            const id_usuario = userAlreadyExists.id_usuario;
+            const url_foto_perfil = userAlreadyExists.url_foto_perfil;
+            
+            return { token, tipo_usuario, id_usuario, url_foto_perfil };
+        }
+
+        throw new UnauthorizedError("Usuario ou senha incorreto!");
     }
 }
 
