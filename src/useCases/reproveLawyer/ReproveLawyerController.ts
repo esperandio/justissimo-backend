@@ -3,7 +3,7 @@ import { ReproveLawyerUseCase } from './ReproveLawyerUseCase';
 
 class ReproveLawyerController {
     async handle(request: Request, response: Response) {
-        const { id_usuario, id_advogado, aprovado } = request.body;
+        const { id_usuario, id_advogado } = request.body;
 
         await new ReproveLawyerUseCase().execute({
             id_user: id_usuario,
