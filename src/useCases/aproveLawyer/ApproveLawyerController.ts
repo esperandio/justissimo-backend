@@ -1,11 +1,11 @@
 import { Request, Response } from 'express';
-import { AproveLawyerUseCase } from './AproveLawyerUseCase';
+import { ApproveLawyerUseCase } from './ApproveLawyerUseCase';
 
-class AproveLawyerController {
+class ApproveLawyerController {
     async handle(request: Request, response: Response) {
         const { id_usuario, id_advogado, aprovado } = request.body;
 
-        const aproveLawyer = await new AproveLawyerUseCase().execute({
+        const aproveLawyer = await new ApproveLawyerUseCase().execute({
             id_user: id_usuario,
             id_lawyer: id_advogado,
             aprove: aprovado,
@@ -15,4 +15,4 @@ class AproveLawyerController {
     }
 }
 
-export { AproveLawyerController }
+export { ApproveLawyerController }

@@ -766,7 +766,7 @@
     "_id": "bb4796c4-8a63-4720-b31b-f3add32a3eb6",
     "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
     "containerId": "",
-    "name": "aproveLawyer",
+    "name": "approveLawyer",
     "url": "{{url}}/lawyers/aprove",
     "method": "POST",
     "sortNum": 20000,

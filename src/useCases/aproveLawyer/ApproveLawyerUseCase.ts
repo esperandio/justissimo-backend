@@ -3,14 +3,14 @@ import { DomainError, LawyerNotFoundError } from "../../errors";
 import { mail } from "../../mail";
 import { NonEmptyString } from "../../validators";
 
-interface IAproveLawyerRequest {
+interface IApproveLawyerRequest {
     id_lawyer: string;
     id_user: string;
     aprove: boolean;
 }
 
-class AproveLawyerUseCase {
-    async execute(aproveRequest: IAproveLawyerRequest): Promise<String> {
+class ApproveLawyerUseCase {
+    async execute(aproveRequest: IApproveLawyerRequest): Promise<String> {
         const id_user = Number.parseInt(NonEmptyString.validate("id_user", aproveRequest.id_user).value);
         const id_advogado = Number.parseInt(NonEmptyString.validate("id_advogado", aproveRequest.id_lawyer).value);
 
@@ -128,4 +128,4 @@ class AproveLawyerUseCase {
     }
 }
 
-export { AproveLawyerUseCase }
+export { ApproveLawyerUseCase }
