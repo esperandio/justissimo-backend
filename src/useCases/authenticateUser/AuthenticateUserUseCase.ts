@@ -26,6 +26,11 @@ class AuthenticateUserUseCase {
              throw new UnauthorizedError("Usuario ou senha incorreto!"); 
         }
 
+        const token = sign({}, process.env.TOKEN_SECRET ?? "", {
+            subject: userAlreadyExists.id_usuario.toString(),
+            expiresIn : "3h",
+        });
+
         const userClient = await prisma.cliente.findUnique({
             where:{
                 fk_usuario: userAlreadyExists.id_usuario
@@ -38,11 +43,6 @@ class AuthenticateUserUseCase {
                     }
                 }
             }
-        });
-
-        const token = sign({}, process.env.TOKEN_SECRET ?? "", {
-            subject: userAlreadyExists.id_usuario.toString(),
-            expiresIn : "3h",
         });
 
         if (userClient) {
