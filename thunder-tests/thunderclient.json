@@ -480,11 +480,11 @@
     "colId": "28ebc94b-82b5-4375-b29f-01daf86c8b5d",
     "containerId": "",
     "name": "listUserProfile",
-    "url": "{{url}}/user/1",
+    "url": "{{url}}/user/3",
     "method": "GET",
     "sortNum": 35000,
     "created": "2022-09-08T00:54:40.180Z",
-    "modified": "2022-10-16T16:17:40.009Z",
+    "modified": "2022-10-16T16:20:20.358Z",
     "headers": [],
     "params": [],
     "auth": {
@@ -766,17 +766,40 @@
     "_id": "bb4796c4-8a63-4720-b31b-f3add32a3eb6",
     "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
     "containerId": "",
-    "name": "approveLawyer",
-    "url": "{{url}}/lawyers/aprove",
+    "name": "aproveLawyer",
+    "url": "{{url}}/lawyers/approve",
     "method": "POST",
     "sortNum": 20000,
     "created": "2022-10-16T15:02:22.695Z",
-    "modified": "2022-10-16T15:40:56.643Z",
+    "modified": "2022-10-16T19:25:48.348Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id_usuario\": 3,\n  \"id_advogado\": 2,\n  \"aprovado\": true\n}",
+      "raw": "{\n  \"id_usuario\": 6,\n  \"id_advogado\": 1\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "1804c242-56d9-45e5-a541-4ff8c8c8aea9",
+    "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
+    "containerId": "",
+    "name": "reproveLawyer",
+    "url": "{{url}}/lawyers/reprove",
+    "method": "POST",
+    "sortNum": 30000,
+    "created": "2022-10-16T19:09:43.904Z",
+    "modified": "2022-10-16T19:18:28.359Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"id_usuario\": 6,\n  \"id_advogado\": 3\n}",
       "form": []
     },
     "auth": {
