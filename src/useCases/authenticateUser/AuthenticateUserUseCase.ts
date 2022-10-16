@@ -21,9 +21,10 @@ class AuthenticateUserUseCase {
             throw new UnauthorizedError("Usuario ou senha incorreto!"); 
         }
 
-        const passwordMath = await compare(password, userAlreadyExists.senha);
-        if (!passwordMath) {
-             throw new UnauthorizedError("Usuario ou senha incorreto!"); 
+        const passwordMatch = await compare(password, userAlreadyExists.senha);
+
+        if (!passwordMatch) {
+            throw new UnauthorizedError("Usuario ou senha incorreto!"); 
         }
 
         const token = sign({}, process.env.TOKEN_SECRET ?? "", {
