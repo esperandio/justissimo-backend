@@ -12,6 +12,7 @@ import { router_schedulings } from './routes/schedulings/router';
 import { NotFoundError, DomainError, UnauthorizedError } from "./errors";
 import { router_divulgations } from './routes/divulgations/router';
 import { router_messages } from './routes/messages/router';
+import { router_administrator } from './routes/administrator/router';
 
 
 const app = express();
@@ -26,6 +27,7 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 app.use(express.json());
 app.use(router_clients);
+app.use(router_administrator);
 app.use(router_lawyers);
 app.use(router_user);
 app.use(router_areas);
