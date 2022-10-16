@@ -77,12 +77,12 @@
     "method": "POST",
     "sortNum": 10000,
     "created": "2022-05-10T22:20:11.885Z",
-    "modified": "2022-10-16T14:20:26.860Z",
+    "modified": "2022-10-16T15:55:05.453Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidsajsesud5a7@gmail.com\",\n  \"nome\": \"David\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\",\n  \"nr_cna\": \"321\",\n  \"uf_cna\": \"SC\",\n  \"tel_celular\": \"479999999\",\n  \"areas\": [1,2],\n  \"info\": \"teste descrição\"\n}",
+      "raw": "{\n  \"senha\": \"ABCabc123\",\n  \"email\": \"davidjsus345@gmail.com\",\n  \"nome\": \"David\",\n  \"dt_nascimento\": \"2000-07-08\",\n  \"cpf\": \"00011100011\",\n  \"cnpj\": \"\",\n  \"cidade\": \"Blumenau\",\n  \"estado\": \"SC\",\n  \"cep\": \"1234567\",\n  \"nr_cna\": \"321\",\n  \"uf_cna\": \"SC\",\n  \"tel_celular\": \"479999999\",\n  \"areas\": [1,2],\n  \"info\": \"teste descrição\"\n}",
       "form": []
     },
     "tests": []

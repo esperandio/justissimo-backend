@@ -3,6 +3,7 @@ import { Advogado } from "@prisma/client";
 import { prisma } from "../../database/index";
 import { DomainError, UserAlreadyExistsError, AreaNotFoundError } from "../../errors";
 import { Email, NonEmptyString, PastDate, Password, NonEmptyArray } from "../../validators";
+import { mail } from "../../mail";
 
 interface IUserRequest {
     password: string;
@@ -122,6 +123,48 @@ class CreateUserLawyerUseCase {
                 return { fk_advogado: advogado.id_advogado, fk_area_atuacao: x.id_area_atuacao }
             })
         });
+
+        // enviar e-mail de confirmação de cadastro para o usuário 
+        const name = fullname.value.split(" ")[0];
+
+        try {
+
+            await mail.sendEmail({
+                from: process.env.SMTP_AUTH_USER ?? "",
+                html: `<p>Olá, ${name}, seja bem vindo ao Justissimo!<br> </p>
+            <p>Seu cadastro foi realizado com sucesso! Iremos validar seu resgistro (CNA) para comprovar que é um advogado. Enquanto isso você terá acesso ao sistema e algumas funcionalidades porém não ficará visível para outros usuários até a aprovação do cadastro. Iremos encaminhar o e-mail de confirmação ou reprovação no prazo máximo de 3 dias.</p>
+            <p><b><a href="https://justissimo-frontend.herokuapp.com/">Clique aqui para acessar o Justíssimo</a></b></p>
+            <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
+            <img src="cid:justissimo_logo"}>`,
+                subject: "Aprovação de cadastro (CNA)",
+                to: email.value,
+                attachments: [{
+                    filename: 'logo_justissimo.png',
+                    path: '././src/images/logo_justissimo.png',
+                    cid: 'justissimo_logo' //same cid value as in the html img src
+                }]
+            });
+
+            await mail.sendEmail({
+                from: process.env.SMTP_AUTH_USER ?? "",
+                html: `<p>Olá, administrador do Justissimo!<br> </p>
+            <p>Um novo advogado se cadastrou no sistema e aguarda aprovação do cadastro. Para aprovar ou reprovar o cadastro acesse o sistema e vá em "Gerenciar advogados".</p>
+            <p><b><a href="https://justissimo-frontend.herokuapp.com/">Clique aqui para acessar o Justíssimo</a></b></p>
+            <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
+            <img src="cid:justissimo_logo"}>`,
+                subject: "Aprovação de cadastro (CNA)",
+                to: process.env.ADMIN_EMAIL ?? "",
+                attachments: [{
+                    filename: 'logo_justissimo.png',
+                    path: '././src/images/logo_justissimo.png',
+                    cid: 'justissimo_logo' //same cid value as in the html img src
+                }]
+            });
+
+
+        } catch (error) {
+            throw new DomainError("Não foi possível enviar a mensagem, tente novamente mais tarde!");
+        }
 
         return advogado;
     }
