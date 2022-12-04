@@ -743,16 +743,16 @@
     "colId": "87cdaaab-4c3d-4fdc-94ca-132631783500",
     "containerId": "",
     "name": "listPendingLawyers",
-    "url": "{{url}}/lawyers/pending?id_usuario=3",
+    "url": "{{url}}/lawyers/pending?id_usuario=6",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-10-16T13:51:15.973Z",
-    "modified": "2022-10-16T15:38:16.009Z",
+    "modified": "2022-12-03T16:29:42.393Z",
     "headers": [],
     "params": [
       {
         "name": "id_usuario",
-        "value": "3",
+        "value": "6",
         "isPath": false
       }
     ],
@@ -802,6 +802,24 @@
       "raw": "{\n  \"id_usuario\": 6,\n  \"id_advogado\": 3\n}",
       "form": []
     },
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "4925091e-1d2a-493c-8be0-50317cea284d",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "listConfigSchedule",
+    "url": "{{url}}/lawyers/1/config-schedule",
+    "method": "GET",
+    "sortNum": 100000,
+    "created": "2022-12-04T22:17:12.731Z",
+    "modified": "2022-12-04T22:18:32.378Z",
+    "headers": [],
+    "params": [],
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"
