@@ -1,6 +1,6 @@
 import { prisma } from "../../database";
-import { LawyerNotFoundError, ClientNotFoundError } from "../../errors";
-import { Rate } from "../../validators";
+import { LawyerNotFoundError, ClientNotFoundError, DomainError } from "../../errors";
+import { NonEmptyString, Rate } from "../../validators";
 
 interface IReviewRequest {
     lawyer_id: number;
@@ -11,6 +11,13 @@ interface IReviewRequest {
 
 class ReviewLawyerUseCase {
     async execute(reviewRequest: IReviewRequest): Promise<void> {
+        const rate = Rate.validate(reviewRequest.rate);
+        const message = NonEmptyString.validate("mensagem", reviewRequest.message).value;
+
+        if (message.length > 200) {
+            throw new DomainError("Mensagem muito grande, máximo de 200 caracteres!");
+        }
+
         const advogado = await prisma.advogado.findUnique({
             where: {
                id_advogado: reviewRequest.lawyer_id,
@@ -30,9 +37,6 @@ class ReviewLawyerUseCase {
         if (cliente == null) {
             throw new ClientNotFoundError();
         }
-
-        const rate = Rate.validate(reviewRequest.rate);
-        const message = reviewRequest.message;
 
         const avaliacaoJaExistente =  await prisma.avaliacao.findFirst({
             where: {
