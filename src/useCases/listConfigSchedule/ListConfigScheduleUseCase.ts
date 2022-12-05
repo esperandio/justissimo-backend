@@ -5,8 +5,8 @@ import { DomainError, LawyerNotFoundError } from "../../errors";
 interface IConfigScheduleResponse {
     de: string;
     ate: string;
-    hora_inicial: Date;
-    hora_final: Date;
+    hora_inicial: string;
+    hora_final: string;
     duracao: number;
 }
 
@@ -41,11 +41,21 @@ class ListConfigScheduleUseCase {
         });
 
         if (configSchedule.length > 0) {
+            const hora_inicial = new Date(configSchedule[0].hora_inicial);
+            const hora_inicial_formatada = `${hora_inicial.getHours()}`.padStart(2, '0') 
+                + ":" 
+                + `${hora_inicial.getMinutes()}`.padStart(2, '0');
+
+            const hora_final = new Date(configSchedule[0].hora_final);
+            const hora_final_formatada = `${hora_final.getHours()}`.padStart(2, '0') 
+                + ":" 
+                + `${hora_final.getMinutes()}`.padStart(2, '0');
+
             const configScheduleResponse: IConfigScheduleResponse = {
-                de: configSchedule[0].dia,
-                ate: configSchedule[configSchedule.length - 1].dia,
-                hora_inicial: configSchedule[0].hora_inicial,
-                hora_final: configSchedule[0].hora_final,
+                de: `${configSchedule[0].dia}`.toLowerCase(),
+                ate: `${configSchedule[configSchedule.length - 1].dia}`.toLowerCase(),
+                hora_inicial: hora_inicial_formatada,
+                hora_final: hora_final_formatada,
                 duracao: configSchedule[0].duracao
             }
     
