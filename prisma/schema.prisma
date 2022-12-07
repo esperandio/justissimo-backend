@@ -34,6 +34,7 @@ model Cliente {
   agendamento         Agendamento[]
   mensagem_divulgacao MensagemDivulgacao[]
   mensagem            Mensagem[]
+  pode_avaliar        PodeAvaliar[]
 
   @@map("cliente")
 }
@@ -61,6 +62,7 @@ model Advogado {
   config_agenda       Configuracao_agenda[]
   mensagem_divulgacao MensagemDivulgacao[]
   mensagem            Mensagem[]
+  pode_avaliar        PodeAvaliar[]
 
   @@map("advogado")
 }
@@ -200,4 +202,14 @@ model Mensagem {
   advogado       Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
 
   @@map("mensagens")
+}
+
+model PodeAvaliar {
+  id_pode_avaliar Int      @id @default(autoincrement())
+  fk_advogado     Int
+  fk_cliente      Int?
+  cliente         Cliente?  @relation(fields: [fk_cliente], references: [id_cliente], onDelete: Cascade)
+  advogado        Advogado @relation(fields: [fk_advogado], references: [id_advogado], onDelete: Cascade)
+
+  @@map("pode_avaliar")
 }
