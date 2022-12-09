@@ -159,38 +159,38 @@ class CloseSchedulingUseCase {
             
             await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
             
-            if (schedulingExists.fk_cliente) {
-                const podeAvaliar = prisma.podeAvaliar.create({
-                    data: {
-                        fk_advogado: schedulingExists.fk_advogado,
-                        fk_cliente: schedulingExists.fk_cliente ?? 0,
-                    }
-                });
-            
-                await mail.sendEmail({
-                    from: process.env.SMTP_AUTH_USER ?? "",
-                    html: `<p>Olá, ${firstNameClient}</p>
-                    <p>Gostaríamos de informar que você já pode realizar a <b>avaliação</b> do advogado ${firstNameLawyer}!</p>
-                    <p><b>As avaliações são muito importantes para que outros usuários possam entender como foi sua experiência.</b></p>
-                    <p>
-                    Para realizar a avaliação, basta acessar o justíssimo, encontrar o advogado ${firstNameLawyer}, acessando o perfil do mesmo estará habilitado
-                    a opção <b>(Avaliar Advogado)</b> onde poderá deixar sua avaliação juntamente com um comentário.</p>
-                    </p>
-                    <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
-                    <img src="cid:justissimo_logo"}>`,
-                    subject: "Encerramento de Agendamento",
-                    to: `${schedulingExists.contato_cliente}`,
-                    attachments: [{
-                        filename: 'logo_justissimo.png',
-                        path: '././src/images/logo_justissimo.png',
-                        cid: 'justissimo_logo' //same cid value as in the html img src
-                    }]
-                });
-                
-                await prisma.$transaction([ podeAvaliar ]); // Realizará a transação no banco de dados (commit)
-
+            if (schedulingExists.fk_cliente == null) {
                 return;
             }
+
+            const podeAvaliar = prisma.podeAvaliar.create({
+                data: {
+                    fk_advogado: schedulingExists.fk_advogado,
+                    fk_cliente: schedulingExists.fk_cliente ?? 0,
+                }
+            });
+        
+            await mail.sendEmail({
+                from: process.env.SMTP_AUTH_USER ?? "",
+                html: `<p>Olá, ${firstNameClient}</p>
+                <p>Gostaríamos de informar que você já pode realizar a <b>avaliação</b> do advogado ${firstNameLawyer}!</p>
+                <p><b>As avaliações são muito importantes para que outros usuários possam entender como foi sua experiência.</b></p>
+                <p>
+                Para realizar a avaliação, basta acessar o justíssimo, encontrar o advogado ${firstNameLawyer}, acessando o perfil do mesmo estará habilitado
+                a opção <b>(Avaliar Advogado)</b> onde poderá deixar sua avaliação juntamente com um comentário.</p>
+                </p>
+                <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
+                <img src="cid:justissimo_logo"}>`,
+                subject: "Encerramento de Agendamento",
+                to: `${schedulingExists.contato_cliente}`,
+                attachments: [{
+                    filename: 'logo_justissimo.png',
+                    path: '././src/images/logo_justissimo.png',
+                    cid: 'justissimo_logo' //same cid value as in the html img src
+                }]
+            });
+            
+            await prisma.$transaction([ podeAvaliar ]); // Realizará a transação no banco de dados (commit)
         }
         catch (error) {
             throw new SendMailSchedulingError();
