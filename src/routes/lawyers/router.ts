@@ -19,7 +19,7 @@ router.get("/lawyers", new ListAllLawyersController().handle);
 router.get("/lawyers/:id(\\d+)", new ListLawyerByIdController().handle);
 router.get("/lawyers/:fk_advogado/divulgation/:id", ensureAuthenticated, new ListMessagesDivulgationLawyerController().handle);
 router.get("/lawyers/:id/config-schedule", ensureAuthenticated, new ListConfigScheduleController().handle);
-router.get("/lawyers/pode_avaliar", ensureAuthenticated, new ListCanEvaluateController().handle);
+router.get("/lawyers/:fk_advogado/clients/:fk_cliente/pode_avaliar", ensureAuthenticated, new ListCanEvaluateController().handle);
 
 router.post('/lawyers', uploadImage.single('file'), new CreateUserLawyerController().handle);
 router.post('/lawyers/:id/review', new ReviewLawyerController().handle);
