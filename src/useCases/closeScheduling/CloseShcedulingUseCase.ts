@@ -31,6 +31,10 @@ class CloseSchedulingUseCase {
             throw new DomainError("Id do usuário invalido!");
         }
 
+        if ((justificativa.length < 10) || (justificativa.length > 100)) {
+            throw new DomainError("Justificativa invalida! A justificativa deve ter entre 10 e 100 caracteres.");
+        }
+
         const userExists = await prisma.usuario.findUnique({
             where: {
                 id_usuario: Number.parseInt(id_user)
@@ -43,10 +47,6 @@ class CloseSchedulingUseCase {
 
         if (!userExists) {
             throw new UserNotFoundError();
-        }
-
-        if ((justificativa.length < 10) || (justificativa.length > 100)) {
-            throw new DomainError("Justificativa invalida! A justificativa deve ter entre 10 e 100 caracteres.");
         }
 
         const schedulingExists = await prisma.agendamento.findFirst({
