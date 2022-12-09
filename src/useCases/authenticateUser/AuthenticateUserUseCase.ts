@@ -74,8 +74,9 @@ class AuthenticateUserUseCase {
             const id_advogado = userLawyer.id_advogado;
             const url_foto_perfil = userLawyer.usuario != null ? userLawyer.usuario.url_foto_perfil : "";
             const id_usuario = userLawyer.usuario != null ? userLawyer.usuario.id_usuario : 0;
+            const autorizado = userLawyer.autorizado;
             
-            return { token, tipo_usuario, id_advogado, url_foto_perfil, id_usuario };
+            return { token, tipo_usuario, id_advogado, url_foto_perfil, id_usuario, autorizado };
         }
 
         if (userAlreadyExists.tipo_usuario === "administrador") {
