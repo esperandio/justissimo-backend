@@ -156,9 +156,7 @@ class CloseSchedulingUseCase {
                     cid: 'justissimo_logo' //same cid value as in the html img src
                 }]
             });
-            
-            await prisma.$transaction([ updateSheduling ]); // Realizará a transação no banco de dados (commit)
-            
+
             if (schedulingExists.fk_cliente == null) {
                 return;
             }
@@ -190,7 +188,7 @@ class CloseSchedulingUseCase {
                 }]
             });
             
-            await prisma.$transaction([ podeAvaliar ]); // Realizará a transação no banco de dados (commit)
+            await prisma.$transaction([ updateSheduling, podeAvaliar ]); // Realizará a transação no banco de dados (commit)
         }
         catch (error) {
             throw new SendMailSchedulingError();
