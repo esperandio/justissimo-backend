@@ -15,7 +15,7 @@ class CloseSchedulingUseCase {
 
         const reasons = ["Cancelamento", "Atendimento encerrado"];
         const id_scheduling = NonEmptyString.validate("id_scheduling", closeSchedulingRequest.id_scheduling).value;
-        const jsutification = NonEmptyString.validate("justificativa", closeSchedulingRequest.justification).value;
+        const justificativa = NonEmptyString.validate("justificativa", closeSchedulingRequest.justification).value;
         const reason = NonEmptyString.validate("reason", closeSchedulingRequest.reason).value;
         const id_user = NonEmptyString.validate("id_user", closeSchedulingRequest.id_user).value;
 
@@ -45,7 +45,7 @@ class CloseSchedulingUseCase {
             throw new UserNotFoundError();
         }
 
-        if ((jsutification.length < 10) || (jsutification.length > 100)) {
+        if ((justificativa.length < 10) || (justificativa.length > 100)) {
             throw new DomainError("Justificativa invalida! A justificativa deve ter entre 10 e 100 caracteres.");
         }
 
@@ -88,7 +88,7 @@ class CloseSchedulingUseCase {
             },
             data: {
                 encerrado: true,
-                justificativa: jsutification,
+                justificativa: justificativa,
                 data_encerramento: new Date(),
                 motivo_encerramento: reason,
             }
@@ -103,7 +103,7 @@ class CloseSchedulingUseCase {
                         from: process.env.SMTP_AUTH_USER ?? "",
                         html: `<p>Olá ${firstNameClient},</p>
                         <p>Informamos que o agendamento foi <b>cancelado</b> pelo advogado ${firstNameLawyer}.</p>
-                        <p><b>Justificativa:</b> ${jsutification}</p>
+                        <p><b>Justificativa:</b> ${justificativa}</p>
                         <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                         <img src="cid:justissimo_logo"}>`,
                         subject: "Encerramento de Agendamento",
@@ -124,7 +124,7 @@ class CloseSchedulingUseCase {
                     from: process.env.SMTP_AUTH_USER ?? "",
                     html: `<p>Olá ${firstNameLawyer},</p>
                     <p>Informamos que o agendamento foi <b>cancelado</b> pelo cliente ${firstNameClient}.</p>
-                    <p><b>Justificativa:</b> ${jsutification}</p>
+                    <p><b>Justificativa:</b> ${justificativa}</p>
                     <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                     <img src="cid:justissimo_logo"}>`,
                     subject: "Encerramento de Agendamento",
@@ -145,7 +145,7 @@ class CloseSchedulingUseCase {
                 from: process.env.SMTP_AUTH_USER ?? "",
                 html: `<p>Olá,</p>
                 <p>Informamos que o agendamento foi <b>encerrado</b> com sucesso!</p>
-                <p><b>Justificativa:</b> ${jsutification}</p>
+                <p><b>Justificativa:</b> ${justificativa}</p>
                 <p><b>Atenciosamente,<br> Equipe Justissimo</b></p>
                 <img src="cid:justissimo_logo"}>`,
                 subject: "Encerramento de Agendamento",
