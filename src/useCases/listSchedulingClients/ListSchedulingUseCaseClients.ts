@@ -62,6 +62,7 @@ class ListSchedulingUseCaseClient {
                 area_atuacao: true,
                 data_criacao_agendamento: true,
                 encerrado: true,
+                motivo_encerramento: true,
                 advogado:{
                     select: {
                         nome: true,
