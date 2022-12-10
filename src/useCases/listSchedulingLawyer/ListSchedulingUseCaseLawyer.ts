@@ -8,7 +8,7 @@ interface IListSchedulingRequest{
     date_init: string;
     date_final: string;
     area: string;
-    encerrado: boolean;
+    somenteAgendamentosEmAberto: boolean;
 }
 
 class ListSchedulingUseCaseLawyer {
@@ -37,8 +37,8 @@ class ListSchedulingUseCaseLawyer {
             }
         }
 
-        if (listSchedulingRequest.encerrado != null) {
-            filterEncerrado = { equals: listSchedulingRequest.encerrado };
+        if (listSchedulingRequest.somenteAgendamentosEmAberto === true) {
+            filterEncerrado = { equals: false };
         }
 
         if (NonEmptyString.isEmpty(listSchedulingRequest.fk_lawyer)) {
