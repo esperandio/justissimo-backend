@@ -42,6 +42,22 @@ class ListMessagesDivulgationLawyerUseCase {
                 descricao: true,
                 dt_cadastro: true,
                 encerrado: true,
+                cliente: {
+                    select: {
+                        nome: true,
+                        endereco: {
+                            select: {
+                                cidade: true,
+                                estado: true
+                            }
+                        },
+                        usuario: {
+                            select: {
+                                url_foto_perfil: true
+                            }
+                        }
+                    }
+                },
                 mensagens: {
                     select: {
                         id_mensagem_divulgacao: true,
