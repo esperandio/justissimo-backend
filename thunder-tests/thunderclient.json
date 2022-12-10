@@ -220,12 +220,12 @@
     "method": "POST",
     "sortNum": 55000,
     "created": "2022-05-28T14:33:08.048Z",
-    "modified": "2022-10-04T23:47:39.456Z",
+    "modified": "2022-12-07T01:38:06.911Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"id_cliente\": 1,\n  \"nota\": 3,\n  \"descricao\": \"teste asc\"\n}",
+      "raw": "{\n  \"id_cliente\": 2,\n  \"nota\": 3,\n  \"descricao\": \"teste asc\"\n}",
       "form": []
     },
     "tests": []
@@ -439,11 +439,11 @@
     "colId": "abc2c7e6-794d-4c96-a0af-cef15a576e00",
     "containerId": "",
     "name": "closeScheduling",
-    "url": "{{url}}/scheduling/5",
+    "url": "{{url}}/scheduling/2",
     "method": "PUT",
     "sortNum": 30000,
     "created": "2022-06-19T00:31:31.880Z",
-    "modified": "2022-10-11T02:13:26.331Z",
+    "modified": "2022-12-07T01:40:30.362Z",
     "headers": [],
     "params": [],
     "body": {
@@ -820,6 +820,29 @@
     "modified": "2022-12-04T22:18:32.378Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{token}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "b36dfe30-a8a6-42be-9d2f-4de349c92bb8",
+    "colId": "e53bd259-8d8a-46dc-b810-6a5b0db3dd19",
+    "containerId": "",
+    "name": "canEvaluate",
+    "url": "{{url}}/lawyers/pode_avaliar",
+    "method": "GET",
+    "sortNum": 110000,
+    "created": "2022-12-06T23:58:27.904Z",
+    "modified": "2022-12-07T01:31:28.379Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"fk_cliente\": 2,\n  \"fk_advogado\": 1\n}",
+      "form": []
+    },
     "auth": {
       "type": "bearer",
       "bearer": "{{token}}"

@@ -4,6 +4,7 @@ import { ensureAuthenticated } from "../../middlewares/ensureAutheticated";
 import { ConfigScheduleController } from "../../useCases/config_schedule/ConfigScheduleController";
 import { CreateManualSchedulingController } from "../../useCases/createManualScheduling/CreateManualSchedulingController";
 import { CreateUserLawyerController } from "../../useCases/createUserLawyer/CreateUserLawyerController";
+import { ListCanEvaluateController } from "../../useCases/listCanEvaluate/ListCanEvaluateController";
 import { ListConfigScheduleController } from "../../useCases/listConfigSchedule/ListConfigScheduleController";
 import { ListMessagesDivulgationLawyerController } from "../../useCases/listMessagesDivulgationLawyer/ListMessagesDivulgationLawyerController";
 import { ListAllLawyersController } from "../../useCases/listUserLawyer/listAllLawyers/ListAllLawyersController";
@@ -15,9 +16,10 @@ const router = Router();
 
 /**Lawyers*/
 router.get("/lawyers", new ListAllLawyersController().handle);
-router.get("/lawyers/:id", new ListLawyerByIdController().handle);
+router.get("/lawyers/:id(\\d+)", new ListLawyerByIdController().handle);
 router.get("/lawyers/:fk_advogado/divulgation/:id", ensureAuthenticated, new ListMessagesDivulgationLawyerController().handle);
 router.get("/lawyers/:id/config-schedule", ensureAuthenticated, new ListConfigScheduleController().handle);
+router.get("/lawyers/:fk_advogado/clients/:fk_cliente/pode_avaliar", ensureAuthenticated, new ListCanEvaluateController().handle);
 
 router.post('/lawyers', uploadImage.single('file'), new CreateUserLawyerController().handle);
 router.post('/lawyers/:id/review', new ReviewLawyerController().handle);

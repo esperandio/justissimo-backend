@@ -45,6 +45,13 @@ class ReviewLawyerUseCase {
             }
         });
 
+        await prisma.podeAvaliar.deleteMany({
+            where: {
+                fk_cliente: cliente.id_cliente,
+                fk_advogado: advogado.id_advogado
+            }
+        });
+
         if (avaliacaoJaExistente != null) {
             await prisma.avaliacao.update({
                 where: {

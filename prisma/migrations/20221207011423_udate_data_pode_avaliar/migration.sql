@@ -1,0 +1,2 @@
+-- This is an empty migration.
+INSERT INTO "pode_avaliar" ("fk_advogado", "fk_cliente") (SELECT "fk_advogado", "fk_cliente" FROM "agendamento" WHERE "fk_cliente" IS NOT NULL and "encerrado" = true and "motivo_encerramento" = 'Atendimento encerrado');
